@@ -11,7 +11,7 @@ endif
 DRAFT = draft-jennings-dispatch-spad-v0
 VERSION = 00
 
-.PHONY: all clean diff pages draft
+.PHONY: all clean diff pages draft tidy check 
 .PRECIOUS: %.xml
 
 all: pages draft 
@@ -24,6 +24,14 @@ diff: $(DRAFT).diff.html
 
 clean:
 	-rm -f $(DRAFT)-$(VERSION).{txt,html,xml,pdf} $(DRAFT).diff.html pages/*
+
+check:
+	jayschema example1.spad spad-schema.json
+
+tidy:
+	json -I --output json -f spad-schema.json
+	json -I --output json -f example1.spad
+    ramllint spad.raml
 
 %.txt: %.xml 
 	$(xml2rfc) -N $< -o $@ --text
@@ -39,6 +47,6 @@ $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
 	htmlwdiff   $(DRAFT)-old.txt   $(DRAFT)-$(VERSION).txt >   $(DRAFT).diff.html
 
 
-pages/api.html: test.raml
-	raml2html test.raml -o pages/api.html
+pages/api.html: spad.raml example1.spad 
+	raml2html spad.raml -o pages/api.html
 

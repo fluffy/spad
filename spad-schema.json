@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "SPAD schema.",
+  "properties": {
+    "version": {
+      "type": "integer",
+      "title": "Version of schmea used"
+    },
+    "transports": {
+      "type": "array",
+      "uniqueItems": false,
+      "title": "Transport List",
+      "description": "List of tranports used by the applicaiton",
+      "items": {
+        "type": "object",
+        "title": "Transport",
+        "properties": {
+          "ips": {
+            "type": "array",
+            "uniqueItems": false,
+            "title": "IP addresses list",
+            "items": {
+              "type": "string",
+              "title": "IPv4 or v6 address"
+            }
+          },
+          "ports": {
+            "type": "array",
+            "title": "Port list",
+            "items": {
+              "type": "integer",
+              "multipleOf": 1,
+              "maximum": 10000,
+              "minimum": 1,
+              "title": "port",
+              "description": "destination port used by transport protcol"
+            }
+          },
+          "dns": {
+            "type": "array",
+            "title": "DNS name list",
+            "description": "An explanation about the purpose of this instance.",
+            "items": {
+              "type": "string",
+              "title": "DNS name",
+              "description": "DNS name that will be used to conenct to"
+            }
+          },
+          "protcols": {
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Transport Protocol List",
+            "description": "An explanation about the purpose of this instance.",
+            "items": {
+              "type": "string",
+              "title": "protocol",
+              "enum": [
+                "udp",
+                "tcp",
+                "http",
+                "tls",
+                "https",
+                "quic"
+              ]
+            }
+          }
+        },
+        "required": [
+          "ips",
+          "ports"
+        ]
+      }
+    }
+  },
+  "required": [
+    "ver",
+    "transports"
+  ]
+}

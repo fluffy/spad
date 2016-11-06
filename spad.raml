@@ -1,0 +1,26 @@
+#%RAML 0.8
+title: SPAD
+version: v0
+protocols: [ HTTPS ]
+baseUri: https://example.com/.well-known/spad/{version}
+mediaType: application/json
+
+schemas:
+ - spad.json: !include spad-schema.json
+
+documentation:
+ - title: Overview
+   content: !include overview.md
+   
+/transports:
+  description: Transports used by this service 
+  get:
+    description: Retrieve the spad 
+    responses:
+       200:
+         description: Return SPAD file - see TODO 
+         body:
+          application/json:
+            schema: spad.json
+            example: !include example1.spad
+            

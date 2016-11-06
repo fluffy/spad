@@ -40,6 +40,7 @@ RUN ( cd /go/src/github.com/miekg/mmark/mmark ; make ; go install )
 RUN npm install -g raml2html
 RUN npm install -g jayschema
 RUN npm install -g json
+RUN npm install -g ramllint
 
 VOLUME /work
 WORKDIR /work
