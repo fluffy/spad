@@ -1,0 +1,24 @@
+baseurl: http://example.org/
+languageCode: en-us
+title: SPAD Spec Site
+theme: hugo-material-docs
+metadataformat: yaml
+canonifyurls: true
+
+param:
+  provider: GitHub
+  repo_url: https://github.com/fluffy/spad
+
+  palette:
+    primary: red
+    accent: teal
+
+menu:
+  main:
+      - Name: "about hugo"
+        Weight: -110
+        Identifier: "about"
+        URL: "/about/"
+      - Name: "getting started"
+        Weight: -100
+        URL: "/getting-started/"
