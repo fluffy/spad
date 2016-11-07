@@ -7,16 +7,17 @@ ifneq (,$(XML_LIBRARY))
 	mmark += -bib-id $(XML_LIBRARY)/ -bib-rfc $(XML_LIBRARY)/
 endif
 
-
 DRAFT = draft-jennings-dispatch-spad-v0
-VERSION = 00
+ifeq (,$(VERSION))
+	VERSION = latest
+endif
 
 .PHONY: all clean diff pages draft tidy check 
 .PRECIOUS: %.xml
 
 all: pages draft 
 
-draft: $(DRAFT)-$(VERSION).txt $(DRAFT)-$(VERSION).html 
+draft: pages/$(DRAFT)-$(VERSION).txt pages/$(DRAFT)-$(VERSION).html 
 
 pages: pages/api.html 
 
@@ -39,7 +40,7 @@ tidy:
 %.html: %.xml 
 	$(xml2rfc) -N $< -o $@ --html
 
-$(DRAFT)-$(VERSION).xml: $(DRAFT).md  *.md gen/example1.json.md gen/spad.raml.md gen/spad-schema.json.md
+pages/$(DRAFT)-$(VERSION).xml: $(DRAFT).md  *.md gen/example1.json.md gen/spad.raml.md gen/spad-schema.json.md
 	$(mmark) -xml2 -page $< $@
 
 $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt

@@ -1,6 +1,5 @@
 
-By contributing to this project, you agree to licenses your
-contributions under IETF, CC, and BSD (TODO). 
+# Contributing
 
 We welcome all contributions. Discussion happens in the
 https://spadwg.slack.com/messages/general/ room in slack and on GitHub
