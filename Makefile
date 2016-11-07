@@ -31,7 +31,7 @@ check:
 tidy:
 	json -I --output json -f spad-schema.json
 	json -I --output json -f example1.spad
-    ramllint spad.raml
+	ramllint spad.raml
 
 %.txt: %.xml 
 	$(xml2rfc) -N $< -o $@ --text
@@ -39,7 +39,7 @@ tidy:
 %.html: %.xml 
 	$(xml2rfc) -N $< -o $@ --html
 
-$(DRAFT)-$(VERSION).xml: $(DRAFT).md 
+$(DRAFT)-$(VERSION).xml: $(DRAFT).md  *.md gen/example1.json.md gen/spad.raml.md gen/spad-schema.json.md
 	$(mmark) -xml2 -page $< $@
 
 $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
@@ -47,6 +47,15 @@ $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
 	htmlwdiff   $(DRAFT)-old.txt   $(DRAFT)-$(VERSION).txt >   $(DRAFT).diff.html
 
 
-pages/api.html: spad.raml example1.spad 
+pages/api.html: spad.raml example1.json spad-schema.json
 	raml2html spad.raml -o pages/api.html
+
+gen/%.raml.md: %.raml
+	mkdir -p gen 
+	( echo "~~~ yaml" ; cat $< ; echo "~~~" ) > $@
+
+gen/%.json.md: %.json
+	mkdir -p gen 
+	( echo "~~~ yaml" ; cat $< ; echo "~~~" ) > $@
+
 
