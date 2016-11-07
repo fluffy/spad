@@ -23,14 +23,14 @@ pages: pages/api.html
 diff: $(DRAFT).diff.html
 
 clean:
-	-rm -f $(DRAFT)-$(VERSION).{txt,html,xml,pdf} $(DRAFT).diff.html pages/*
+	-rm -f $(DRAFT)-$(VERSION).{txt,html,xml,pdf} $(DRAFT).diff.html pages/* gen/*
 
 check:
-	jayschema example1.spad spad-schema.json
+	jayschema example1.json spad-schema.json
 
 tidy:
 	json -I --output json -f spad-schema.json
-	json -I --output json -f example1.spad
+	json -I --output json -f example1.json
 	ramllint spad.raml
 
 %.txt: %.xml 
