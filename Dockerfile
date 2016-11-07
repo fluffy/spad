@@ -42,6 +42,8 @@ RUN npm install -g jayschema
 RUN npm install -g json
 RUN npm install -g ramllint
 
+RUN go get -v github.com/spf13/hugo
+
 VOLUME /work
 WORKDIR /work
 
