@@ -49,6 +49,7 @@ $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
 
 
 pages/api.html: spad.raml example1.json spad-schema.json
+	mkdir -p pages
 	raml2html spad.raml -o pages/api.html
 
 gen/%.raml.md: %.raml
