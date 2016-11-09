@@ -21,13 +21,26 @@ draft: pages/$(DRAFT)-$(VERSION).txt pages/$(DRAFT)-$(VERSION).html
 
 pages: pages/api.html
 
-site:
-	mkdir -p site/content
-	cp about.md site/content/
-	cp gettingStarted.md site/content/getting_started.md
-	cp overview.md site/content/
-	cp pages/api.html site/content/
-	cp pages/$(DRAFT)-$(VERSION).html site/content/
+site: site/content/about.md site/content/gettingStarted.md site/content/overview.md \
+	site/content/api.html site/content/$(DRAFT)-$(VERSION).html
+
+site/content/about.md: about.md
+	( echo "---" ; echo "title: About SPAD" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+site/content/gettingStarted.md: gettingStarted.md
+	( echo "---" ; echo "title: About SPAD" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+site/content/overview.md: overview.md
+	( echo "---" ; echo "title: Simple Port and Address Discovery (SPAD)" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+site/content/api.html: pages/api.html
+	cp $< $@
+
+site/content/$(DRAFT)-$(VERSION).html: pages/$(DRAFT)-$(VERSION).html
+	cp $< $@
 
 diff: $(DRAFT).diff.html
 
