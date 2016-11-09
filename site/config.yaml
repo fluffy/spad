@@ -1,24 +1,58 @@
 baseurl: http://example.org/
 languageCode: en-us
 title: SPAD Spec Site
-theme: hugo-material-docs
+#theme: hugo-material-docs
+theme: blackburn
+#theme: strange-case
+#theme: hugo-bootstrap
+#theme: hugo-bootstrap-premium
+#theme: hyde-y
 metadataformat: yaml
 canonifyurls: true
+copyright: TODO3
+author: TODO7
 
-param:
+
+
+params:
+  themeColor: "theme-base-0d"
+  description: TODO4
+  sidebarDescription: TODO 5 MORE MORE 
+  sidebarFreeText: 
   provider: GitHub
+  copyright: TODO6
   repo_url: https://github.com/fluffy/spad
+  brand: NONE1
+  subtitle: NONE2
+  #showLeftSidebar: true
+  showRightSidebar: true
+  sidebar: left
+  brand: SPAD
+  topline: TODO 9
+  footline: TODO 10
 
-  palette:
-    primary: red
-    accent: teal
-
+indexes:
+  tag: tags
+  
 menu:
   main:
-      - Name: "about hugo"
-        Weight: -110
-        Identifier: "about"
-        URL: "/about/"
-      - Name: "getting started"
-        Weight: -100
-        URL: "/getting-started/"
+      - Name: Overview
+        Weight: 10x2
+        URL: /overview/
+      - Name: Getting Started
+        Weight: 20
+        URL: /getting_started/
+      - Name: API
+        Weight: 30
+        URL: /api/
+      - Name: Draft Standard
+        Weight: 40
+        URL: /draft-jennings-dispatch-spad-v0-latest/
+      - Name: About
+        Weight: 110
+        Identifier: about
+        URL: /about/
+
+social:
+        github: fluffy/spad
+

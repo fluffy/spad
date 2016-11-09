@@ -12,19 +12,27 @@ ifeq (,$(VERSION))
 	VERSION = latest
 endif
 
-.PHONY: all clean diff pages draft tidy check 
+.PHONY: all clean diff pages draft tidy check site
 .PRECIOUS: %.xml
 
 all: pages draft 
 
 draft: pages/$(DRAFT)-$(VERSION).txt pages/$(DRAFT)-$(VERSION).html 
 
-pages: pages/api.html 
+pages: pages/api.html
+
+site:
+	mkdir -p site/content
+	cp about.md site/content/
+	cp gettingStarted.md site/content/getting_started.md
+	cp overview.md site/content/
+	cp pages/api.html site/content/
+	cp pages/$(DRAFT)-$(VERSION).html site/content/
 
 diff: $(DRAFT).diff.html
 
 clean:
-	-rm -f $(DRAFT)-$(VERSION).{txt,html,xml,pdf} $(DRAFT).diff.html pages/* gen/*
+	-rm -f pages/$(DRAFT)-$(VERSION).{txt,html,xml,pdf} $(DRAFT).diff.html pages/* gen/*
 
 check:
 	jayschema example1.json spad-schema.json

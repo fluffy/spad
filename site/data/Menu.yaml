@@ -1,0 +1,10 @@
+overview:
+    Name: Overview
+    URL: /overview/
+    
+about:
+    Name: About
+    IconClass: fa-info-circle
+    URL: /about/
+
+

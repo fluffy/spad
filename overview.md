@@ -1,3 +1,6 @@
+---
+title: Simple Port and Address Discovery (SPAD)
+---
 
 Simple Port and Address Discovery (SPAD) allows an web application to
 inform others of what ports and IP addresses it uses so that things
