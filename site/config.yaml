@@ -8,7 +8,7 @@ theme: blackburn
 #theme: hugo-bootstrap-premium
 #theme: hyde-y
 metadataformat: yaml
-canonifyurls: true
+canonifyurls: false
 copyright: TODO3
 author: TODO7
 
