@@ -3,3 +3,10 @@ old
 gen
 pages
 site/public
+site/content/about.mmark
+site/content/api.html
+site/content/contributing.mmark
+site/content/draft-jennings-dispatch-spad-v0-latest.html
+site/content/getting_started.mmark
+site/content/overview.mmark
+

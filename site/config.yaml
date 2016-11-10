@@ -48,6 +48,9 @@ menu:
       - Name: Draft Standard
         Weight: 40
         URL: /draft-jennings-dispatch-spad-v0-latest/
+      - Name: Contributing
+        Weight: 50
+        URL: /contributing/
       - Name: About
         Weight: 110
         Identifier: about

@@ -21,18 +21,24 @@ draft: pages/$(DRAFT)-$(VERSION).txt pages/$(DRAFT)-$(VERSION).html
 
 pages: pages/api.html
 
-site: site/content/about.md site/content/gettingStarted.md site/content/overview.md \
+site: site/content/about.mmark site/content/getting_started.mmark site/content/overview.mmark \
+	site/content/contributing.mmark \
 	site/content/api.html site/content/$(DRAFT)-$(VERSION).html
+	( cd site  ; hugo  ) 
 
-site/content/about.md: about.md
+site/content/contributing.mmark: CONTRIBUTING.md
+	( echo "---" ; echo "title: Contributing " ; echo "---" ) >  $@
+	cat $< >>  $@
+
+site/content/about.mmark: about.md
 	( echo "---" ; echo "title: About SPAD" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/gettingStarted.md: gettingStarted.md
-	( echo "---" ; echo "title: About SPAD" ; echo "---" ) >  $@
+site/content/getting_started.mmark: gettingStarted.md
+	( echo "---" ; echo "title: Getting Started" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/overview.md: overview.md
+site/content/overview.mmark: overview.md
 	( echo "---" ; echo "title: Simple Port and Address Discovery (SPAD)" ; echo "---" ) >  $@
 	cat $< >>  $@
 
