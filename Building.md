@@ -15,7 +15,7 @@ Build specification  with
 docker run -v `pwd`:/work spad
 ```
 
-another usefull command to get a shell in the docker image is
+another useful command to get a shell in the docker image is
 ```sh
 docker run -it -v `pwd`:/work spad /usr/bin/tcsh
 ```

@@ -24,7 +24,9 @@
 
 .# Abstract
 
-TODO
+This specification defines a simple JSON format and well known URL for
+firewalls and other devices to discover whats IP addresses, ports, and
+related transports a given cloud services uses.
 
 {mainmatter}
 

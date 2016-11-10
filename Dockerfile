@@ -29,7 +29,7 @@ RUN ln -s `which nodejs` /usr/bin/node
 RUN pip install xml2rfc
 
 RUN gem install kramdown-rfc2629
-gem update
+RUN gem update
 
 # install tidy to relow XML 
 RUN apt-get install -y tidy
