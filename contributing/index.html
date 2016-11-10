@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.17" />
+
+  <title>Contributing &middot; SPAD Spec Site</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://example.org/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://example.org/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://example.org/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+
+  <link rel="shortcut icon" href="http://example.org/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="http://example.org/">SPAD</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/overview/">Overview</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/getting_started/">Getting Started</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/api/">API</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/raml/">RAML</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/schemas/">Schemas</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/draft-jennings-dispatch-spad-v0-latest/">Draft Standard</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/contributing/">Contributing</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/about/">About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/fluffy/spad" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>TODO6</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Contributing</h1>
+  <h2></h2>
+</div>
+<div class="content">
+  <h1 id="contributing">Contributing</h1>
+
+<p>We welcome all contributions. Discussion happens in the
+<a href="https://spadwg.slack.com/messages/general/">https://spadwg.slack.com/messages/general/</a> room in slack and on GitHub
+issue threads. Changes are done via git pull requests. For PR merged
+into the master branch, we strive for rough consensus and we measure
+that view the reviews placed on the PR.</p>
+
+<p>The Specification style is &quot;less is more&quot;. If a reasonable developer
+who is fully up on modern web development practices could figure out
+how write an interoperable implementation after looking at some
+examples and code and asking a few questions, well that's good enough
+for us. If you can find it on Wikipedia, we don't need to explain it
+here.</p>
+
+<p>Markdown is used for text. RAML and JSON Schema are used to describe
+the API. Examples are often used as normative specification. The build
+chain has the goal is to be simple and obvios with no black magic.</p>
+
+<h1 id="published-versions">Published Versions</h1>
+
+<p>The website at TBD provides an overview view of the specification that
+is focused on developers. However all the key information to implement
+the specification that is used to generate the website is also used to
+generate and internet draft that can be found at TBD that is slanted
+at specification developers. Periodically the information on the
+master is branched to versioned draft branch and published and an
+internet draft. A typical cadence for this is monthly so that it can
+receiver broader review. If the PRs that were merged to master
+represent WG rough consensus, it is expected that it the will move
+quickly through the standards process. When the work is at a good
+point to form a version of the API, it is progressed to an RFC and the
+text of the approved RFC is used to form a released version of the
+spec. The first version would be v1. The current working pre standard
+version is always referred to as v0.  The API includes the version in
+the URL so that developers can implement to a specific non changing
+specification. Future versions attempt, but do not guarantee, to be
+backwards comptable with the previos version.</p>
+
+</div>
+
+</div>
+</div>
+<script src="http://example.org/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+
