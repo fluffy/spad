@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.17" />
+
+  <title>Getting Started &middot; SPAD Spec Site</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://example.org/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://example.org/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://example.org/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+
+  <link rel="shortcut icon" href="http://example.org/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="http://example.org/">SPAD</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/overview/">Overview</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/getting_started/">Getting Started</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/api/">API</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/raml/">RAML</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/schemas/">Schemas</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/draft-jennings-dispatch-spad-v0-latest/">Draft Standard</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/contributing/">Contributing</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://example.org/about/">About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/fluffy/spad" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>TODO6</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Getting Started</h1>
+  <h2></h2>
+</div>
+<div class="content">
+  <p>To figure out what IP addresses are used by the service example.com,
+the first step is to form the query URL by constructing and point at
+&quot;.well-known/spad/v0/transports&quot;.</p>
+
+<pre><code>curl https://example.com/.well-known/spad/v0/transports
+</code></pre>
+
+<p>An HTTPS GET query is done that to that URL. The responses would be a
+JSON result that could looks like</p>
+
+<pre><code>{
+  &quot;ver&quot;: 1,
+  &quot;transports&quot;: [
+    {
+      &quot;ips&quot;: [
+        &quot;203.0.113.2&quot;
+      ],
+      &quot;ports&quot;: [
+        443
+      ]
+    }
+  ]
+}
+</code></pre>
+
+<p>The return result indicates that the &quot;example.com&quot; service uses only
+the IP address &quot;203.0.113.2&quot;.</p>
+
+<p>The following shows a more complex example result for an applications
+that uses only HTTP and QUIC over a small set of IP addresses. All
+traffic will be connecting to example.com or api.example.com from the
+point of view of TLS and proxies.</p>
+
+<pre><code>{
+  &quot;ver&quot;: 1,
+  &quot;transports&quot;: [
+    {
+      &quot;ips&quot;: [
+        &quot;192.0.2.1&quot;,
+        &quot;203.0.113.2&quot;,
+        &quot;2001:db8::1&quot;
+      ],
+      &quot;ports&quot;: [
+        443
+      ],
+      &quot;dns&quot;: [
+        &quot;example.com&quot;,
+        &quot;api.example.com&quot;
+      ],
+      &quot;protcols&quot;: [
+        &quot;https&quot;,
+        &quot;quic&quot;
+      ]
+    }
+  ]
+}
+</code></pre>
+
+</div>
+
+</div>
+</div>
+<script src="http://example.org/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+
