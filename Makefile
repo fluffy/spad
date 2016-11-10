@@ -26,6 +26,7 @@ site: site/content/about.mmark site/content/getting_started.mmark site/content/o
 	site/themes/blackburn/README.md \
 	site/content/api.html site/content/$(DRAFT)-$(VERSION).html
 	( cd site  ; hugo  ) 
+	cp -r site/public/* docs/.
 
 site/content/contributing.mmark: CONTRIBUTING.md
 	( echo "---" ; echo "title: Contributing " ; echo "---" ) >  $@

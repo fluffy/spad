@@ -1,16 +1,15 @@
 # Useful Information 
 
-Developer focused view of the specification can be found at TBD. 
+Developer focused view of the specification can be found at
+[](https://fluffy.github.io/spad//overview/)
 
-Test and example programs can be found at TBD. 
+The latest internet draft can be found at
+(https://fluffy.github.io/spad/draft-jennings-dispatch-spad-v0-latest/)
 
-A reference implementations of the server can be found at TBD. 
+How to build the specificaiton can be found at
+(https://github.com/fluffy/spad/blob/master/Building.md)
 
-The latest internet draft can be found at TBD. 
-
-How to build the specificaiton can be found at TBD. 
-
-How to contribute can be found at TBD.
+How to contribute can be found at (https://fluffy.github.io/spad/contributing/).
 
 
 
