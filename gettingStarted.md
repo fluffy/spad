@@ -1,14 +1,15 @@
 
 To figure out what IP addresses are used by the service example.com,
-the first step is to form the query URL by constructing and point at
+the first step is to form the query URL by constructing an endpoint at
 ".well-known/spad/v0/transports".
+
+An HTTPS GET query is done that to that URL.
 
 ~~~
 curl https://example.com/.well-known/spad/v0/transports
 ~~~
 
-An HTTPS GET query is done that to that URL. The responses would be a
-JSON result that could looks like
+The responses would be a JSON result that could looks like
 
 {{gen/example1.json.md}}
 

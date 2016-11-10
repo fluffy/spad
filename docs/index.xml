@@ -168,7 +168,7 @@
         word-wrap: normal;
         white-space: pre;
       }
-    &lt;/style&gt;&lt;/head&gt;&lt;body data-spy=&#34;scroll&#34; data-target=&#34;#sidebar&#34;&gt;&lt;div class=&#34;container&#34;&gt;&lt;div class=&#34;row&#34;&gt;&lt;div class=&#34;col-md-9&#34; role=&#34;main&#34;&gt;&lt;div class=&#34;page-header&#34;&gt;&lt;h1&gt;SPAD API documentation &lt;small&gt;version v0&lt;/small&gt;&lt;/h1&gt;&lt;p&gt;https://example.com/.well-known/spad/v0&lt;/p&gt;&lt;h3 id=&#34;Overview&#34;&gt;&lt;a href=&#34;#Overview&#34;&gt;Overview&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Simple Port and Address Discovery (SPAD) allows an web application to inform others of what ports and IP addresses it uses so that things like firewalls can correctly re-configure themsleves as the ports and addresses change. Applications are identified by a domain name which is used to form a URL in a well known location where a client can do a HTTP REST call to get a JSON file that describes information about what addresses and transport the service uses.&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;panel panel-default&#34;&gt;&lt;div class=&#34;panel-heading&#34;&gt;&lt;h3 id=&#34;transports&#34; class=&#34;panel-title&#34;&gt;/transports&lt;/h3&gt;&lt;/div&gt;&lt;div class=&#34;panel-body&#34;&gt;&lt;div class=&#34;top-resource-description&#34;&gt;&lt;p&gt;Transports used by this service&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;panel-group&#34;&gt;&lt;div class=&#34;panel panel-white&#34;&gt;&lt;div class=&#34;panel-heading&#34;&gt;&lt;h4 class=&#34;panel-title&#34;&gt;&lt;a class=&#34;collapsed&#34; data-toggle=&#34;collapse&#34; href=&#34;#panel_transports&#34;&gt;&lt;span class=&#34;parent&#34;&gt;&lt;/span&gt;/transports&lt;/a&gt; &lt;span class=&#34;methods&#34;&gt;&lt;a href=&#34;#transports_get&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;&lt;div id=&#34;panel_transports&#34; class=&#34;panel-collapse collapse&#34;&gt;&lt;div class=&#34;panel-body&#34;&gt;&lt;div class=&#34;list-group&#34;&gt;&lt;div onclick=&#34;window.location.href = &#39;#transports_get&#39;&#34; class=&#34;list-group-item&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt;&lt;div class=&#34;method_description&#34;&gt;&lt;p&gt;Retrieve the spad&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;clearfix&#34;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;modal fade&#34; tabindex=&#34;0&#34; id=&#34;transports_get&#34;&gt;&lt;div class=&#34;modal-dialog&#34;&gt;&lt;div class=&#34;modal-content&#34;&gt;&lt;div class=&#34;modal-header&#34;&gt;&lt;button type=&#34;button&#34; class=&#34;close&#34; data-dismiss=&#34;modal&#34; aria-hidden=&#34;true&#34;&gt;&amp;times;&lt;/button&gt;&lt;h4 class=&#34;modal-title&#34; id=&#34;myModalLabel&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;parent&#34;&gt;&lt;/span&gt;/transports&lt;/h4&gt;&lt;/div&gt;&lt;div class=&#34;modal-body&#34;&gt;&lt;div class=&#34;alert alert-info&#34;&gt;&lt;p&gt;Retrieve the spad&lt;/p&gt;&lt;/div&gt;&lt;ul class=&#34;nav nav-tabs&#34;&gt;&lt;li class=&#34;active&#34;&gt;&lt;a href=&#34;#transports_get_response&#34; data-toggle=&#34;tab&#34;&gt;Response&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class=&#34;tab-content&#34;&gt;&lt;div class=&#34;tab-pane active&#34; id=&#34;transports_get_response&#34;&gt;&lt;h2&gt;HTTP status code &lt;a href=&#34;http://httpstatus.es/200&#34; target=&#34;_blank&#34;&gt;200&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Return SPAD file - see TODO&lt;/p&gt;&lt;h3&gt;Body&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Type: application/json&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Schema&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;{
+    &lt;/style&gt;&lt;/head&gt;&lt;body data-spy=&#34;scroll&#34; data-target=&#34;#sidebar&#34;&gt;&lt;div class=&#34;container&#34;&gt;&lt;div class=&#34;row&#34;&gt;&lt;div class=&#34;col-md-9&#34; role=&#34;main&#34;&gt;&lt;div class=&#34;page-header&#34;&gt;&lt;h1&gt;SPAD API documentation &lt;small&gt;version v0&lt;/small&gt;&lt;/h1&gt;&lt;p&gt;https://example.com/.well-known/spad/v0&lt;/p&gt;&lt;h3 id=&#34;Overview&#34;&gt;&lt;a href=&#34;#Overview&#34;&gt;Overview&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Simple Port and Address Discovery (SPAD) allows an web application to inform others of what ports and IP addresses it uses so that things like firewalls can correctly re-configure themsleves as the ports and addresses change. Applications are identified by a domain name which is used to form a URL in a well known location where a client can do a HTTP REST call to get a JSON file that describes information about what addresses and transport the service uses.&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;panel panel-default&#34;&gt;&lt;div class=&#34;panel-heading&#34;&gt;&lt;h3 id=&#34;transports&#34; class=&#34;panel-title&#34;&gt;/transports&lt;/h3&gt;&lt;/div&gt;&lt;div class=&#34;panel-body&#34;&gt;&lt;div class=&#34;top-resource-description&#34;&gt;&lt;p&gt;Transports used by this service&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;panel-group&#34;&gt;&lt;div class=&#34;panel panel-white&#34;&gt;&lt;div class=&#34;panel-heading&#34;&gt;&lt;h4 class=&#34;panel-title&#34;&gt;&lt;a class=&#34;collapsed&#34; data-toggle=&#34;collapse&#34; href=&#34;#panel_transports&#34;&gt;&lt;span class=&#34;parent&#34;&gt;&lt;/span&gt;/transports&lt;/a&gt; &lt;span class=&#34;methods&#34;&gt;&lt;a href=&#34;#transports_get&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;&lt;div id=&#34;panel_transports&#34; class=&#34;panel-collapse collapse&#34;&gt;&lt;div class=&#34;panel-body&#34;&gt;&lt;div class=&#34;list-group&#34;&gt;&lt;div onclick=&#34;window.location.href = &#39;#transports_get&#39;&#34; class=&#34;list-group-item&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt;&lt;div class=&#34;method_description&#34;&gt;&lt;p&gt;Retrieve the spad&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;clearfix&#34;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;modal fade&#34; tabindex=&#34;0&#34; id=&#34;transports_get&#34;&gt;&lt;div class=&#34;modal-dialog&#34;&gt;&lt;div class=&#34;modal-content&#34;&gt;&lt;div class=&#34;modal-header&#34;&gt;&lt;button type=&#34;button&#34; class=&#34;close&#34; data-dismiss=&#34;modal&#34; aria-hidden=&#34;true&#34;&gt;&amp;times;&lt;/button&gt;&lt;h4 class=&#34;modal-title&#34; id=&#34;myModalLabel&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;parent&#34;&gt;&lt;/span&gt;/transports&lt;/h4&gt;&lt;/div&gt;&lt;div class=&#34;modal-body&#34;&gt;&lt;div class=&#34;alert alert-info&#34;&gt;&lt;p&gt;Retrieve the spad&lt;/p&gt;&lt;/div&gt;&lt;ul class=&#34;nav nav-tabs&#34;&gt;&lt;li class=&#34;active&#34;&gt;&lt;a href=&#34;#transports_get_response&#34; data-toggle=&#34;tab&#34;&gt;Response&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class=&#34;tab-content&#34;&gt;&lt;div class=&#34;tab-pane active&#34; id=&#34;transports_get_response&#34;&gt;&lt;h2&gt;HTTP status code &lt;a href=&#34;http://httpstatus.es/200&#34; target=&#34;_blank&#34;&gt;200&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Return SPAD file - see &lt;a href=&#34;https://fluffy.github.io/spad/schemas/&#34;&gt;https://fluffy.github.io/spad/schemas/&lt;/a&gt;&lt;/p&gt;&lt;h3&gt;Body&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Type: application/json&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Schema&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;{
   &#34;$schema&#34;: &#34;http://json-schema.org/draft-04/schema#&#34;,
   &#34;type&#34;: &#34;object&#34;,
   &#34;title&#34;: &#34;SPAD schema.&#34;,
@@ -749,11 +749,12 @@
 &lt;p id=&#34;rfc.section.2.p.2&#34;&gt;RAML is defined at &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://github.com/raml-org&#34;&gt;https://github.com/raml-org&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;.  &lt;/p&gt;
 &lt;p id=&#34;rfc.section.2.p.3&#34;&gt;JSON Schema is defined at &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;http://json-schema.org/&#34;&gt;http://json-schema.org/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;. Further information is available in &lt;a href=&#34;#I-D.wright-json-schema&#34;&gt;[I-D.wright-json-schema]&lt;/a&gt;.  &lt;/p&gt;
 &lt;h1 id=&#34;rfc.section.3&#34;&gt;&lt;a href=&#34;#rfc.section.3&#34;&gt;3.&lt;/a&gt; &lt;a href=&#34;#example&#34; id=&#34;example&#34;&gt;Example&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.3.p.1&#34;&gt;To figure out what IP addresses are used by the service example.com, the first step is to form the query URL by constructing and point at &#34;.well-known/spad/v0/transports&#34;.  &lt;/p&gt;
+&lt;p id=&#34;rfc.section.3.p.1&#34;&gt;To figure out what IP addresses are used by the service example.com, the first step is to form the query URL by constructing an endpoint at &#34;.well-known/spad/v0/transports&#34;.  &lt;/p&gt;
+&lt;p id=&#34;rfc.section.3.p.2&#34;&gt;An HTTPS GET query is done that to that URL.  &lt;/p&gt;
 &lt;pre&gt;
 curl https://example.com/.well-known/spad/v0/transports
 &lt;/pre&gt;
-&lt;p id=&#34;rfc.section.3.p.2&#34;&gt;An HTTPS GET query is done that to that URL. The responses would be a JSON result that could looks like &lt;/p&gt;
+&lt;p id=&#34;rfc.section.3.p.3&#34;&gt;The responses would be a JSON result that could looks like &lt;/p&gt;
 &lt;pre&gt;
 {
   &#34;ver&#34;: 1,
@@ -769,8 +770,8 @@ curl https://example.com/.well-known/spad/v0/transports
   ]
 }
 &lt;/pre&gt;
-&lt;p id=&#34;rfc.section.3.p.3&#34;&gt;The return result indicates that the &#34;example.com&#34; service uses only the IP address &#34;203.0.113.2&#34;.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.3.p.4&#34;&gt;The following shows a more complex example result for an applications that uses only HTTP and QUIC over a small set of IP addresses. All traffic will be connecting to example.com or api.example.com from the point of view of TLS and proxies.  &lt;/p&gt;
+&lt;p id=&#34;rfc.section.3.p.4&#34;&gt;The return result indicates that the &#34;example.com&#34; service uses only the IP address &#34;203.0.113.2&#34;.  &lt;/p&gt;
+&lt;p id=&#34;rfc.section.3.p.5&#34;&gt;The following shows a more complex example result for an applications that uses only HTTP and QUIC over a small set of IP addresses. All traffic will be connecting to example.com or api.example.com from the point of view of TLS and proxies.  &lt;/p&gt;
 &lt;pre&gt;
 {
   &#34;ver&#34;: 1,
@@ -819,7 +820,7 @@ documentation:
     description: Retrieve the spad 
     responses:
        200:
-         description: Return SPAD file - see TODO 
+         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/ 
          body:
           application/json:
             schema: spad.json
@@ -941,11 +942,11 @@ documentation:
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1 id=&#34;rfc.appendix.A&#34;&gt;&lt;a href=&#34;#rfc.appendix.A&#34;&gt;Appendix A.&lt;/a&gt; &lt;a href=&#34;#contributing&#34; id=&#34;contributing&#34;&gt;Contributing&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.A.p.1&#34;&gt;We welcome all contributions. Discussion happens in the &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://spadwg.slack.com/messages/general/&#34;&gt;https://spadwg.slack.com/messages/general/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt; room in slack and on GitHub issue threads. Changes are done via git pull requests. For PR merged into the master branch, we strive for rough consensus and we measure that view the reviews placed on the PR.  &lt;/p&gt;
+&lt;p id=&#34;rfc.section.A.p.1&#34;&gt;We welcome all contributions. Discussion happens in the &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://spadwg.slack.com/messages/general/&#34;&gt;https://spadwg.slack.com/messages/general/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt; room in slack and on GitHub issue threads at (&lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://github.com/fluffy/spad/issues&#34;&gt;https://github.com/fluffy/spad/issues&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;). Changes are done via git pull requests. For PsR merged into the master branch, we strive for rough consensus and we measure that by the reviews placed on the PR.  &lt;/p&gt;
 &lt;p id=&#34;rfc.section.A.p.2&#34;&gt;The Specification style is &#34;less is more&#34;. If a reasonable developer who is fully up on modern web development practices could figure out how write an interoperable implementation after looking at some examples and code and asking a few questions, well that&#39;s good enough for us. If you can find it on Wikipedia, we don&#39;t need to explain it here.  &lt;/p&gt;
 &lt;p id=&#34;rfc.section.A.p.3&#34;&gt;Markdown is used for text. RAML and JSON Schema are used to describe the API. Examples are often used as normative specification. The build chain has the goal is to be simple and obvios with no black magic.  &lt;/p&gt;
 &lt;h1 id=&#34;rfc.appendix.B&#34;&gt;&lt;a href=&#34;#rfc.appendix.B&#34;&gt;Appendix B.&lt;/a&gt; &lt;a href=&#34;#published-versions&#34; id=&#34;published-versions&#34;&gt;Published Versions&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.B.p.1&#34;&gt;The website at TBD provides an overview view of the specification that is focused on developers. However all the key information to implement the specification that is used to generate the website is also used to generate and internet draft that can be found at TBD that is slanted at specification developers. Periodically the information on the master is branched to versioned draft branch and published and an internet draft. A typical cadence for this is monthly so that it can receiver broader review. If the PRs that were merged to master represent WG rough consensus, it is expected that it the will move quickly through the standards process. When the work is at a good point to form a version of the API, it is progressed to an RFC and the text of the approved RFC is used to form a released version of the spec. The first version would be v1. The current working pre standard version is always referred to as v0.  The API includes the version in the URL so that developers can implement to a specific non changing specification. Future versions attempt, but do not guarantee, to be backwards comptable with the previos version.  &lt;/p&gt;
+&lt;p id=&#34;rfc.section.B.p.1&#34;&gt;The website at (&lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://fluffy.github.io/spad/&#34;&gt;https://fluffy.github.io/spad/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;) provides an overview view of the specification that is focused on developers. However all the key information to implement the specification that is used to generate the website is also used to generate and internet draft that can be found at &lt;a href=&#34;https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0-00/&#34;&gt;draft-jennings-dispatch-spad-v0&lt;/a&gt; that is slanted at specification developers. Periodically the information on the master is branched to versioned draft branch and published and an internet draft. A typical cadence for this is monthly so that it can receiver broader review. If the PRs that were merged to master represent WG rough consensus, it is expected that it the will move quickly through the standards process. When the work is at a good point to form a version of the API, it is progressed to an RFC and the text of the approved RFC is used to form a released version of the spec. The first version would be v1. The current working pre standard version is always referred to as v0.  The API includes the version in the URL so that developers can implement to a specific non changing specification. Future versions attempt, but do not guarantee, to be backwards comptable with the previos version.  &lt;/p&gt;
 &lt;h1 id=&#34;rfc.authors&#34;&gt;
   &lt;a href=&#34;#rfc.authors&#34;&gt;Author&#39;s Address&lt;/a&gt;
 &lt;/h1&gt;
@@ -997,9 +998,10 @@ documentation:
 
 &lt;p&gt;We welcome all contributions. Discussion happens in the
 &lt;a href=&#34;https://spadwg.slack.com/messages/general/&#34;&gt;https://spadwg.slack.com/messages/general/&lt;/a&gt; room in slack and on GitHub
-issue threads. Changes are done via git pull requests. For PR merged
-into the master branch, we strive for rough consensus and we measure
-that view the reviews placed on the PR.&lt;/p&gt;
+issue threads at (&lt;a href=&#34;https://github.com/fluffy/spad/issues&#34;&gt;https://github.com/fluffy/spad/issues&lt;/a&gt;). Changes are
+done via git pull requests. For PsR merged into the master branch, we
+strive for rough consensus and we measure that by the reviews placed
+on the PR.&lt;/p&gt;
 
 &lt;p&gt;The Specification style is &amp;quot;less is more&amp;quot;. If a reasonable developer
 who is fully up on modern web development practices could figure out
@@ -1014,16 +1016,17 @@ chain has the goal is to be simple and obvios with no black magic.&lt;/p&gt;
 
 &lt;h1 id=&#34;published-versions&#34;&gt;Published Versions&lt;/h1&gt;
 
-&lt;p&gt;The website at TBD provides an overview view of the specification that
-is focused on developers. However all the key information to implement
-the specification that is used to generate the website is also used to
-generate and internet draft that can be found at TBD that is slanted
-at specification developers. Periodically the information on the
-master is branched to versioned draft branch and published and an
-internet draft. A typical cadence for this is monthly so that it can
-receiver broader review. If the PRs that were merged to master
-represent WG rough consensus, it is expected that it the will move
-quickly through the standards process. When the work is at a good
+&lt;p&gt;The website at (&lt;a href=&#34;https://fluffy.github.io/spad/&#34;&gt;https://fluffy.github.io/spad/&lt;/a&gt;) provides an overview
+view of the specification that is focused on developers. However all
+the key information to implement the specification that is used to
+generate the website is also used to generate and internet draft that
+can be found at &lt;a href=&#34;https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0-00/&#34;&gt;draft-jennings-dispatch-spad-v0&lt;/a&gt;
+that is slanted at specification developers. Periodically the
+information on the master is branched to versioned draft branch and
+published and an internet draft. A typical cadence for this is monthly
+so that it can receiver broader review. If the PRs that were merged to
+master represent WG rough consensus, it is expected that it the will
+move quickly through the standards process. When the work is at a good
 point to form a version of the API, it is progressed to an RFC and the
 text of the approved RFC is used to form a released version of the
 spec. The first version would be v1. The current working pre standard
@@ -1041,14 +1044,15 @@ backwards comptable with the previos version.&lt;/p&gt;
       
       <guid>https://fluffy.github.io/spad/getting_started/</guid>
       <description>&lt;p&gt;To figure out what IP addresses are used by the service example.com,
-the first step is to form the query URL by constructing and point at
+the first step is to form the query URL by constructing an endpoint at
 &amp;quot;.well-known/spad/v0/transports&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;An HTTPS GET query is done that to that URL.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;curl https://example.com/.well-known/spad/v0/transports
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;An HTTPS GET query is done that to that URL. The responses would be a
-JSON result that could looks like&lt;/p&gt;
+&lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
   &amp;quot;ver&amp;quot;: 1,
@@ -1220,7 +1224,7 @@ documentation:
     description: Retrieve the spad 
     responses:
        200:
-         description: Return SPAD file - see TODO 
+         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/ 
          body:
           application/json:
             schema: spad.json

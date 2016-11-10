@@ -217,14 +217,15 @@
 </div>
 <div class="content">
   <p>To figure out what IP addresses are used by the service example.com,
-the first step is to form the query URL by constructing and point at
+the first step is to form the query URL by constructing an endpoint at
 &quot;.well-known/spad/v0/transports&quot;.</p>
+
+<p>An HTTPS GET query is done that to that URL.</p>
 
 <pre><code>curl https://example.com/.well-known/spad/v0/transports
 </code></pre>
 
-<p>An HTTPS GET query is done that to that URL. The responses would be a
-JSON result that could looks like</p>
+<p>The responses would be a JSON result that could looks like</p>
 
 <pre><code>{
   &quot;ver&quot;: 1,

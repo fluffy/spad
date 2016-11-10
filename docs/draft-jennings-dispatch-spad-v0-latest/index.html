@@ -477,11 +477,12 @@
 <p id="rfc.section.2.p.2">RAML is defined at <span>&lt;</span><a href="https://github.com/raml-org">https://github.com/raml-org</a><span>&gt;</span>.  </p>
 <p id="rfc.section.2.p.3">JSON Schema is defined at <span>&lt;</span><a href="http://json-schema.org/">http://json-schema.org/</a><span>&gt;</span>. Further information is available in <a href="#I-D.wright-json-schema">[I-D.wright-json-schema]</a>.  </p>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#example" id="example">Example</a></h1>
-<p id="rfc.section.3.p.1">To figure out what IP addresses are used by the service example.com, the first step is to form the query URL by constructing and point at ".well-known/spad/v0/transports".  </p>
+<p id="rfc.section.3.p.1">To figure out what IP addresses are used by the service example.com, the first step is to form the query URL by constructing an endpoint at ".well-known/spad/v0/transports".  </p>
+<p id="rfc.section.3.p.2">An HTTPS GET query is done that to that URL.  </p>
 <pre>
 curl https://example.com/.well-known/spad/v0/transports
 </pre>
-<p id="rfc.section.3.p.2">An HTTPS GET query is done that to that URL. The responses would be a JSON result that could looks like </p>
+<p id="rfc.section.3.p.3">The responses would be a JSON result that could looks like </p>
 <pre>
 {
   "ver": 1,
@@ -497,8 +498,8 @@ curl https://example.com/.well-known/spad/v0/transports
   ]
 }
 </pre>
-<p id="rfc.section.3.p.3">The return result indicates that the "example.com" service uses only the IP address "203.0.113.2".  </p>
-<p id="rfc.section.3.p.4">The following shows a more complex example result for an applications that uses only HTTP and QUIC over a small set of IP addresses. All traffic will be connecting to example.com or api.example.com from the point of view of TLS and proxies.  </p>
+<p id="rfc.section.3.p.4">The return result indicates that the "example.com" service uses only the IP address "203.0.113.2".  </p>
+<p id="rfc.section.3.p.5">The following shows a more complex example result for an applications that uses only HTTP and QUIC over a small set of IP addresses. All traffic will be connecting to example.com or api.example.com from the point of view of TLS and proxies.  </p>
 <pre>
 {
   "ver": 1,
@@ -547,7 +548,7 @@ documentation:
     description: Retrieve the spad 
     responses:
        200:
-         description: Return SPAD file - see TODO 
+         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/ 
          body:
           application/json:
             schema: spad.json
@@ -669,11 +670,11 @@ documentation:
   </tbody>
 </table>
 <h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> <a href="#contributing" id="contributing">Contributing</a></h1>
-<p id="rfc.section.A.p.1">We welcome all contributions. Discussion happens in the <span>&lt;</span><a href="https://spadwg.slack.com/messages/general/">https://spadwg.slack.com/messages/general/</a><span>&gt;</span> room in slack and on GitHub issue threads. Changes are done via git pull requests. For PR merged into the master branch, we strive for rough consensus and we measure that view the reviews placed on the PR.  </p>
+<p id="rfc.section.A.p.1">We welcome all contributions. Discussion happens in the <span>&lt;</span><a href="https://spadwg.slack.com/messages/general/">https://spadwg.slack.com/messages/general/</a><span>&gt;</span> room in slack and on GitHub issue threads at (<span>&lt;</span><a href="https://github.com/fluffy/spad/issues">https://github.com/fluffy/spad/issues</a><span>&gt;</span>). Changes are done via git pull requests. For PsR merged into the master branch, we strive for rough consensus and we measure that by the reviews placed on the PR.  </p>
 <p id="rfc.section.A.p.2">The Specification style is "less is more". If a reasonable developer who is fully up on modern web development practices could figure out how write an interoperable implementation after looking at some examples and code and asking a few questions, well that's good enough for us. If you can find it on Wikipedia, we don't need to explain it here.  </p>
 <p id="rfc.section.A.p.3">Markdown is used for text. RAML and JSON Schema are used to describe the API. Examples are often used as normative specification. The build chain has the goal is to be simple and obvios with no black magic.  </p>
 <h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> <a href="#published-versions" id="published-versions">Published Versions</a></h1>
-<p id="rfc.section.B.p.1">The website at TBD provides an overview view of the specification that is focused on developers. However all the key information to implement the specification that is used to generate the website is also used to generate and internet draft that can be found at TBD that is slanted at specification developers. Periodically the information on the master is branched to versioned draft branch and published and an internet draft. A typical cadence for this is monthly so that it can receiver broader review. If the PRs that were merged to master represent WG rough consensus, it is expected that it the will move quickly through the standards process. When the work is at a good point to form a version of the API, it is progressed to an RFC and the text of the approved RFC is used to form a released version of the spec. The first version would be v1. The current working pre standard version is always referred to as v0.  The API includes the version in the URL so that developers can implement to a specific non changing specification. Future versions attempt, but do not guarantee, to be backwards comptable with the previos version.  </p>
+<p id="rfc.section.B.p.1">The website at (<span>&lt;</span><a href="https://fluffy.github.io/spad/">https://fluffy.github.io/spad/</a><span>&gt;</span>) provides an overview view of the specification that is focused on developers. However all the key information to implement the specification that is used to generate the website is also used to generate and internet draft that can be found at <a href="https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0-00/">draft-jennings-dispatch-spad-v0</a> that is slanted at specification developers. Periodically the information on the master is branched to versioned draft branch and published and an internet draft. A typical cadence for this is monthly so that it can receiver broader review. If the PRs that were merged to master represent WG rough consensus, it is expected that it the will move quickly through the standards process. When the work is at a good point to form a version of the API, it is progressed to an RFC and the text of the approved RFC is used to form a released version of the spec. The first version would be v1. The current working pre standard version is always referred to as v0.  The API includes the version in the URL so that developers can implement to a specific non changing specification. Future versions attempt, but do not guarantee, to be backwards comptable with the previos version.  </p>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Author's Address</a>
 </h1>
