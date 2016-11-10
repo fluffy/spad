@@ -1,4 +1,4 @@
-baseurl: http://example.org/
+baseurl: https://fluffy.github.io/spad/
 languageCode: en-us
 title: SPAD Spec Site
 #theme: hugo-material-docs
