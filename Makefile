@@ -99,7 +99,6 @@ gen/%.json.md: %.json
 	( echo "~~~ " ; cat $< ; echo "~~~" ) > $@
 
 
-
 site/themes/blackburn/README.md:
 	mkdir -p site/content/
 	( cd site ; ln -F -s ../gen/ )
