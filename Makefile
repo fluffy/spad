@@ -21,8 +21,8 @@ draft: pages/$(DRAFT)-$(VERSION).txt pages/$(DRAFT)-$(VERSION).html
 
 pages: pages/api.html
 
-site: site/content/about.mmark site/content/getting_started.mmark site/content/overview.mmark \
-	site/content/contributing.mmark \
+site: site/content/about.mmark site/content/getting_started.mmgark site/content/overview.mmark \
+	site/content/contributing.mmark site/content/raml.mmark site/content/schemas.mmark\
 	site/content/api.html site/content/$(DRAFT)-$(VERSION).html
 	( cd site  ; hugo  ) 
 
@@ -42,6 +42,14 @@ site/content/overview.mmark: overview.md
 	( echo "---" ; echo "title: Simple Port and Address Discovery (SPAD)" ; echo "---" ) >  $@
 	cat $< >>  $@
 
+site/content/raml.mmark: raml.md
+	( echo "---" ; echo "title: RAML Spec for API" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+site/content/schemas.mmark: schemas.md
+	( echo "---" ; echo "title: JSON Schema for Results" ; echo "---" ) >  $@
+	cat $< >>  $@
+
 site/content/api.html: pages/api.html
 	cp $< $@
 
@@ -55,10 +63,12 @@ clean:
 
 check:
 	jayschema example1.json spad-schema.json
+	jayschema example2.json spad-schema.json
 
 tidy:
 	json -I --output json -f spad-schema.json
 	json -I --output json -f example1.json
+	json -I --output json -f example2.json
 	ramllint spad.raml
 
 %.txt: %.xml 
@@ -67,7 +77,7 @@ tidy:
 %.html: %.xml 
 	$(xml2rfc) -N $< -o $@ --html
 
-pages/$(DRAFT)-$(VERSION).xml: $(DRAFT).md  *.md gen/example1.json.md gen/spad.raml.md gen/spad-schema.json.md
+pages/$(DRAFT)-$(VERSION).xml: $(DRAFT).md  *.md gen/example1.json.md gen/example2.json.md gen/spad.raml.md gen/spad-schema.json.md
 	$(mmark) -xml2 -page $< $@
 
 $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
@@ -75,7 +85,7 @@ $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
 	htmlwdiff   $(DRAFT)-old.txt   $(DRAFT)-$(VERSION).txt >   $(DRAFT).diff.html
 
 
-pages/api.html: spad.raml example1.json spad-schema.json
+pages/api.html: spad.raml example1.json example2.json spad-schema.json
 	mkdir -p pages
 	raml2html spad.raml -o pages/api.html
 
@@ -85,6 +95,6 @@ gen/%.raml.md: %.raml
 
 gen/%.json.md: %.json
 	mkdir -p gen 
-	( echo "~~~ yaml" ; cat $< ; echo "~~~" ) > $@
+	( echo "~~~ " ; cat $< ; echo "~~~" ) > $@
 
 

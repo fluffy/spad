@@ -1,0 +1,23 @@
+{
+  "ver": 1,
+  "transports": [
+    {
+      "ips": [
+        "192.0.2.1",
+        "203.0.113.2",
+        "2001:db8::1"
+      ],
+      "ports": [
+        443
+      ],
+      "dns": [
+        "example.com",
+        "api.example.com"
+      ],
+      "protcols": [
+        "https",
+        "quic"
+      ]
+    }
+  ]
+}

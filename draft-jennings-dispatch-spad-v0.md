@@ -51,16 +51,12 @@ information is available in [@I-D.wright-json-schema].
 
 # RAML
 
-To discover the transports used by example.com, an HTTP REST call
-would be made corresponding to the following RAML:
+{{raml.md}}
 
-{{gen/spad.raml.md}}
 
 # Schemas
 
-The JSON returned from MUST corespond to the following JSON schema.
-
-{{gen/spad-schema.json.md}}
+{{schemas.md}}
 
 
 # IANA Consideration
@@ -75,7 +71,6 @@ The JSON returned from MUST corespond to the following JSON schema.
 
 Thank you for the contributions from:
 {{Contributors.md}}
-
 
 
 {backmatter}

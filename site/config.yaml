@@ -45,6 +45,12 @@ menu:
       - Name: API
         Weight: 30
         URL: /api/
+      - Name: RAML
+        Weight: 32
+        URL: /raml/
+      - Name: Schemas
+        Weight: 34
+        URL: /schemas/
       - Name: Draft Standard
         Weight: 40
         URL: /draft-jennings-dispatch-spad-v0-latest/
