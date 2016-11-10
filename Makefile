@@ -23,6 +23,7 @@ pages: pages/api.html
 
 site: site/content/about.mmark site/content/getting_started.mmark site/content/overview.mmark \
 	site/content/contributing.mmark site/content/raml.mmark site/content/schemas.mmark\
+	site/themes/blackburn/README.md \
 	site/content/api.html site/content/$(DRAFT)-$(VERSION).html
 	( cd site  ; hugo  ) 
 
@@ -97,4 +98,9 @@ gen/%.json.md: %.json
 	mkdir -p gen 
 	( echo "~~~ " ; cat $< ; echo "~~~" ) > $@
 
+
+
+site/themes/blackburn/README.md:
+	mkdir -p site/themes/
+	(cd site/themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 

@@ -5,13 +5,13 @@
   "properties": {
     "version": {
       "type": "integer",
-      "title": "Version of schmea used"
+      "title": "Version of schema used."
     },
     "transports": {
       "type": "array",
       "uniqueItems": false,
       "title": "Transport List",
-      "description": "List of tranports used by the applicaiton",
+      "description": "List of tranports used by the application.",
       "items": {
         "type": "object",
         "title": "Transport",
@@ -34,24 +34,24 @@
               "maximum": 10000,
               "minimum": 1,
               "title": "port",
-              "description": "destination port used by transport protcol"
+              "description": "Destination ports used by the transport protocol."
             }
           },
           "dns": {
             "type": "array",
             "title": "DNS name list",
-            "description": "An explanation about the purpose of this instance.",
+            "description": " ",
             "items": {
               "type": "string",
               "title": "DNS name",
-              "description": "DNS name that will be used to conenct to"
+              "description": "DNS name that will be used to connect to."
             }
           },
-          "protcols": {
+          "protocols": {
             "type": "array",
             "uniqueItems": true,
             "title": "Transport Protocol List",
-            "description": "An explanation about the purpose of this instance.",
+            "description": "Protocols used.",
             "items": {
               "type": "string",
               "title": "protocol",
