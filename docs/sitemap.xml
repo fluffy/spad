@@ -5,4 +5,36 @@
     <loc>https://fluffy.github.io/spad/</loc>
   </url>
   
+  <url>
+    <loc>https://fluffy.github.io/spad/api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/draft-jennings-dispatch-spad-v0-latest/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/contributing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/getting_started/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/schemas/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/raml/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fluffy.github.io/spad/overview/</loc>
+  </url>
+  
 </urlset>
