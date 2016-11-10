@@ -101,6 +101,8 @@ gen/%.json.md: %.json
 
 
 site/themes/blackburn/README.md:
+	mkdir -p site/content/
+	( cd site ; ln -F -s ../gen/ )
 	mkdir -p site/themes/
 	(cd site/themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 
