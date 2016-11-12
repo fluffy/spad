@@ -1,0 +1,37 @@
+FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+  
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string) 
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number 
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+

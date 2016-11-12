@@ -45,9 +45,12 @@ menu:
       - Name: API
         Weight: 30
         URL: /api/
-      - Name: RAML
-        Weight: 32
-        URL: /raml/
+        #- Name: RAML
+        #  Weight: 32
+        #  URL: /raml/
+      - Name: Blueprint
+        Weight: 33
+        URL: /blueprint/
       - Name: Schemas
         Weight: 34
         URL: /schemas/

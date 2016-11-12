@@ -32,7 +32,7 @@ related transports a given cloud services uses.
 
 # Introduction
 
-{{overview.md}}
+{{spec/overview.md}}
 
 # Terminology
 
@@ -48,34 +48,34 @@ information is available in [@I-D.wright-json-schema].
 
 # Example
 
-{{gettingStarted.md}}
+{{spec/gettingStarted.md}}
 
 
-# RAML
+# Blueprint
 
-{{raml.md}}
+{{spec/blueprint.md}}
 
 
 # Schemas
 
-{{schemas.md}}
+{{spec/schemas.md}}
 
 
 # IANA Consideration
 
-{{iana.md}}
+{{spec/iana.md}}
 
 # Security Considerations
 
-{{security.md}}
+{{spec/security.md}}
 
-# Acknowledgments 
+# Acknowledgements 
 
 Thank you for the contributions from:
-{{Contributors.md}}
+{{gen/Contributors.md}}
 
 
 {backmatter}
 
-{{CONTRIBUTING.md}}
+{{spec/CONTRIBUTING.md}}
 

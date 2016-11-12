@@ -12,66 +12,90 @@ ifeq (,$(VERSION))
 	VERSION = latest
 endif
 
-.PHONY: all clean diff pages draft tidy check site
+.PHONY: all clean diff  draft tidy check site
 .PRECIOUS: %.xml
 
-all: pages draft 
 
-draft: pages/$(DRAFT)-$(VERSION).txt pages/$(DRAFT)-$(VERSION).html 
+all:  dirs draft site 
 
-pages: pages/api.html
+dirs:
+	mkdir -p gen/content
+	mkdir -p docs
+	mkdir -p themes/
 
-site: site/content/about.mmark site/content/getting_started.mmark site/content/overview.mmark \
-	site/content/contributing.mmark site/content/raml.mmark site/content/schemas.mmark\
-	site/themes/blackburn/README.md \
-	site/content/api.html site/content/$(DRAFT)-$(VERSION).html
-	( cd site  ; hugo  ) 
-	cp -r site/public/* docs/.
 
-site/content/contributing.mmark: CONTRIBUTING.md
+
+draft: docs/id/$(DRAFT)-$(VERSION).txt docs/id/$(DRAFT)-$(VERSION).html 
+
+server:
+	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs server
+
+
+site: gen/content/about.mmark gen/content/getting_started.mmark gen/content/overview.mmark \
+	gen/content/contributing.mmark gen/content/raml.mmark gen/content/schemas.mmark\
+	themes/blackburn/README.md gen/content/api.html  gen/content/blueprint.mmark \
+	gen/content/$(DRAFT)-$(VERSION).mmark gen/Contributors.md \
+	hugo-config.yaml gen/spad.apib.md
+	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs 
+
+gen/content/contributing.mmark: spec/CONTRIBUTING.md
 	( echo "---" ; echo "title: Contributing " ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/about.mmark: about.md
+gen/Contributors.md: Contributors.md
+	cat $< > $@
+
+
+gen/content/$(DRAFT)-$(VERSION).mmark:  spec/$(DRAFT).md
+	( echo "---" ; echo "title: Internet Draft" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+gen/content/about.mmark:  spec/about.md
 	( echo "---" ; echo "title: About SPAD" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/getting_started.mmark: gettingStarted.md
+gen/content/getting_started.mmark:  spec/gettingStarted.md
 	( echo "---" ; echo "title: Getting Started" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/overview.mmark: overview.md
+gen/content/overview.mmark:  spec/overview.md
 	( echo "---" ; echo "title: Simple Port and Address Discovery (SPAD)" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/raml.mmark: raml.md
+gen/content/blueprint.mmark:  spec/blueprint.md
+	( echo "---" ; echo "title: Blueprint Spec for API" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+gen/content/raml.mmark:  spec/raml.md
 	( echo "---" ; echo "title: RAML Spec for API" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/schemas.mmark: schemas.md
+gen/content/schemas.mmark:  spec/schemas.md
 	( echo "---" ; echo "title: JSON Schema for Results" ; echo "---" ) >  $@
 	cat $< >>  $@
 
-site/content/api.html: pages/api.html
-	cp $< $@
+gen/content/draft.mmark:  
+	( echo "---" ; echo "title: Internet Draft" ; echo "---" ) >  $@
+	cat $< >>  $@
 
-site/content/$(DRAFT)-$(VERSION).html: pages/$(DRAFT)-$(VERSION).html
+gen/content/$(DRAFT)-$(VERSION).html: docs/$(DRAFT)-$(VERSION).html
 	cp $< $@
 
 diff: $(DRAFT).diff.html
 
 clean:
-	-rm -f pages/$(DRAFT)-$(VERSION).{txt,html,xml,pdf} $(DRAFT).diff.html pages/* gen/*
+	-rm -f docs/* docs/*/* gen/content/* gen/*
+	-rmdir docs/* gen/content
 
 check:
-	jayschema example1.json spad-schema.json
-	jayschema example2.json spad-schema.json
+	jayschema spec/example1.json spec/spad-schema.json
+	jayschema spec/example2.json spec/spad-schema.json
 
 tidy:
-	json -I --output json -f spad-schema.json
-	json -I --output json -f example1.json
-	json -I --output json -f example2.json
-	ramllint spad.raml
+	json -I --output json -f spec/spad-schema.json
+	json -I --output json -f spec/example1.json
+	json -I --output json -f spec/example2.json
+	ramllint spec/spad.raml
 
 %.txt: %.xml 
 	$(xml2rfc) -N $< -o $@ --text
@@ -79,30 +103,40 @@ tidy:
 %.html: %.xml 
 	$(xml2rfc) -N $< -o $@ --html
 
-pages/$(DRAFT)-$(VERSION).xml: $(DRAFT).md  *.md gen/example1.json.md gen/example2.json.md gen/spad.raml.md gen/spad-schema.json.md
-	$(mmark) -xml2 -page $< $@
+docs/id/$(DRAFT)-$(VERSION).xml: spec/$(DRAFT).md  spec/*.md gen/example1.json.md gen/example2.json.md gen/spad.raml.md gen/spad-schema.json.md gen/Contributors.md
+	mkdir -p docs/id
+	$(mmark) -xml2 -page spec/$(DRAFT).md $@
 
 $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
 	touch $(DRAFT)-old.txt
 	htmlwdiff   $(DRAFT)-old.txt   $(DRAFT)-$(VERSION).txt >   $(DRAFT).diff.html
 
 
-pages/api.html: spad.raml example1.json example2.json spad-schema.json
-	mkdir -p pages
-	raml2html spad.raml -o pages/api.html
+#docs/api.html: spad.raml example1.json example2.json spad-schema.json
+#	mkdir -p page
+#	raml2html spad.raml -o docs/api.html
 
-gen/%.raml.md: %.raml
+gen/content/api.html: spec/spad.apib
+	mkdir -p docs
+	aglio --no-theme-condense --theme-full-width -i $<  -o $@
+
+
+gen/%.raml.md: spec/%.raml
 	mkdir -p gen 
 	( echo "~~~ yaml" ; cat $< ; echo "~~~" ) > $@
 
-gen/%.json.md: %.json
+gen/%.apib.md: spec/%.apib
+	mkdir -p gen 
+	( echo "~~~ md" ; cat $< ; echo "~~~" ) > $@
+
+gen/%.json.md: spec/%.json
 	mkdir -p gen 
 	( echo "~~~ " ; cat $< ; echo "~~~" ) > $@
 
 
-site/themes/blackburn/README.md:
-	mkdir -p site/content/
+themes/blackburn/README.md:
+	mkdir -p gen/content/
 	( cd site ; ln -F -s ../gen/ )
-	mkdir -p site/themes/
-	(cd site/themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
+	mkdir -p themes/
+	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 

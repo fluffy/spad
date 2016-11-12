@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "SPAD schema.",
+  "properties": {
+
+      "domain": {
+          "type": "string",
+          "title": "TODO"
+      },
+
+      "services": {
+          "type": "array",
+          
+          "items": {
+              "type": "object",
+              "properties": {
+                  
+                  "name": {
+                      "type": "string",
+                      "title": "name of service"
+                  },
+                  
+                  "validTill": {
+                      "type": "string",
+                      "title": "Expiry time for this SPAD file"
+                  },
+                  
+                  "flows": {
+                      "type": "array",
+                      "uniqueItems": false,
+                      "title": "Transport List",
+                      "description": "List of transports used by the application.",
+                      "items": {
+                          "type": "object",
+                          "title": "Flow",
+                          "properties": {
+                              "ips": {
+                                  "type": "array",
+                                  "uniqueItems": false,
+                                  "title": "IP addresses list",
+                                  "items": {
+                                      "type": "string",
+                                      "title": "IPv4 or v6 address"
+                                  }
+                              },
+                              "port": {
+                                  
+                                  "type": "integer",
+                                  "maximum": 65535,
+                                  "minimum": 1,
+                                  "title": "port",
+                                  "description": "Destination ports used by the transport protocol."
+                                  
+                              },
+                              "name": {
+                                  "type": "string",
+                                  "title": "DNS name",
+                                  "description": "DNS name that will be used to connect to."
+                                  
+                              },
+                              "qos":  {
+                                  "type": "string",
+                                  "title": "DSCP",
+                                  "description": "Differentiated Services Code Point to use.",
+                                  "enum": [
+                                      "CS1",
+                                      "DF",
+                                      "EF",
+                                      "AF11",
+                                      "AF21",
+                                      "AF41",
+                                      "AF42",
+                                      "AF43",
+                                      "AF31",
+                                      "AF32",
+                                      "AF33"
+                                  ]
+                              },
+                              "protocols": {
+                                  "title": "Transport Protocol List",
+                                  "description": "Protocols used.",
+                                  "type": "string",
+                                  "title": "protocol",
+                                  "enum": [
+                                      "udp",
+                                      "tcp",
+                                      "http",
+                                      "tls",
+                                      "https",
+                                      "quic"
+                                  ]
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "required": [
+    "domain",
+    "services"
+  ]
+}

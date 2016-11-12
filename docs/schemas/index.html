@@ -85,7 +85,7 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://fluffy.github.io/spad/raml/">RAML</a>
+          <a class="pure-menu-link" href="https://fluffy.github.io/spad/blueprint/">Blueprint</a>
       
         </li>
       
@@ -223,79 +223,104 @@
   &quot;type&quot;: &quot;object&quot;,
   &quot;title&quot;: &quot;SPAD schema.&quot;,
   &quot;properties&quot;: {
-    &quot;version&quot;: {
-      &quot;type&quot;: &quot;integer&quot;,
-      &quot;title&quot;: &quot;Version of schema used.&quot;
-    },
-    &quot;transports&quot;: {
-      &quot;type&quot;: &quot;array&quot;,
-      &quot;uniqueItems&quot;: false,
-      &quot;title&quot;: &quot;Transport List&quot;,
-      &quot;description&quot;: &quot;List of tranports used by the application.&quot;,
-      &quot;items&quot;: {
-        &quot;type&quot;: &quot;object&quot;,
-        &quot;title&quot;: &quot;Transport&quot;,
-        &quot;properties&quot;: {
-          &quot;ips&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;uniqueItems&quot;: false,
-            &quot;title&quot;: &quot;IP addresses list&quot;,
-            &quot;items&quot;: {
-              &quot;type&quot;: &quot;string&quot;,
-              &quot;title&quot;: &quot;IPv4 or v6 address&quot;
-            }
-          },
-          &quot;ports&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;title&quot;: &quot;Port list&quot;,
-            &quot;items&quot;: {
-              &quot;type&quot;: &quot;integer&quot;,
-              &quot;multipleOf&quot;: 1,
-              &quot;maximum&quot;: 10000,
-              &quot;minimum&quot;: 1,
-              &quot;title&quot;: &quot;port&quot;,
-              &quot;description&quot;: &quot;Destination ports used by the transport protocol.&quot;
-            }
-          },
-          &quot;dns&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;title&quot;: &quot;DNS name list&quot;,
-            &quot;description&quot;: &quot; &quot;,
-            &quot;items&quot;: {
-              &quot;type&quot;: &quot;string&quot;,
-              &quot;title&quot;: &quot;DNS name&quot;,
-              &quot;description&quot;: &quot;DNS name that will be used to connect to.&quot;
-            }
-          },
-          &quot;protocols&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;uniqueItems&quot;: true,
-            &quot;title&quot;: &quot;Transport Protocol List&quot;,
-            &quot;description&quot;: &quot;Protocols used.&quot;,
-            &quot;items&quot;: {
-              &quot;type&quot;: &quot;string&quot;,
-              &quot;title&quot;: &quot;protocol&quot;,
-              &quot;enum&quot;: [
-                &quot;udp&quot;,
-                &quot;tcp&quot;,
-                &quot;http&quot;,
-                &quot;tls&quot;,
-                &quot;https&quot;,
-                &quot;quic&quot;
-              ]
-            }
+
+      &quot;domain&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;title&quot;: &quot;TODO&quot;
+      },
+
+      &quot;services&quot;: {
+          &quot;type&quot;: &quot;array&quot;,
+          
+          &quot;items&quot;: {
+              &quot;type&quot;: &quot;object&quot;,
+              &quot;properties&quot;: {
+                  
+                  &quot;name&quot;: {
+                      &quot;type&quot;: &quot;string&quot;,
+                      &quot;title&quot;: &quot;name of service&quot;
+                  },
+                  
+                  &quot;validTill&quot;: {
+                      &quot;type&quot;: &quot;string&quot;,
+                      &quot;title&quot;: &quot;Expiry time for this SPAD file&quot;
+                  },
+                  
+                  &quot;flows&quot;: {
+                      &quot;type&quot;: &quot;array&quot;,
+                      &quot;uniqueItems&quot;: false,
+                      &quot;title&quot;: &quot;Transport List&quot;,
+                      &quot;description&quot;: &quot;List of transports used by the application.&quot;,
+                      &quot;items&quot;: {
+                          &quot;type&quot;: &quot;object&quot;,
+                          &quot;title&quot;: &quot;Flow&quot;,
+                          &quot;properties&quot;: {
+                              &quot;ips&quot;: {
+                                  &quot;type&quot;: &quot;array&quot;,
+                                  &quot;uniqueItems&quot;: false,
+                                  &quot;title&quot;: &quot;IP addresses list&quot;,
+                                  &quot;items&quot;: {
+                                      &quot;type&quot;: &quot;string&quot;,
+                                      &quot;title&quot;: &quot;IPv4 or v6 address&quot;
+                                  }
+                              },
+                              &quot;port&quot;: {
+                                  
+                                  &quot;type&quot;: &quot;integer&quot;,
+                                  &quot;maximum&quot;: 65535,
+                                  &quot;minimum&quot;: 1,
+                                  &quot;title&quot;: &quot;port&quot;,
+                                  &quot;description&quot;: &quot;Destination ports used by the transport protocol.&quot;
+                                  
+                              },
+                              &quot;name&quot;: {
+                                  &quot;type&quot;: &quot;string&quot;,
+                                  &quot;title&quot;: &quot;DNS name&quot;,
+                                  &quot;description&quot;: &quot;DNS name that will be used to connect to.&quot;
+                                  
+                              },
+                              &quot;qos&quot;:  {
+                                  &quot;type&quot;: &quot;string&quot;,
+                                  &quot;title&quot;: &quot;DSCP&quot;,
+                                  &quot;description&quot;: &quot;Differentiated Services Code Point to use.&quot;,
+                                  &quot;enum&quot;: [
+                                      &quot;CS1&quot;,
+                                      &quot;DF&quot;,
+                                      &quot;EF&quot;,
+                                      &quot;AF11&quot;,
+                                      &quot;AF21&quot;,
+                                      &quot;AF41&quot;,
+                                      &quot;AF42&quot;,
+                                      &quot;AF43&quot;,
+                                      &quot;AF31&quot;,
+                                      &quot;AF32&quot;,
+                                      &quot;AF33&quot;
+                                  ]
+                              },
+                              &quot;protocols&quot;: {
+                                  &quot;title&quot;: &quot;Transport Protocol List&quot;,
+                                  &quot;description&quot;: &quot;Protocols used.&quot;,
+                                  &quot;type&quot;: &quot;string&quot;,
+                                  &quot;title&quot;: &quot;protocol&quot;,
+                                  &quot;enum&quot;: [
+                                      &quot;udp&quot;,
+                                      &quot;tcp&quot;,
+                                      &quot;http&quot;,
+                                      &quot;tls&quot;,
+                                      &quot;https&quot;,
+                                      &quot;quic&quot;
+                                  ]
+                              }
+                          }
+                      }
+                  }
+              }
           }
-        },
-        &quot;required&quot;: [
-          &quot;ips&quot;,
-          &quot;ports&quot;
-        ]
       }
-    }
   },
   &quot;required&quot;: [
-    &quot;ver&quot;,
-    &quot;transports&quot;
+    &quot;domain&quot;,
+    &quot;services&quot;
   ]
 }
 </code></pre>

@@ -15,967 +15,293 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fluffy.github.io/spad/api/</guid>
-      <description>&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;SPAD API documentation&lt;/title&gt;&lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;IE=edge&#34;&gt;&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&gt;&lt;meta name=&#34;generator&#34; content=&#34;https://github.com/raml2html/raml2html 3.0.1&#34;&gt;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&#34;&gt;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css&#34;&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;https://code.jquery.com/jquery-1.11.0.min.js&#34;&gt;&lt;/script&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&#34;&gt;&lt;/script&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js&#34;&gt;&lt;/script&gt;&lt;script type=&#34;text/javascript&#34;&gt;
-      $(document).ready(function() {
-        $(&#39;.page-header pre code, .top-resource-description pre code, .modal-body pre code&#39;).each(function(i, block) {
-          hljs.highlightBlock(block);
-        });
-
-        $(&#39;[data-toggle]&#39;).click(function() {
-          var selector = $(this).data(&#39;target&#39;) + &#39; pre code&#39;;
-          $(selector).each(function(i, block) {
-            hljs.highlightBlock(block);
-          });
-        });
-
-        // open modal on hashes like #_action_get
-        $(window).bind(&#39;hashchange&#39;, function(e) {
-          var anchor_id = document.location.hash.substr(1); //strip #
-          var element = $(&#39;#&#39; + anchor_id);
-
-          // do we have such element + is it a modal?  --&gt; show it
-          if (element.length &amp;&amp; element.hasClass(&#39;modal&#39;)) {
-            element.modal(&#39;show&#39;);
-          }
-        });
-
-        // execute hashchange on first page load
-        $(window).trigger(&#39;hashchange&#39;);
-
-        // remove url fragment on modal hide
-        $(&#39;.modal&#39;).on(&#39;hidden.bs.modal&#39;, function() {
-          try {
-            if (history &amp;&amp; history.replaceState) {
-                history.replaceState({}, &#39;&#39;, &#39;#&#39;);
-            }
-          } catch(e) {}
-        });
-      });
-    &lt;/script&gt;&lt;style&gt;
-      .hljs {
-        background: transparent;
-      }
-      .parent {
-        color: #999;
-      }
-      .list-group-item &gt; .badge {
-        float: none;
-        margin-right: 6px;
-      }
-      .panel-title &gt; .methods {
-        float: right;
-      }
-      .badge {
-        border-radius: 0;
-        text-transform: uppercase;
-        width: 70px;
-        font-weight: normal;
-        color: #f3f3f6;
-        line-height: normal;
-      }
-      .badge_get {
-        background-color: #63a8e2;
-      }
-      .badge_post {
-        background-color: #6cbd7d;
-      }
-      .badge_put {
-        background-color: #22bac4;
-      }
-      .badge_delete {
-        background-color: #d26460;
-      }
-      .badge_patch {
-        background-color: #ccc444;
-      }
-      .list-group, .panel-group {
-        margin-bottom: 0;
-      }
-      .panel-group .panel+.panel-white {
-        margin-top: 0;
-      }
-      .panel-group .panel-white {
-        border-bottom: 1px solid #F5F5F5;
-        border-radius: 0;
-      }
-      .panel-white:last-child {
-        border-bottom-color: white;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-      }
-      .panel-white .panel-heading {
-        background: white;
-      }
-      .tab-pane ul {
-        padding-left: 2em;
-      }
-      .tab-pane h1 {
-        font-size: 1.3em;
-      }
-      .tab-pane h2 {
-        font-size: 1.2em;
-        padding-bottom: 4px;
-        border-bottom: 1px solid #ddd;
-      }
-      .tab-pane h3 {
-        font-size: 1.1em;
-      }
-      .tab-content {
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        padding: 10px;
-      }
-      #sidebar {
-        margin-top: 30px;
-        padding-right: 5px;
-        overflow: auto;
-        height: 90%;
-      }
-      .top-resource-description {
-        border-bottom: 1px solid #ddd;
-        background: #fcfcfc;
-        padding: 15px 15px 0 15px;
-        margin: -15px -15px 10px -15px;
-      }
-      .resource-description {
-        border-bottom: 1px solid #fcfcfc;
-        background: #fcfcfc;
-        padding: 15px 15px 0 15px;
-        margin: -15px -15px 10px -15px;
-      }
-      .resource-description p:last-child {
-        margin: 0;
-      }
-      .list-group .badge {
-        float: left;
-      }
-      .method_description {
-        margin-left: 85px;
-      }
-      .method_description p:last-child {
-        margin: 0;
-      }
-      .list-group-item {
-        cursor: pointer;
-      }
-      .list-group-item:hover {
-        background-color: #f5f5f5;
-      }
-
-      pre code {
-        overflow: auto;
-        word-wrap: normal;
-        white-space: pre;
-      }
-    &lt;/style&gt;&lt;/head&gt;&lt;body data-spy=&#34;scroll&#34; data-target=&#34;#sidebar&#34;&gt;&lt;div class=&#34;container&#34;&gt;&lt;div class=&#34;row&#34;&gt;&lt;div class=&#34;col-md-9&#34; role=&#34;main&#34;&gt;&lt;div class=&#34;page-header&#34;&gt;&lt;h1&gt;SPAD API documentation &lt;small&gt;version v0&lt;/small&gt;&lt;/h1&gt;&lt;p&gt;https://example.com/.well-known/spad/v0&lt;/p&gt;&lt;h3 id=&#34;Overview&#34;&gt;&lt;a href=&#34;#Overview&#34;&gt;Overview&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Simple Port and Address Discovery (SPAD) allows an web application to inform others of what ports and IP addresses it uses so that things like firewalls can correctly re-configure themsleves as the ports and addresses change. Applications are identified by a domain name which is used to form a URL in a well known location where a client can do a HTTP REST call to get a JSON file that describes information about what addresses and transport the service uses.&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;panel panel-default&#34;&gt;&lt;div class=&#34;panel-heading&#34;&gt;&lt;h3 id=&#34;transports&#34; class=&#34;panel-title&#34;&gt;/transports&lt;/h3&gt;&lt;/div&gt;&lt;div class=&#34;panel-body&#34;&gt;&lt;div class=&#34;top-resource-description&#34;&gt;&lt;p&gt;Transports used by this service&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;panel-group&#34;&gt;&lt;div class=&#34;panel panel-white&#34;&gt;&lt;div class=&#34;panel-heading&#34;&gt;&lt;h4 class=&#34;panel-title&#34;&gt;&lt;a class=&#34;collapsed&#34; data-toggle=&#34;collapse&#34; href=&#34;#panel_transports&#34;&gt;&lt;span class=&#34;parent&#34;&gt;&lt;/span&gt;/transports&lt;/a&gt; &lt;span class=&#34;methods&#34;&gt;&lt;a href=&#34;#transports_get&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;/div&gt;&lt;div id=&#34;panel_transports&#34; class=&#34;panel-collapse collapse&#34;&gt;&lt;div class=&#34;panel-body&#34;&gt;&lt;div class=&#34;list-group&#34;&gt;&lt;div onclick=&#34;window.location.href = &#39;#transports_get&#39;&#34; class=&#34;list-group-item&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt;&lt;div class=&#34;method_description&#34;&gt;&lt;p&gt;Retrieve the spad&lt;/p&gt;&lt;/div&gt;&lt;div class=&#34;clearfix&#34;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;modal fade&#34; tabindex=&#34;0&#34; id=&#34;transports_get&#34;&gt;&lt;div class=&#34;modal-dialog&#34;&gt;&lt;div class=&#34;modal-content&#34;&gt;&lt;div class=&#34;modal-header&#34;&gt;&lt;button type=&#34;button&#34; class=&#34;close&#34; data-dismiss=&#34;modal&#34; aria-hidden=&#34;true&#34;&gt;&amp;times;&lt;/button&gt;&lt;h4 class=&#34;modal-title&#34; id=&#34;myModalLabel&#34;&gt;&lt;span class=&#34;badge badge_get&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;parent&#34;&gt;&lt;/span&gt;/transports&lt;/h4&gt;&lt;/div&gt;&lt;div class=&#34;modal-body&#34;&gt;&lt;div class=&#34;alert alert-info&#34;&gt;&lt;p&gt;Retrieve the spad&lt;/p&gt;&lt;/div&gt;&lt;ul class=&#34;nav nav-tabs&#34;&gt;&lt;li class=&#34;active&#34;&gt;&lt;a href=&#34;#transports_get_response&#34; data-toggle=&#34;tab&#34;&gt;Response&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class=&#34;tab-content&#34;&gt;&lt;div class=&#34;tab-pane active&#34; id=&#34;transports_get_response&#34;&gt;&lt;h2&gt;HTTP status code &lt;a href=&#34;http://httpstatus.es/200&#34; target=&#34;_blank&#34;&gt;200&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Return SPAD file - see &lt;a href=&#34;https://fluffy.github.io/spad/schemas/&#34;&gt;https://fluffy.github.io/spad/schemas/&lt;/a&gt;&lt;/p&gt;&lt;h3&gt;Body&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Type: application/json&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Schema&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;{
-  &#34;$schema&#34;: &#34;http://json-schema.org/draft-04/schema#&#34;,
-  &#34;type&#34;: &#34;object&#34;,
-  &#34;title&#34;: &#34;SPAD schema.&#34;,
-  &#34;properties&#34;: {
-    &#34;version&#34;: {
-      &#34;type&#34;: &#34;integer&#34;,
-      &#34;title&#34;: &#34;Version of schema used.&#34;
-    },
-    &#34;transports&#34;: {
-      &#34;type&#34;: &#34;array&#34;,
-      &#34;uniqueItems&#34;: false,
-      &#34;title&#34;: &#34;Transport List&#34;,
-      &#34;description&#34;: &#34;List of tranports used by the application.&#34;,
-      &#34;items&#34;: {
-        &#34;type&#34;: &#34;object&#34;,
-        &#34;title&#34;: &#34;Transport&#34;,
-        &#34;properties&#34;: {
-          &#34;ips&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;uniqueItems&#34;: false,
-            &#34;title&#34;: &#34;IP addresses list&#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;string&#34;,
-              &#34;title&#34;: &#34;IPv4 or v6 address&#34;
-            }
-          },
-          &#34;ports&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;title&#34;: &#34;Port list&#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;integer&#34;,
-              &#34;multipleOf&#34;: 1,
-              &#34;maximum&#34;: 10000,
-              &#34;minimum&#34;: 1,
-              &#34;title&#34;: &#34;port&#34;,
-              &#34;description&#34;: &#34;Destination ports used by the transport protocol.&#34;
-            }
-          },
-          &#34;dns&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;title&#34;: &#34;DNS name list&#34;,
-            &#34;description&#34;: &#34; &#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;string&#34;,
-              &#34;title&#34;: &#34;DNS name&#34;,
-              &#34;description&#34;: &#34;DNS name that will be used to connect to.&#34;
-            }
-          },
-          &#34;protocols&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;uniqueItems&#34;: true,
-            &#34;title&#34;: &#34;Transport Protocol List&#34;,
-            &#34;description&#34;: &#34;Protocols used.&#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;string&#34;,
-              &#34;title&#34;: &#34;protocol&#34;,
-              &#34;enum&#34;: [
-                &#34;udp&#34;,
-                &#34;tcp&#34;,
-                &#34;http&#34;,
-                &#34;tls&#34;,
-                &#34;https&#34;,
-                &#34;quic&#34;
-              ]
-            }
-          }
-        },
-        &#34;required&#34;: [
-          &#34;ips&#34;,
-          &#34;ports&#34;
-        ]
-      }
-    }
-  },
-  &#34;required&#34;: [
-    &#34;ver&#34;,
-    &#34;transports&#34;
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;{
-  &#34;ver&#34;: 1,
-  &#34;transports&#34;: [
+      <description>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&#34;utf-8&#34;&gt;&lt;title&gt;SPAD&lt;/title&gt;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css&#34;&gt;&lt;style&gt;@import url(&#39;https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200&#39;);.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 &#39;Roboto&#39;,Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px &#39;Raleway&#39;,Helvetica,sans-serif;font-size:36px}h2{font:200 36px &#39;Raleway&#39;,Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:&#39;Inconsolata&#39;,monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px &#39;Raleway&#39;,Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul&gt;li{margin:0}nav ul&gt;li:first-child{margin-top:-12px}nav ul&gt;li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav&gt;div&gt;div&gt;ul&gt;li:first-child&gt;a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:&#39;&#39;;display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:&#39;&#39;;display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#000;background-color:#337ab7}.action h4.action-heading .method.head{color:#000;background-color:#337ab7}.action h4.action-heading .method.options{color:#000;background-color:#337ab7}.action h4.action-heading .method.put{color:#000;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#000;background-color:#ed9c28}.action h4.action-heading .method.post{color:#000;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#000;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}&lt;/style&gt;&lt;/head&gt;&lt;body class=&#34;preload&#34;&gt;&lt;a href=&#34;#top&#34; class=&#34;text-muted back-to-top&#34;&gt;&lt;i class=&#34;fa fa-toggle-up&#34;&gt;&lt;/i&gt;&amp;nbsp;Back to top&lt;/a&gt;&lt;div class=&#34;container-fluid&#34;&gt;&lt;div class=&#34;row&#34;&gt;&lt;nav&gt;&lt;div class=&#34;resource-group&#34;&gt;&lt;div class=&#34;heading&#34;&gt;&lt;div class=&#34;chevron&#34;&gt;&lt;i class=&#34;open fa fa-angle-down&#34;&gt;&lt;/i&gt;&lt;/div&gt;&lt;a href=&#34;#flows&#34;&gt;Flows&lt;/a&gt;&lt;/div&gt;&lt;div class=&#34;collapse-content&#34;&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&#34;#flows-service-collection-get&#34;&gt;&lt;span class=&#34;badge get&#34;&gt;&lt;i class=&#34;fa fa-arrow-down&#34;&gt;&lt;/i&gt;&lt;/span&gt;Get SPAD information for this application&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&#34;#flows-service-collection-get-1&#34;&gt;&lt;span class=&#34;badge get&#34;&gt;&lt;i class=&#34;fa fa-arrow-down&#34;&gt;&lt;/i&gt;&lt;/span&gt;Get SPAD information for this service&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/nav&gt;&lt;div class=&#34;content&#34;&gt;&lt;header&gt;&lt;h1 id=&#34;top&#34;&gt;SPAD&lt;/h1&gt;&lt;/header&gt;&lt;section id=&#34;flows&#34; class=&#34;resource-group&#34;&gt;&lt;h2 class=&#34;group-heading&#34;&gt;Flows &lt;a href=&#34;#flows&#34; class=&#34;permalink&#34;&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;&lt;div id=&#34;flows-service-collection&#34; class=&#34;resource&#34;&gt;&lt;h3 class=&#34;resource-heading&#34;&gt;Service Collection &lt;a href=&#34;#flows-service-collection&#34; class=&#34;permalink&#34;&gt;&amp;nbsp;&amp;para;&lt;/a&gt;&lt;/h3&gt;&lt;div id=&#34;flows-service-collection-get&#34; class=&#34;action get&#34;&gt;&lt;h4 class=&#34;action-heading&#34;&gt;&lt;div class=&#34;name&#34;&gt;Get SPAD information for this application&lt;/div&gt;&lt;a href=&#34;#flows-service-collection-get&#34; class=&#34;method get&#34;&gt;GET&lt;/a&gt;&lt;code class=&#34;uri&#34;&gt;/.well-known/spad/v0/spad&lt;/code&gt;&lt;/h4&gt;&lt;h4&gt;Example URI&lt;/h4&gt;&lt;div class=&#34;definition&#34;&gt;&lt;span class=&#34;method get&#34;&gt;GET&lt;/span&gt;&amp;nbsp;&lt;span class=&#34;uri&#34;&gt;&lt;span class=&#34;hostname&#34;&gt;&lt;/span&gt;/.well-known/spad/v0/spad&lt;/span&gt;&lt;/div&gt;&lt;div class=&#34;title&#34;&gt;&lt;strong&gt;Response&amp;nbsp;&amp;nbsp;&lt;code&gt;200&lt;/code&gt;&lt;/strong&gt;&lt;div class=&#34;collapse-button&#34;&gt;&lt;span class=&#34;close&#34;&gt;Hide&lt;/span&gt;&lt;span class=&#34;open&#34;&gt;Show&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;collapse-content&#34;&gt;&lt;div class=&#34;inner&#34;&gt;&lt;h5&gt;Headers&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;&lt;span class=&#34;hljs-attribute&#34;&gt;Content-Type&lt;/span&gt;: &lt;span class=&#34;hljs-string&#34;&gt;application/json&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;div style=&#34;height: 1px;&#34;&gt;&lt;/div&gt;&lt;h5&gt;Body&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;{
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;domain&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;example.com&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;services&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;[
     {
-      &#34;ips&#34;: [
-        &#34;203.0.113.2&#34;
-      ],
-      &#34;ports&#34;: [
-        443
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;name&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;message&#34;&lt;/span&gt;&lt;/span&gt;,
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;validTill&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;Fri 11 Nov 2016 22:20:08 UTC&#34;&lt;/span&gt;&lt;/span&gt;,
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;flows&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;[
+        {
+          &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;ips&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;[
+            &lt;span class=&#34;hljs-string&#34;&gt;&#34;203.0.113.2&#34;&lt;/span&gt;,
+            &lt;span class=&#34;hljs-string&#34;&gt;&#34;2001:db8::1&#34;&lt;/span&gt;
+          ]&lt;/span&gt;,
+          &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;port&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;443&lt;/span&gt;&lt;/span&gt;,
+          &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;name&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;example.com&#34;&lt;/span&gt;&lt;/span&gt;,
+          &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;protocol&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;udp&#34;&lt;/span&gt;&lt;/span&gt;,
+          &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;qos&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;CS1&#34;&lt;/span&gt;
+        &lt;/span&gt;}
       ]
-    }
+    &lt;/span&gt;}
   ]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;col-md-3&#34;&gt;&lt;div id=&#34;sidebar&#34; class=&#34;hidden-print affix&#34; role=&#34;complementary&#34;&gt;&lt;ul class=&#34;nav nav-pills nav-stacked&#34;&gt;&lt;li&gt;&lt;a href=&#34;#transports&#34;&gt;/transports&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://fluffy.github.io/spad/draft-jennings-dispatch-spad-v0-latest/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fluffy.github.io/spad/draft-jennings-dispatch-spad-v0-latest/</guid>
-      <description>&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Strict//EN&#34; 
-  &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&#34;&gt;
-
-&lt;html lang=&#34;en&#34; xmlns=&#34;http://www.w3.org/1999/xhtml&#34; xml:lang=&#34;en&#34;&gt;
-&lt;head profile=&#34;http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/&#34;&gt;
-  &lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=us-ascii&#34; /&gt;
-
-  &lt;title&gt;Simple Port and Address Discovery&lt;/title&gt;
-
-  &lt;style type=&#34;text/css&#34; title=&#34;Xml2Rfc (sans serif)&#34;&gt;
-  /*&lt;![CDATA[*/
-	  a {
-	  text-decoration: none;
-	  }
-      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
-      a.info {
-          /* This is the key. */
-          position: relative;
-          z-index: 24;
-          text-decoration: none;
-      }
-      a.info:hover {
-          z-index: 25;
-          color: #FFF; background-color: #900;
-      }
-      a.info span { display: none; }
-      a.info:hover span.info {
-          /* The span will display just on :hover state. */
-          display: block;
-          position: absolute;
-          font-size: smaller;
-          top: 2em; left: -5em; width: 15em;
-          padding: 2px; border: 1px solid #333;
-          color: #900; background-color: #EEE;
-          text-align: left;
-      }
-	  a.smpl {
-	  color: black;
-	  }
-	  a:hover {
-	  text-decoration: underline;
-	  }
-	  a:active {
-	  text-decoration: underline;
-	  }
-	  address {
-	  margin-top: 1em;
-	  margin-left: 2em;
-	  font-style: normal;
-	  }
-	  body {
-	  color: black;
-	  font-family: verdana, helvetica, arial, sans-serif;
-	  font-size: 10pt;
-	  max-width: 55em;
-	  
-	  }
-	  cite {
-	  font-style: normal;
-	  }
-	  dd {
-	  margin-right: 2em;
-	  }
-	  dl {
-	  margin-left: 2em;
-	  }
-	
-	  ul.empty {
-	  list-style-type: none;
-	  }
-	  ul.empty li {
-	  margin-top: .5em;
-	  }
-	  dl p {
-	  margin-left: 0em;
-	  }
-	  dt {
-	  margin-top: .5em;
-	  }
-	  h1 {
-	  font-size: 14pt;
-	  line-height: 21pt;
-	  page-break-after: avoid;
-	  }
-	  h1.np {
-	  page-break-before: always;
-	  }
-	  h1 a {
-	  color: #333333;
-	  }
-	  h2 {
-	  font-size: 12pt;
-	  line-height: 15pt;
-	  page-break-after: avoid;
-	  }
-	  h3, h4, h5, h6 {
-	  font-size: 10pt;
-	  page-break-after: avoid;
-	  }
-	  h2 a, h3 a, h4 a, h5 a, h6 a {
-	  color: black;
-	  }
-	  img {
-	  margin-left: 3em;
-	  }
-	  li {
-	  margin-left: 2em;
-	  margin-right: 2em;
-	  }
-	  ol {
-	  margin-left: 2em;
-	  margin-right: 2em;
-	  }
-	  ol p {
-	  margin-left: 0em;
-	  }
-	  p {
-	  margin-left: 2em;
-	  margin-right: 2em;
-	  }
-	  pre {
-	  margin-left: 3em;
-	  background-color: lightyellow;
-	  padding: .25em;
-	  }
-	  pre.text2 {
-	  border-style: dotted;
-	  border-width: 1px;
-	  background-color: #f0f0f0;
-	  width: 69em;
-	  }
-	  pre.inline {
-	  background-color: white;
-	  padding: 0em;
-	  }
-	  pre.text {
-	  border-style: dotted;
-	  border-width: 1px;
-	  background-color: #f8f8f8;
-	  width: 69em;
-	  }
-	  pre.drawing {
-	  border-style: solid;
-	  border-width: 1px;
-	  background-color: #f8f8f8;
-	  padding: 2em;
-	  }
-	  table {
-	  margin-left: 2em;
-	  }
-	  table.tt {
-	  vertical-align: top;
-	  }
-	  table.full {
-	  border-style: outset;
-	  border-width: 1px;
-	  }
-	  table.headers {
-	  border-style: outset;
-	  border-width: 1px;
-	  }
-	  table.tt td {
-	  vertical-align: top;
-	  }
-	  table.full td {
-	  border-style: inset;
-	  border-width: 1px;
-	  }
-	  table.tt th {
-	  vertical-align: top;
-	  }
-	  table.full th {
-	  border-style: inset;
-	  border-width: 1px;
-	  }
-	  table.headers th {
-	  border-style: none none inset none;
-	  border-width: 1px;
-	  }
-	  table.left {
-	  margin-right: auto;
-	  }
-	  table.right {
-	  margin-left: auto;
-	  }
-	  table.center {
-	  margin-left: auto;
-	  margin-right: auto;
-	  }
-	  caption {
-	  caption-side: bottom;
-	  font-weight: bold;
-	  font-size: 9pt;
-	  margin-top: .5em;
-	  }
-	
-	  table.header {
-	  border-spacing: 1px;
-	  width: 95%;
-	  font-size: 10pt;
-	  color: white;
-	  }
-	  td.top {
-	  vertical-align: top;
-	  }
-	  td.topnowrap {
-	  vertical-align: top;
-	  white-space: nowrap; 
-	  }
-	  table.header td {
-	  background-color: gray;
-	  width: 50%;
-	  }
-	  table.header a {
-	  color: white;
-	  }
-	  td.reference {
-	  vertical-align: top;
-	  white-space: nowrap;
-	  padding-right: 1em;
-	  }
-	  thead {
-	  display:table-header-group;
-	  }
-	  ul.toc, ul.toc ul {
-	  list-style: none;
-	  margin-left: 1.5em;
-	  margin-right: 0em;
-	  padding-left: 0em;
-	  }
-	  ul.toc li {
-	  line-height: 150%;
-	  font-weight: bold;
-	  font-size: 10pt;
-	  margin-left: 0em;
-	  margin-right: 0em;
-	  }
-	  ul.toc li li {
-	  line-height: normal;
-	  font-weight: normal;
-	  font-size: 9pt;
-	  margin-left: 0em;
-	  margin-right: 0em;
-	  }
-	  li.excluded {
-	  font-size: 0pt;
-	  }
-	  ul p {
-	  margin-left: 0em;
-	  }
-	
-	  .comment {
-	  background-color: yellow;
-	  }
-	  .center {
-	  text-align: center;
-	  }
-	  .error {
-	  color: red;
-	  font-style: italic;
-	  font-weight: bold;
-	  }
-	  .figure {
-	  font-weight: bold;
-	  text-align: center;
-	  font-size: 9pt;
-	  }
-	  .filename {
-	  color: #333333;
-	  font-weight: bold;
-	  font-size: 12pt;
-	  line-height: 21pt;
-	  text-align: center;
-	  }
-	  .fn {
-	  font-weight: bold;
-	  }
-	  .hidden {
-	  display: none;
-	  }
-	  .left {
-	  text-align: left;
-	  }
-	  .right {
-	  text-align: right;
-	  }
-	  .title {
-	  color: #990000;
-	  font-size: 18pt;
-	  line-height: 18pt;
-	  font-weight: bold;
-	  text-align: center;
-	  margin-top: 36pt;
-	  }
-	  .vcardline {
-	  display: block;
-	  }
-	  .warning {
-	  font-size: 14pt;
-	  background-color: yellow;
-	  }
-	
-	
-	  @media print {
-	  .noprint {
-		display: none;
-	  }
-	
-	  a {
-		color: black;
-		text-decoration: none;
-	  }
-	
-	  table.header {
-		width: 90%;
-	  }
-	
-	  td.header {
-		width: 50%;
-		color: black;
-		background-color: white;
-		vertical-align: top;
-		font-size: 12pt;
-	  }
-	
-	  ul.toc a::after {
-		content: leader(&#39;.&#39;) target-counter(attr(href), page);
-	  }
-	
-	  ul.ind li li a {
-		content: target-counter(attr(href), page);
-	  }
-	
-	  .print2col {
-		column-count: 2;
-		-moz-column-count: 2;
-		column-fill: auto;
-	  }
-	  }
-	
-	  @page {
-	  @top-left {
-		   content: &#34;Internet-Draft&#34;; 
-	  } 
-	  @top-right {
-		   content: &#34;December 2010&#34;; 
-	  } 
-	  @top-center {
-		   content: &#34;Abbreviated Title&#34;;
-	  } 
-	  @bottom-left {
-		   content: &#34;Doe&#34;; 
-	  } 
-	  @bottom-center {
-		   content: &#34;Expires June 2011&#34;; 
-	  } 
-	  @bottom-right {
-		   content: &#34;[Page &#34; counter(page) &#34;]&#34;; 
-	  } 
-	  }
-	
-	  @page:first { 
-		@top-left {
-		  content: normal;
-		}
-		@top-right {
-		  content: normal;
-		}
-		@top-center {
-		  content: normal;
-		}
-	  }
-  /*]]&gt;*/
-  &lt;/style&gt;
-
-  &lt;link href=&#34;#rfc.toc&#34; rel=&#34;Contents&#34;/&gt;
-&lt;link href=&#34;#rfc.section.1&#34; rel=&#34;Chapter&#34; title=&#34;1 Introduction&#34;/&gt;
-&lt;link href=&#34;#rfc.section.2&#34; rel=&#34;Chapter&#34; title=&#34;2 Terminology&#34;/&gt;
-&lt;link href=&#34;#rfc.section.3&#34; rel=&#34;Chapter&#34; title=&#34;3 Example&#34;/&gt;
-&lt;link href=&#34;#rfc.section.4&#34; rel=&#34;Chapter&#34; title=&#34;4 RAML&#34;/&gt;
-&lt;link href=&#34;#rfc.section.5&#34; rel=&#34;Chapter&#34; title=&#34;5 Schemas&#34;/&gt;
-&lt;link href=&#34;#rfc.section.6&#34; rel=&#34;Chapter&#34; title=&#34;6 IANA Consideration&#34;/&gt;
-&lt;link href=&#34;#rfc.section.7&#34; rel=&#34;Chapter&#34; title=&#34;7 Security Considerations&#34;/&gt;
-&lt;link href=&#34;#rfc.section.8&#34; rel=&#34;Chapter&#34; title=&#34;8 Acknowledgments&#34;/&gt;
-&lt;link href=&#34;#rfc.references&#34; rel=&#34;Chapter&#34; title=&#34;9 References&#34;/&gt;
-&lt;link href=&#34;#rfc.references.1&#34; rel=&#34;Chapter&#34; title=&#34;9.1 Normative References&#34;/&gt;
-&lt;link href=&#34;#rfc.references.2&#34; rel=&#34;Chapter&#34; title=&#34;9.2 Informative References&#34;/&gt;
-&lt;link href=&#34;#rfc.appendix.A&#34; rel=&#34;Chapter&#34; title=&#34;A Contributing&#34;/&gt;
-&lt;link href=&#34;#rfc.appendix.B&#34; rel=&#34;Chapter&#34; title=&#34;B Published Versions&#34;/&gt;
-&lt;link href=&#34;#rfc.authors&#34; rel=&#34;Chapter&#34;/&gt;
-
-
-  &lt;meta name=&#34;generator&#34; content=&#34;xml2rfc version 2.5.0 - http://tools.ietf.org/tools/xml2rfc&#34; /&gt;
-  &lt;link rel=&#34;schema.dct&#34; href=&#34;http://purl.org/dc/terms/&#34; /&gt;
-
-  &lt;meta name=&#34;dct.creator&#34; content=&#34;Jennings, C.&#34; /&gt;
-  &lt;meta name=&#34;dct.identifier&#34; content=&#34;urn:ietf:id:draft-jennings-dispatch-spad-v0-latest&#34; /&gt;
-  &lt;meta name=&#34;dct.issued&#34; scheme=&#34;ISO8601&#34; content=&#34;2016-11-9&#34; /&gt;
-  &lt;meta name=&#34;dct.abstract&#34; content=&#34;This specification defines a simple JSON format and well known URL for firewalls and other devices to discover whats IP addresses, ports, and related transports a given cloud services uses.  &#34; /&gt;
-  &lt;meta name=&#34;description&#34; content=&#34;This specification defines a simple JSON format and well known URL for firewalls and other devices to discover whats IP addresses, ports, and related transports a given cloud services uses.  &#34; /&gt;
-
-&lt;/head&gt;
-
-&lt;body&gt;
-
-  &lt;table class=&#34;header&#34;&gt;
-    &lt;tbody&gt;
-    
-    	&lt;tr&gt;
-  &lt;td class=&#34;left&#34;&gt;Network Working Group&lt;/td&gt;
-  &lt;td class=&#34;right&#34;&gt;C. Jennings&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&#34;left&#34;&gt;Internet-Draft&lt;/td&gt;
-  &lt;td class=&#34;right&#34;&gt;Cisco&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&#34;left&#34;&gt;Intended status: Standards Track&lt;/td&gt;
-  &lt;td class=&#34;right&#34;&gt;November 9, 2016&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&#34;left&#34;&gt;Expires: May 13, 2017&lt;/td&gt;
-  &lt;td class=&#34;right&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-    	
-    &lt;/tbody&gt;
-  &lt;/table&gt;
-
-  &lt;p class=&#34;title&#34;&gt;Simple Port and Address Discovery&lt;br /&gt;
-  &lt;span class=&#34;filename&#34;&gt;draft-jennings-dispatch-spad-v0-latest&lt;/span&gt;&lt;/p&gt;
-  
-  &lt;h1 id=&#34;rfc.abstract&#34;&gt;
-  &lt;a href=&#34;#rfc.abstract&#34;&gt;Abstract&lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;This specification defines a simple JSON format and well known URL for firewalls and other devices to discover whats IP addresses, ports, and related transports a given cloud services uses.  &lt;/p&gt;
-&lt;h1 id=&#34;rfc.status&#34;&gt;
-  &lt;a href=&#34;#rfc.status&#34;&gt;Status of This Memo&lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.&lt;/p&gt;
-&lt;p&gt;Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.&lt;/p&gt;
-&lt;p&gt;Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as &#34;work in progress.&#34;&lt;/p&gt;
-&lt;p&gt;This Internet-Draft will expire on May 13, 2017.&lt;/p&gt;
-&lt;h1 id=&#34;rfc.copyrightnotice&#34;&gt;
-  &lt;a href=&#34;#rfc.copyrightnotice&#34;&gt;Copyright Notice&lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Copyright (c) 2016 IETF Trust and the persons identified as the document authors.  All rights reserved.&lt;/p&gt;
-&lt;p&gt;This document is subject to BCP 78 and the IETF Trust&#39;s Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.&lt;/p&gt;
-
-  
-  &lt;hr class=&#34;noprint&#34; /&gt;
-  &lt;h1 class=&#34;np&#34; id=&#34;rfc.toc&#34;&gt;&lt;a href=&#34;#rfc.toc&#34;&gt;Table of Contents&lt;/a&gt;&lt;/h1&gt;
-  &lt;ul class=&#34;toc&#34;&gt;
-
-  	&lt;li&gt;1.   &lt;a href=&#34;#rfc.section.1&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.   &lt;a href=&#34;#rfc.section.2&#34;&gt;Terminology&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;3.   &lt;a href=&#34;#rfc.section.3&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;4.   &lt;a href=&#34;#rfc.section.4&#34;&gt;RAML&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.   &lt;a href=&#34;#rfc.section.5&#34;&gt;Schemas&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;6.   &lt;a href=&#34;#rfc.section.6&#34;&gt;IANA Consideration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;7.   &lt;a href=&#34;#rfc.section.7&#34;&gt;Security Considerations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;8.   &lt;a href=&#34;#rfc.section.8&#34;&gt;Acknowledgments&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;9.   &lt;a href=&#34;#rfc.references&#34;&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;ul&gt;&lt;li&gt;9.1.   &lt;a href=&#34;#rfc.references.1&#34;&gt;Normative References&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;9.2.   &lt;a href=&#34;#rfc.references.2&#34;&gt;Informative References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;li&gt;Appendix A.   &lt;a href=&#34;#rfc.appendix.A&#34;&gt;Contributing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Appendix B.   &lt;a href=&#34;#rfc.appendix.B&#34;&gt;Published Versions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#rfc.authors&#34;&gt;Author&#39;s Address&lt;/a&gt;&lt;/li&gt;
-
-
-  &lt;/ul&gt;
-
-  &lt;h1 id=&#34;rfc.section.1&#34;&gt;&lt;a href=&#34;#rfc.section.1&#34;&gt;1.&lt;/a&gt; &lt;a href=&#34;#introduction&#34; id=&#34;introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.1.p.1&#34;&gt;Simple Port and Address Discovery (SPAD) allows an web application to inform others of what ports and IP addresses it uses so that things like firewalls can correctly re-configure themsleves as the ports and addresses change. Applications are identified by a domain name which is used to form a URL in a well known location where a client can do a HTTP REST call to get a JSON file that describes information about what addresses and transport the service uses.  &lt;/p&gt;
-&lt;h1 id=&#34;rfc.section.2&#34;&gt;&lt;a href=&#34;#rfc.section.2&#34;&gt;2.&lt;/a&gt; &lt;a href=&#34;#terminology&#34; id=&#34;terminology&#34;&gt;Terminology&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.2.p.1&#34;&gt;In this document, the key words &#34;MUST&#34;, &#34;MUST NOT&#34;, &#34;SHOULD&#34;, &#34;SHOULD NOT&#34;, &#34;MAY&#34;, and &#34;OPTIONAL&#34; are to be interpreted as described in RFC 2119 &lt;a href=&#34;#RFC2119&#34;&gt;[RFC2119]&lt;/a&gt; and indicate requirement levels for compliant implementations.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.2.p.2&#34;&gt;RAML is defined at &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://github.com/raml-org&#34;&gt;https://github.com/raml-org&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.2.p.3&#34;&gt;JSON Schema is defined at &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;http://json-schema.org/&#34;&gt;http://json-schema.org/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;. Further information is available in &lt;a href=&#34;#I-D.wright-json-schema&#34;&gt;[I-D.wright-json-schema]&lt;/a&gt;.  &lt;/p&gt;
-&lt;h1 id=&#34;rfc.section.3&#34;&gt;&lt;a href=&#34;#rfc.section.3&#34;&gt;3.&lt;/a&gt; &lt;a href=&#34;#example&#34; id=&#34;example&#34;&gt;Example&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.3.p.1&#34;&gt;To figure out what IP addresses are used by the service example.com, the first step is to form the query URL by constructing an endpoint at &#34;.well-known/spad/v0/transports&#34;.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.3.p.2&#34;&gt;An HTTPS GET query is done that to that URL.  &lt;/p&gt;
-&lt;pre&gt;
-curl https://example.com/.well-known/spad/v0/transports
-&lt;/pre&gt;
-&lt;p id=&#34;rfc.section.3.p.3&#34;&gt;The responses would be a JSON result that could looks like &lt;/p&gt;
-&lt;pre&gt;
-{
-  &#34;ver&#34;: 1,
-  &#34;transports&#34;: [
+&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;div style=&#34;height: 1px;&#34;&gt;&lt;/div&gt;&lt;h5&gt;Schema&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;{
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;$schema&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;http://json-schema.org/draft-04/schema#&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;object&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;properties&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+    &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;domain&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;string&#34;&lt;/span&gt;
+    &lt;/span&gt;}&lt;/span&gt;,
+    &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;services&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;array&#34;&lt;/span&gt;
+    &lt;/span&gt;}
+  &lt;/span&gt;}
+&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;div style=&#34;height: 1px;&#34;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&#34;flows-service-collection-1&#34; class=&#34;resource&#34;&gt;&lt;h3 class=&#34;resource-heading&#34;&gt;Service Collection &lt;a href=&#34;#flows-service-collection-1&#34; class=&#34;permalink&#34;&gt;&amp;nbsp;&amp;para;&lt;/a&gt;&lt;/h3&gt;&lt;div id=&#34;flows-service-collection-get-1&#34; class=&#34;action get&#34;&gt;&lt;h4 class=&#34;action-heading&#34;&gt;&lt;div class=&#34;name&#34;&gt;Get SPAD information for this service&lt;/div&gt;&lt;a href=&#34;#flows-service-collection-get-1&#34; class=&#34;method get&#34;&gt;GET&lt;/a&gt;&lt;code class=&#34;uri&#34;&gt;/.well-known/spad/v0/{service}&lt;/code&gt;&lt;/h4&gt;&lt;h4&gt;Example URI&lt;/h4&gt;&lt;div class=&#34;definition&#34;&gt;&lt;span class=&#34;method get&#34;&gt;GET&lt;/span&gt;&amp;nbsp;&lt;span class=&#34;uri&#34;&gt;&lt;span class=&#34;hostname&#34;&gt;&lt;/span&gt;/.well-known/spad/v0/&lt;span class=&#34;hljs-attribute&#34; title=&#34;service&#34;&gt;service&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&#34;title&#34;&gt;&lt;strong&gt;URI Parameters&lt;/strong&gt;&lt;div class=&#34;collapse-button show&#34;&gt;&lt;span class=&#34;close&#34;&gt;Hide&lt;/span&gt;&lt;span class=&#34;open&#34;&gt;Show&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;collapse-content&#34;&gt;&lt;dl class=&#34;inner&#34;&gt;&lt;dt&gt;service&lt;/dt&gt;&lt;dd&gt;&lt;code&gt;string&lt;/code&gt;&amp;nbsp;&lt;span class=&#34;required&#34;&gt;(required)&lt;/span&gt;&amp;nbsp;&lt;ul&gt;
+&lt;li&gt;service name to lookup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;&lt;/dl&gt;&lt;/div&gt;&lt;div class=&#34;title&#34;&gt;&lt;strong&gt;Response&amp;nbsp;&amp;nbsp;&lt;code&gt;200&lt;/code&gt;&lt;/strong&gt;&lt;div class=&#34;collapse-button&#34;&gt;&lt;span class=&#34;close&#34;&gt;Hide&lt;/span&gt;&lt;span class=&#34;open&#34;&gt;Show&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;collapse-content&#34;&gt;&lt;div class=&#34;inner&#34;&gt;&lt;h5&gt;Headers&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;&lt;span class=&#34;hljs-attribute&#34;&gt;Content-Type&lt;/span&gt;: &lt;span class=&#34;hljs-string&#34;&gt;application/json&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;div style=&#34;height: 1px;&#34;&gt;&lt;/div&gt;&lt;h5&gt;Body&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;{
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;name&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;message&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;validTill&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;Fri 11 Nov 2016 22:20:08 UTC&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;flows&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;[
     {
-      &#34;ips&#34;: [
-        &#34;203.0.113.2&#34;
-      ],
-      &#34;ports&#34;: [
-        443
-      ]
-    }
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;ips&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;[
+        &lt;span class=&#34;hljs-string&#34;&gt;&#34;203.0.113.2&#34;&lt;/span&gt;,
+        &lt;span class=&#34;hljs-string&#34;&gt;&#34;2001:db8::1&#34;&lt;/span&gt;
+      ]&lt;/span&gt;,
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;port&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;443&lt;/span&gt;&lt;/span&gt;,
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;name&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;example.com&#34;&lt;/span&gt;&lt;/span&gt;,
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;protocol&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;udp&#34;&lt;/span&gt;&lt;/span&gt;,
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;qos&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;CS1&#34;&lt;/span&gt;
+    &lt;/span&gt;}
   ]
+&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;div style=&#34;height: 1px;&#34;&gt;&lt;/div&gt;&lt;h5&gt;Schema&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;{
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;$schema&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;http://json-schema.org/draft-04/schema#&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;object&#34;&lt;/span&gt;&lt;/span&gt;,
+  &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;properties&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+    &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;name&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;string&#34;&lt;/span&gt;
+    &lt;/span&gt;}&lt;/span&gt;,
+    &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;validTill&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;string&#34;&lt;/span&gt;
+    &lt;/span&gt;}&lt;/span&gt;,
+    &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;flows&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;{
+      &#34;&lt;span class=&#34;hljs-attribute&#34;&gt;type&lt;/span&gt;&#34;: &lt;span class=&#34;hljs-value&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&#34;array&#34;&lt;/span&gt;
+    &lt;/span&gt;}
+  &lt;/span&gt;}
+&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;div style=&#34;height: 1px;&#34;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=&#34;text-align: center;&#34; class=&#34;text-muted&#34;&gt;Generated by&amp;nbsp;&lt;a href=&#34;https://github.com/danielgtaylor/aglio&#34; class=&#34;aglio&#34;&gt;aglio&lt;/a&gt;&amp;nbsp;on 12 Nov 2016&lt;/p&gt;&lt;script&gt;/* eslint-env browser */
+/* eslint quotes: [2, &#34;single&#34;] */
+&#39;use strict&#39;;
+
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
-&lt;/pre&gt;
-&lt;p id=&#34;rfc.section.3.p.4&#34;&gt;The return result indicates that the &#34;example.com&#34; service uses only the IP address &#34;203.0.113.2&#34;.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.3.p.5&#34;&gt;The following shows a more complex example result for an applications that uses only HTTP and QUIC over a small set of IP addresses. All traffic will be connecting to example.com or api.example.com from the point of view of TLS and proxies.  &lt;/p&gt;
-&lt;pre&gt;
-{
-  &#34;ver&#34;: 1,
-  &#34;transports&#34;: [
-    {
-      &#34;ips&#34;: [
-        &#34;192.0.2.1&#34;,
-        &#34;203.0.113.2&#34;,
-        &#34;2001:db8::1&#34;
-      ],
-      &#34;ports&#34;: [
-        443
-      ],
-      &#34;dns&#34;: [
-        &#34;example.com&#34;,
-        &#34;api.example.com&#34;
-      ],
-      &#34;protcols&#34;: [
-        &#34;https&#34;,
-        &#34;quic&#34;
-      ]
+
+/*
+  Get a list of direct child elements by class name.
+*/
+function childrenByClass(element, name) {
+  var filtered = [];
+
+  for (var i = 0; i &lt; element.children.length; i++) {
+    var child = element.children[i];
+    var classNames = child.className.split(&#39; &#39;);
+    if (classNames.indexOf(name) !== -1) {
+      filtered.push(child);
     }
-  ]
+  }
+
+  return filtered;
 }
-&lt;/pre&gt;
-&lt;h1 id=&#34;rfc.section.4&#34;&gt;&lt;a href=&#34;#rfc.section.4&#34;&gt;4.&lt;/a&gt; &lt;a href=&#34;#raml&#34; id=&#34;raml&#34;&gt;RAML&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.4.p.1&#34;&gt;The RAML specification for the API is: &lt;/p&gt;
-&lt;pre&gt;
-#%RAML 0.8
-title: SPAD
-version: v0
-protocols: [ HTTPS ]
-baseUri: https://example.com/.well-known/spad/{version}
-mediaType: application/json
 
-schemas:
- - spad.json: !include spad-schema.json
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
 
-documentation:
- - title: Overview
-   content: !include overview.md
-   
-/transports:
-  description: Transports used by this service 
-  get:
-    description: Retrieve the spad 
-    responses:
-       200:
-         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/ 
-         body:
-          application/json:
-            schema: spad.json
-            example: !include example1.json
-            
-&lt;/pre&gt;
-&lt;h1 id=&#34;rfc.section.5&#34;&gt;&lt;a href=&#34;#rfc.section.5&#34;&gt;5.&lt;/a&gt; &lt;a href=&#34;#schemas&#34; id=&#34;schemas&#34;&gt;Schemas&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.5.p.1&#34;&gt;The JSON returned from MUST corespond to the following JSON schema.  &lt;/p&gt;
-&lt;pre&gt;
-{
-  &#34;$schema&#34;: &#34;http://json-schema.org/draft-04/schema#&#34;,
-  &#34;type&#34;: &#34;object&#34;,
-  &#34;title&#34;: &#34;SPAD schema.&#34;,
-  &#34;properties&#34;: {
-    &#34;version&#34;: {
-      &#34;type&#34;: &#34;integer&#34;,
-      &#34;title&#34;: &#34;Version of schema used.&#34;
-    },
-    &#34;transports&#34;: {
-      &#34;type&#34;: &#34;array&#34;,
-      &#34;uniqueItems&#34;: false,
-      &#34;title&#34;: &#34;Transport List&#34;,
-      &#34;description&#34;: &#34;List of tranports used by the application.&#34;,
-      &#34;items&#34;: {
-        &#34;type&#34;: &#34;object&#34;,
-        &#34;title&#34;: &#34;Transport&#34;,
-        &#34;properties&#34;: {
-          &#34;ips&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;uniqueItems&#34;: false,
-            &#34;title&#34;: &#34;IP addresses list&#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;string&#34;,
-              &#34;title&#34;: &#34;IPv4 or v6 address&#34;
-            }
-          },
-          &#34;ports&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;title&#34;: &#34;Port list&#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;integer&#34;,
-              &#34;multipleOf&#34;: 1,
-              &#34;maximum&#34;: 10000,
-              &#34;minimum&#34;: 1,
-              &#34;title&#34;: &#34;port&#34;,
-              &#34;description&#34;: &#34;Destination ports used by the transport protocol.&#34;
-            }
-          },
-          &#34;dns&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;title&#34;: &#34;DNS name list&#34;,
-            &#34;description&#34;: &#34; &#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;string&#34;,
-              &#34;title&#34;: &#34;DNS name&#34;,
-              &#34;description&#34;: &#34;DNS name that will be used to connect to.&#34;
-            }
-          },
-          &#34;protocols&#34;: {
-            &#34;type&#34;: &#34;array&#34;,
-            &#34;uniqueItems&#34;: true,
-            &#34;title&#34;: &#34;Transport Protocol List&#34;,
-            &#34;description&#34;: &#34;Protocols used.&#34;,
-            &#34;items&#34;: {
-              &#34;type&#34;: &#34;string&#34;,
-              &#34;title&#34;: &#34;protocol&#34;,
-              &#34;enum&#34;: [
-                &#34;udp&#34;,
-                &#34;tcp&#34;,
-                &#34;http&#34;,
-                &#34;tls&#34;,
-                &#34;https&#34;,
-                &#34;quic&#34;
-              ]
-            }
-          }
-        },
-        &#34;required&#34;: [
-          &#34;ips&#34;,
-          &#34;ports&#34;
-        ]
+  return [x, y];
+}
+
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
+
+    if (button.className.indexOf(&#39;collapse-button&#39;) === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight &amp;&amp; content.style.maxHeight !== &#39;0px&#39;) {
+        // Currently showing, so let&#39;s hide it
+        button.className = &#39;collapse-button&#39;;
+        content.style.maxHeight = &#39;0px&#39;;
+    } else {
+        // Currently hidden, so let&#39;s show it
+        button.className = &#39;collapse-button show&#39;;
+        content.style.maxHeight = inner.offsetHeight + 12 + &#39;px&#39;;
+    }
+}
+
+function toggleTabButton(event) {
+    var i, index;
+    var button = event.target;
+
+    // Get index of the current button.
+    var buttons = childrenByClass(button.parentNode, &#39;tab-button&#39;);
+    for (i = 0; i &lt; buttons.length; i++) {
+        if (buttons[i] === button) {
+            index = i;
+            button.className = &#39;tab-button active&#39;;
+        } else {
+            buttons[i].className = &#39;tab-button&#39;;
+        }
+    }
+
+    // Hide other tabs and show this one.
+    var tabs = childrenByClass(button.parentNode.parentNode, &#39;tab&#39;);
+    for (i = 0; i &lt; tabs.length; i++) {
+        if (i === index) {
+            tabs[i].style.display = &#39;block&#39;;
+        } else {
+            tabs[i].style.display = &#39;none&#39;;
+        }
+    }
+}
+
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
+
+    if (heading.className.indexOf(&#39;heading&#39;) === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight &amp;&amp; content.style.maxHeight !== &#39;0px&#39;) {
+      // Currently showing, so let&#39;s hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash &amp;&amp; endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = &#39;0px&#39;;
+      }
+    } else {
+      // Currently hidden, so let&#39;s show it
+      content.style.maxHeight = inner.offsetHeight + 12 + &#39;px&#39;;
+    }
+}
+
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector(&#39;body&#39;).className = &#39;preload&#39;;
+    document.body.innerHTML = body;
+
+    // Re-initialize the page
+    init();
+    autoCollapse();
+
+    document.querySelector(&#39;body&#39;).className = &#39;&#39;;
+}
+
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll(&#39;nav .resource-group .heading&#39;));
+
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
+
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
+
+  while (sortedItems.length &amp;&amp; itemsHeight &gt; windowHeight) {
+    for (var i = 0; i &lt; sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight &lt;= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let&#39;s collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
       }
     }
-  },
-  &#34;required&#34;: [
-    &#34;ver&#34;,
-    &#34;transports&#34;
-  ]
+  }
 }
-&lt;/pre&gt;
-&lt;h1 id=&#34;rfc.section.6&#34;&gt;&lt;a href=&#34;#rfc.section.6&#34;&gt;6.&lt;/a&gt; &lt;a href=&#34;#iana-consideration&#34; id=&#34;iana-consideration&#34;&gt;IANA Consideration&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.6.p.1&#34;&gt;TODO - register well known URL usage &lt;/p&gt;
-&lt;h1 id=&#34;rfc.section.7&#34;&gt;&lt;a href=&#34;#rfc.section.7&#34;&gt;7.&lt;/a&gt; &lt;a href=&#34;#security-considerations&#34; id=&#34;security-considerations&#34;&gt;Security Considerations&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.7.p.1&#34;&gt;TODO - explain importance of HTTPS &lt;/p&gt;
-&lt;p id=&#34;rfc.section.7.p.2&#34;&gt;Discuss merging with existing ACL &lt;/p&gt;
-&lt;h1 id=&#34;rfc.section.8&#34;&gt;&lt;a href=&#34;#rfc.section.8&#34;&gt;8.&lt;/a&gt; &lt;a href=&#34;#acknowledgments&#34; id=&#34;acknowledgments&#34;&gt;Acknowledgments&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.8.p.1&#34;&gt;Thank you for the contributions from: Cullen Jennings &lt;/p&gt;
-&lt;h1 id=&#34;rfc.references&#34;&gt;&lt;a href=&#34;#rfc.references&#34;&gt;9.&lt;/a&gt; References&lt;/h1&gt;
-&lt;h1 id=&#34;rfc.references.1&#34;&gt;&lt;a href=&#34;#rfc.references.1&#34;&gt;9.1.&lt;/a&gt; Normative References&lt;/h1&gt;
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td class=&#34;reference&#34;&gt;
-        &lt;b id=&#34;RFC2119&#34;&gt;[RFC2119]&lt;/b&gt;
-      &lt;/td&gt;
-      &lt;td class=&#34;top&#34;&gt;&lt;a&gt;Bradner, S.&lt;/a&gt;, &#34;&lt;a href=&#34;http://tools.ietf.org/html/rfc2119&#34;&gt;Key words for use in RFCs to Indicate Requirement Levels&lt;/a&gt;&#34;, BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h1 id=&#34;rfc.references.2&#34;&gt;&lt;a href=&#34;#rfc.references.2&#34;&gt;9.2.&lt;/a&gt; Informative References&lt;/h1&gt;
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td class=&#34;reference&#34;&gt;
-        &lt;b id=&#34;I-D.wright-json-schema&#34;&gt;[I-D.wright-json-schema]&lt;/b&gt;
-      &lt;/td&gt;
-      &lt;td class=&#34;top&#34;&gt;&lt;a&gt;Wright, A.&lt;/a&gt;, &#34;&lt;a href=&#34;http://tools.ietf.org/html/draft-wright-json-schema-00&#34;&gt;JSON Schema: A Media Type for Describing JSON Documents&lt;/a&gt;&#34;, Internet-Draft draft-wright-json-schema-00, October 2016.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h1 id=&#34;rfc.appendix.A&#34;&gt;&lt;a href=&#34;#rfc.appendix.A&#34;&gt;Appendix A.&lt;/a&gt; &lt;a href=&#34;#contributing&#34; id=&#34;contributing&#34;&gt;Contributing&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.A.p.1&#34;&gt;We welcome all contributions. Discussion happens in the &lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://spadwg.slack.com/messages/general/&#34;&gt;https://spadwg.slack.com/messages/general/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt; room in slack and on GitHub issue threads at (&lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://github.com/fluffy/spad/issues&#34;&gt;https://github.com/fluffy/spad/issues&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;). Changes are done via git pull requests. For PsR merged into the master branch, we strive for rough consensus and we measure that by the reviews placed on the PR.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.A.p.2&#34;&gt;The Specification style is &#34;less is more&#34;. If a reasonable developer who is fully up on modern web development practices could figure out how write an interoperable implementation after looking at some examples and code and asking a few questions, well that&#39;s good enough for us. If you can find it on Wikipedia, we don&#39;t need to explain it here.  &lt;/p&gt;
-&lt;p id=&#34;rfc.section.A.p.3&#34;&gt;Markdown is used for text. RAML and JSON Schema are used to describe the API. Examples are often used as normative specification. The build chain has the goal is to be simple and obvios with no black magic.  &lt;/p&gt;
-&lt;h1 id=&#34;rfc.appendix.B&#34;&gt;&lt;a href=&#34;#rfc.appendix.B&#34;&gt;Appendix B.&lt;/a&gt; &lt;a href=&#34;#published-versions&#34; id=&#34;published-versions&#34;&gt;Published Versions&lt;/a&gt;&lt;/h1&gt;
-&lt;p id=&#34;rfc.section.B.p.1&#34;&gt;The website at (&lt;span&gt;&amp;lt;&lt;/span&gt;&lt;a href=&#34;https://fluffy.github.io/spad/&#34;&gt;https://fluffy.github.io/spad/&lt;/a&gt;&lt;span&gt;&amp;gt;&lt;/span&gt;) provides an overview view of the specification that is focused on developers. However all the key information to implement the specification that is used to generate the website is also used to generate and internet draft that can be found at &lt;a href=&#34;https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0-00/&#34;&gt;draft-jennings-dispatch-spad-v0&lt;/a&gt; that is slanted at specification developers. Periodically the information on the master is branched to versioned draft branch and published and an internet draft. A typical cadence for this is monthly so that it can receiver broader review. If the PRs that were merged to master represent WG rough consensus, it is expected that it the will move quickly through the standards process. When the work is at a good point to form a version of the API, it is progressed to an RFC and the text of the approved RFC is used to form a released version of the spec. The first version would be v1. The current working pre standard version is always referred to as v0.  The API includes the version in the URL so that developers can implement to a specific non changing specification. Future versions attempt, but do not guarantee, to be backwards comptable with the previos version.  &lt;/p&gt;
-&lt;h1 id=&#34;rfc.authors&#34;&gt;
-  &lt;a href=&#34;#rfc.authors&#34;&gt;Author&#39;s Address&lt;/a&gt;
-&lt;/h1&gt;
-&lt;div class=&#34;avoidbreak&#34;&gt;
-  &lt;address class=&#34;vcard&#34;&gt;
-	&lt;span class=&#34;vcardline&#34;&gt;
-	  &lt;span class=&#34;fn&#34;&gt;Cullen Jennings&lt;/span&gt; 
-	  &lt;span class=&#34;n hidden&#34;&gt;
-		&lt;span class=&#34;family-name&#34;&gt;Jennings&lt;/span&gt;
-	  &lt;/span&gt;
-	&lt;/span&gt;
-	&lt;span class=&#34;org vcardline&#34;&gt;Cisco&lt;/span&gt;
-	&lt;span class=&#34;adr&#34;&gt;
-	  
-	  &lt;span class=&#34;vcardline&#34;&gt;
-		&lt;span class=&#34;locality&#34;&gt;&lt;/span&gt; 
-		&lt;span class=&#34;region&#34;&gt;&lt;/span&gt;
-		&lt;span class=&#34;code&#34;&gt;&lt;/span&gt;
-	  &lt;/span&gt;
-	  &lt;span class=&#34;country-name vcardline&#34;&gt;&lt;/span&gt;
-	&lt;/span&gt;
-	&lt;span class=&#34;vcardline&#34;&gt;EMail: &lt;a href=&#34;mailto:fluffy@iii.ca&#34;&gt;fluffy@iii.ca&lt;/a&gt;&lt;/span&gt;
 
-  &lt;/address&gt;
-&lt;/div&gt;
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i, j;
 
-&lt;/body&gt;
-&lt;/html&gt;
-</description>
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll(&#39;.collapse-button&#39;);
+    for (i = 0; i &lt; buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
+
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf(&#39;show&#39;) !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    var responseCodes = document.querySelectorAll(&#39;.example-names&#39;);
+    for (i = 0; i &lt; responseCodes.length; i++) {
+        var tabButtons = childrenByClass(responseCodes[i], &#39;tab-button&#39;);
+        for (j = 0; j &lt; tabButtons.length; j++) {
+            tabButtons[j].onclick = toggleTabButton;
+
+            // Show by default?
+            if (j === 0) {
+                toggleTabButton({target: tabButtons[j]});
+            }
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll(&#39;nav .resource-group .heading&#39;);
+    for (i = 0; i &lt; navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector(&#39;body&#39;).className = &#39;&#39;;
+};
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</description>
     </item>
     
     <item>
@@ -985,6 +311,55 @@ documentation:
       
       <guid>https://fluffy.github.io/spad/about/</guid>
       <description>&lt;p&gt;TODO - More to be said &amp;quot;about&amp;quot; this site.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blueprint Spec for API</title>
+      <link>https://fluffy.github.io/spad/blueprint/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fluffy.github.io/spad/blueprint/</guid>
+      <description>&lt;p&gt;The Bluprint specification for the API is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-md&#34;&gt;FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+  
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string) 
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number 
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -1045,62 +420,401 @@ backwards comptable with the previos version.&lt;/p&gt;
       <guid>https://fluffy.github.io/spad/getting_started/</guid>
       <description>&lt;p&gt;To figure out what IP addresses are used by the service example.com,
 the first step is to form the query URL by constructing an endpoint at
-&amp;quot;.well-known/spad/v0/transports&amp;quot;.&lt;/p&gt;
+&amp;quot;.well-known/spad/v0/spad&amp;quot;.&lt;/p&gt;
 
-&lt;p&gt;An HTTPS GET query is done that to that URL.&lt;/p&gt;
+&lt;p&gt;Then an HTTPS GET query is done that to that URL.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;curl https://example.com/.well-known/spad/v0/transports
+&lt;pre&gt;&lt;code&gt;curl https://example.com/.well-known/spad/v0/spad
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-  &amp;quot;ver&amp;quot;: 1,
-  &amp;quot;transports&amp;quot;: [
+  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+  &amp;quot;services&amp;quot;: [
     {
-      &amp;quot;ips&amp;quot;: [
-        &amp;quot;203.0.113.2&amp;quot;
-      ],
-      &amp;quot;ports&amp;quot;: [
-        443
+      &amp;quot;name&amp;quot;: &amp;quot;example-service&amp;quot;,
+      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+      &amp;quot;flows&amp;quot;: [
+        {
+          &amp;quot;ips&amp;quot;: [
+            &amp;quot;203.0.113.2&amp;quot;
+          ],
+          &amp;quot;port&amp;quot;: 443,
+          &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;
+        }
       ]
     }
   ]
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The return result indicates that the &amp;quot;example.com&amp;quot; service uses only
-the IP address &amp;quot;203.0.113.2&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The example above  indicates that the &amp;quot;example.com&amp;quot; application has a
+single service with a single flow that uses only the HTTPS to connect to
+port 443 on the IP address &amp;quot;203.0.113.2&amp;quot;.  This SPAD information is
+not valid after &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot; and a new SPAD file
+should be retrieved before that point in time.&lt;/p&gt;
 
-&lt;p&gt;The following shows a more complex example result for an applications
-that uses only HTTP and QUIC over a small set of IP addresses. All
-traffic will be connecting to example.com or api.example.com from the
-point of view of TLS and proxies.&lt;/p&gt;
+&lt;p&gt;The following shows a more complex example result for an application
+that uses two flows. One is TLS to the SIP port of a server with an v4
+and v6 address. The TLS connection will have a name of example.com in
+the SNI.  The other flow is media sent over UDP to port 5004 on a few
+different ip addresses. If devices in the network are capable of
+remarking DSCP, the desired marking is &amp;quot;AF41&amp;quot;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-  &amp;quot;ver&amp;quot;: 1,
-  &amp;quot;transports&amp;quot;: [
+  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+  &amp;quot;services&amp;quot;: [
     {
-      &amp;quot;ips&amp;quot;: [
-        &amp;quot;192.0.2.1&amp;quot;,
-        &amp;quot;203.0.113.2&amp;quot;,
-        &amp;quot;2001:db8::1&amp;quot;
-      ],
-      &amp;quot;ports&amp;quot;: [
-        443
-      ],
-      &amp;quot;dns&amp;quot;: [
-        &amp;quot;example.com&amp;quot;,
-        &amp;quot;api.example.com&amp;quot;
-      ],
-      &amp;quot;protcols&amp;quot;: [
-        &amp;quot;https&amp;quot;,
-        &amp;quot;quic&amp;quot;
+      &amp;quot;name&amp;quot;: &amp;quot;voice-example&amp;quot;,
+      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+      &amp;quot;flows&amp;quot;: [
+        {
+          &amp;quot;ips&amp;quot;: [
+            &amp;quot;203.0.113.2&amp;quot;,
+            &amp;quot;2001:db8::1&amp;quot;
+          ],
+          &amp;quot;port&amp;quot;: 5061,
+          &amp;quot;name&amp;quot;: &amp;quot;example.com&amp;quot;,
+          &amp;quot;protocol&amp;quot;: &amp;quot;tls&amp;quot;
+        },
+        {
+          &amp;quot;ips&amp;quot;: [
+            &amp;quot;192.0.2.1&amp;quot;,
+            &amp;quot;2001:db8::2&amp;quot;
+          ],
+          &amp;quot;port&amp;quot;: 5004,
+          &amp;quot;protocol&amp;quot;: &amp;quot;udp&amp;quot;,
+          &amp;quot;qos&amp;quot;: &amp;quot;AF41&amp;quot;
+        }
       ]
     }
   ]
 }
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Internet Draft</title>
+      <link>https://fluffy.github.io/spad/draft-jennings-dispatch-spad-v0-latest/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fluffy.github.io/spad/draft-jennings-dispatch-spad-v0-latest/</guid>
+      <description>&lt;h1 class=&#34;abstract&#34; id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;This specification defines a simple JSON format and well known URL for
+firewalls and other devices to discover whats IP addresses, ports, and
+related transports a given cloud services uses.&lt;/p&gt;
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Simple Port and Address Discovery (SPAD) allows an web application to
+inform others of what ports and IP addresses it uses so that things
+like firewalls can correctly re-configure themsleves as the ports and
+addresses change. Applications are identified by a domain name which
+is used to form a URL in a well known location where a client can do a
+HTTP REST call to get a JSON file that describes information about
+what addresses and transport the service uses.&lt;/p&gt;
+
+&lt;h1 id=&#34;terminology&#34;&gt;Terminology&lt;/h1&gt;
+
+&lt;p&gt;In this document, the key words &amp;quot;MUST&amp;quot;, &amp;quot;MUST NOT&amp;quot;, &amp;quot;SHOULD&amp;quot;, &amp;quot;SHOULD
+NOT&amp;quot;, &amp;quot;MAY&amp;quot;, and &amp;quot;OPTIONAL&amp;quot; are to be interpreted as described in RFC
+2119 &lt;a class=&#34;cite&#34; href=&#34;#rfc2119&#34;&gt;&lt;/a&gt; and indicate requirement levels for compliant
+implementations.&lt;/p&gt;
+
+&lt;p&gt;RAML is defined at &lt;a href=&#34;https://github.com/raml-org&#34;&gt;https://github.com/raml-org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;JSON Schema is defined at &lt;a href=&#34;http://json-schema.org/&#34;&gt;http://json-schema.org/&lt;/a&gt;. Further
+information is available in &lt;a class=&#34;cite&#34; href=&#34;#i-d.wright-json-schema&#34;&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;To figure out what IP addresses are used by the service example.com,
+the first step is to form the query URL by constructing an endpoint at
+&amp;quot;.well-known/spad/v0/spad&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;Then an HTTPS GET query is done that to that URL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl https://example.com/.well-known/spad/v0/spad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+  &amp;quot;services&amp;quot;: [
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;example-service&amp;quot;,
+      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+      &amp;quot;flows&amp;quot;: [
+        {
+          &amp;quot;ips&amp;quot;: [
+            &amp;quot;203.0.113.2&amp;quot;
+          ],
+          &amp;quot;port&amp;quot;: 443,
+          &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;
+        }
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The example above  indicates that the &amp;quot;example.com&amp;quot; application has a
+single service with a single flow that uses only the HTTPS to connect to
+port 443 on the IP address &amp;quot;203.0.113.2&amp;quot;.  This SPAD information is
+not valid after &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot; and a new SPAD file
+should be retrieved before that point in time.&lt;/p&gt;
+
+&lt;p&gt;The following shows a more complex example result for an application
+that uses two flows. One is TLS to the SIP port of a server with an v4
+and v6 address. The TLS connection will have a name of example.com in
+the SNI.  The other flow is media sent over UDP to port 5004 on a few
+different ip addresses. If devices in the network are capable of
+remarking DSCP, the desired marking is &amp;quot;AF41&amp;quot;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+  &amp;quot;services&amp;quot;: [
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;voice-example&amp;quot;,
+      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+      &amp;quot;flows&amp;quot;: [
+        {
+          &amp;quot;ips&amp;quot;: [
+            &amp;quot;203.0.113.2&amp;quot;,
+            &amp;quot;2001:db8::1&amp;quot;
+          ],
+          &amp;quot;port&amp;quot;: 5061,
+          &amp;quot;name&amp;quot;: &amp;quot;example.com&amp;quot;,
+          &amp;quot;protocol&amp;quot;: &amp;quot;tls&amp;quot;
+        },
+        {
+          &amp;quot;ips&amp;quot;: [
+            &amp;quot;192.0.2.1&amp;quot;,
+            &amp;quot;2001:db8::2&amp;quot;
+          ],
+          &amp;quot;port&amp;quot;: 5004,
+          &amp;quot;protocol&amp;quot;: &amp;quot;udp&amp;quot;,
+          &amp;quot;qos&amp;quot;: &amp;quot;AF41&amp;quot;
+        }
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;blueprint&#34;&gt;Blueprint&lt;/h1&gt;
+
+&lt;p&gt;The Bluprint specification for the API is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-md&#34;&gt;FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+  
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string) 
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number 
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;schemas&#34;&gt;Schemas&lt;/h1&gt;
+
+&lt;p&gt;The JSON returned from MUST corespond to the following JSON schema.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;$schema&amp;quot;: &amp;quot;http://json-schema.org/draft-04/schema#&amp;quot;,
+  &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+  &amp;quot;title&amp;quot;: &amp;quot;SPAD schema.&amp;quot;,
+  &amp;quot;properties&amp;quot;: {
+
+      &amp;quot;domain&amp;quot;: {
+          &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+          &amp;quot;title&amp;quot;: &amp;quot;TODO&amp;quot;
+      },
+
+      &amp;quot;services&amp;quot;: {
+          &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
+          
+          &amp;quot;items&amp;quot;: {
+              &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+              &amp;quot;properties&amp;quot;: {
+                  
+                  &amp;quot;name&amp;quot;: {
+                      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                      &amp;quot;title&amp;quot;: &amp;quot;name of service&amp;quot;
+                  },
+                  
+                  &amp;quot;validTill&amp;quot;: {
+                      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                      &amp;quot;title&amp;quot;: &amp;quot;Expiry time for this SPAD file&amp;quot;
+                  },
+                  
+                  &amp;quot;flows&amp;quot;: {
+                      &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
+                      &amp;quot;uniqueItems&amp;quot;: false,
+                      &amp;quot;title&amp;quot;: &amp;quot;Transport List&amp;quot;,
+                      &amp;quot;description&amp;quot;: &amp;quot;List of transports used by the application.&amp;quot;,
+                      &amp;quot;items&amp;quot;: {
+                          &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+                          &amp;quot;title&amp;quot;: &amp;quot;Flow&amp;quot;,
+                          &amp;quot;properties&amp;quot;: {
+                              &amp;quot;ips&amp;quot;: {
+                                  &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
+                                  &amp;quot;uniqueItems&amp;quot;: false,
+                                  &amp;quot;title&amp;quot;: &amp;quot;IP addresses list&amp;quot;,
+                                  &amp;quot;items&amp;quot;: {
+                                      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                      &amp;quot;title&amp;quot;: &amp;quot;IPv4 or v6 address&amp;quot;
+                                  }
+                              },
+                              &amp;quot;port&amp;quot;: {
+                                  
+                                  &amp;quot;type&amp;quot;: &amp;quot;integer&amp;quot;,
+                                  &amp;quot;maximum&amp;quot;: 65535,
+                                  &amp;quot;minimum&amp;quot;: 1,
+                                  &amp;quot;title&amp;quot;: &amp;quot;port&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;Destination ports used by the transport protocol.&amp;quot;
+                                  
+                              },
+                              &amp;quot;name&amp;quot;: {
+                                  &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                  &amp;quot;title&amp;quot;: &amp;quot;DNS name&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;DNS name that will be used to connect to.&amp;quot;
+                                  
+                              },
+                              &amp;quot;qos&amp;quot;:  {
+                                  &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                  &amp;quot;title&amp;quot;: &amp;quot;DSCP&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;Differentiated Services Code Point to use.&amp;quot;,
+                                  &amp;quot;enum&amp;quot;: [
+                                      &amp;quot;CS1&amp;quot;,
+                                      &amp;quot;DF&amp;quot;,
+                                      &amp;quot;EF&amp;quot;,
+                                      &amp;quot;AF11&amp;quot;,
+                                      &amp;quot;AF21&amp;quot;,
+                                      &amp;quot;AF41&amp;quot;,
+                                      &amp;quot;AF42&amp;quot;,
+                                      &amp;quot;AF43&amp;quot;,
+                                      &amp;quot;AF31&amp;quot;,
+                                      &amp;quot;AF32&amp;quot;,
+                                      &amp;quot;AF33&amp;quot;
+                                  ]
+                              },
+                              &amp;quot;protocols&amp;quot;: {
+                                  &amp;quot;title&amp;quot;: &amp;quot;Transport Protocol List&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;Protocols used.&amp;quot;,
+                                  &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                  &amp;quot;title&amp;quot;: &amp;quot;protocol&amp;quot;,
+                                  &amp;quot;enum&amp;quot;: [
+                                      &amp;quot;udp&amp;quot;,
+                                      &amp;quot;tcp&amp;quot;,
+                                      &amp;quot;http&amp;quot;,
+                                      &amp;quot;tls&amp;quot;,
+                                      &amp;quot;https&amp;quot;,
+                                      &amp;quot;quic&amp;quot;
+                                  ]
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  &amp;quot;required&amp;quot;: [
+    &amp;quot;domain&amp;quot;,
+    &amp;quot;services&amp;quot;
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;iana-consideration&#34;&gt;IANA Consideration&lt;/h1&gt;
+
+&lt;p&gt;TODO - register well known URL usage&lt;/p&gt;
+
+&lt;h1 id=&#34;security-considerations&#34;&gt;Security Considerations&lt;/h1&gt;
+
+&lt;p&gt;TODO - explain importance of HTTPS&lt;/p&gt;
+
+&lt;p&gt;Discuss merging with existing ACL&lt;/p&gt;
+
+&lt;h1 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h1&gt;
+
+&lt;p&gt;Thank you for the contributions from:
+Cullen Jennings&lt;/p&gt;
+
+&lt;h1 id=&#34;contributing&#34; class=&#34;appendix&#34;&gt;Contributing&lt;/h1&gt;
+
+&lt;p&gt;We welcome all contributions. Discussion happens in the
+&lt;a href=&#34;https://spadwg.slack.com/messages/general/&#34;&gt;https://spadwg.slack.com/messages/general/&lt;/a&gt; room in slack and on GitHub
+issue threads at (&lt;a href=&#34;https://github.com/fluffy/spad/issues&#34;&gt;https://github.com/fluffy/spad/issues&lt;/a&gt;). Changes are
+done via git pull requests. For PsR merged into the master branch, we
+strive for rough consensus and we measure that by the reviews placed
+on the PR.&lt;/p&gt;
+
+&lt;p&gt;The Specification style is &amp;quot;less is more&amp;quot;. If a reasonable developer
+who is fully up on modern web development practices could figure out
+how write an interoperable implementation after looking at some
+examples and code and asking a few questions, well that&#39;s good enough
+for us. If you can find it on Wikipedia, we don&#39;t need to explain it
+here.&lt;/p&gt;
+
+&lt;p&gt;Markdown is used for text. RAML and JSON Schema are used to describe
+the API. Examples are often used as normative specification. The build
+chain has the goal is to be simple and obvios with no black magic.&lt;/p&gt;
+
+&lt;h1 id=&#34;published-versions&#34; class=&#34;appendix&#34;&gt;Published Versions&lt;/h1&gt;
+
+&lt;p&gt;The website at (&lt;a href=&#34;https://fluffy.github.io/spad/&#34;&gt;https://fluffy.github.io/spad/&lt;/a&gt;) provides an overview
+view of the specification that is focused on developers. However all
+the key information to implement the specification that is used to
+generate the website is also used to generate and internet draft that
+can be found at &lt;a href=&#34;https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0-00/&#34;&gt;draft-jennings-dispatch-spad-v0&lt;/a&gt;
+that is slanted at specification developers. Periodically the
+information on the master is branched to versioned draft branch and
+published and an internet draft. A typical cadence for this is monthly
+so that it can receiver broader review. If the PRs that were merged to
+master represent WG rough consensus, it is expected that it the will
+move quickly through the standards process. When the work is at a good
+point to form a version of the API, it is progressed to an RFC and the
+text of the approved RFC is used to form a released version of the
+spec. The first version would be v1. The current working pre standard
+version is always referred to as v0.  The API includes the version in
+the URL so that developers can implement to a specific non changing
+specification. Future versions attempt, but do not guarantee, to be
+backwards comptable with the previos version.&lt;/p&gt;
 </description>
     </item>
     
@@ -1117,79 +831,104 @@ point of view of TLS and proxies.&lt;/p&gt;
   &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
   &amp;quot;title&amp;quot;: &amp;quot;SPAD schema.&amp;quot;,
   &amp;quot;properties&amp;quot;: {
-    &amp;quot;version&amp;quot;: {
-      &amp;quot;type&amp;quot;: &amp;quot;integer&amp;quot;,
-      &amp;quot;title&amp;quot;: &amp;quot;Version of schema used.&amp;quot;
-    },
-    &amp;quot;transports&amp;quot;: {
-      &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
-      &amp;quot;uniqueItems&amp;quot;: false,
-      &amp;quot;title&amp;quot;: &amp;quot;Transport List&amp;quot;,
-      &amp;quot;description&amp;quot;: &amp;quot;List of tranports used by the application.&amp;quot;,
-      &amp;quot;items&amp;quot;: {
-        &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
-        &amp;quot;title&amp;quot;: &amp;quot;Transport&amp;quot;,
-        &amp;quot;properties&amp;quot;: {
-          &amp;quot;ips&amp;quot;: {
-            &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
-            &amp;quot;uniqueItems&amp;quot;: false,
-            &amp;quot;title&amp;quot;: &amp;quot;IP addresses list&amp;quot;,
-            &amp;quot;items&amp;quot;: {
-              &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
-              &amp;quot;title&amp;quot;: &amp;quot;IPv4 or v6 address&amp;quot;
-            }
-          },
-          &amp;quot;ports&amp;quot;: {
-            &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
-            &amp;quot;title&amp;quot;: &amp;quot;Port list&amp;quot;,
-            &amp;quot;items&amp;quot;: {
-              &amp;quot;type&amp;quot;: &amp;quot;integer&amp;quot;,
-              &amp;quot;multipleOf&amp;quot;: 1,
-              &amp;quot;maximum&amp;quot;: 10000,
-              &amp;quot;minimum&amp;quot;: 1,
-              &amp;quot;title&amp;quot;: &amp;quot;port&amp;quot;,
-              &amp;quot;description&amp;quot;: &amp;quot;Destination ports used by the transport protocol.&amp;quot;
-            }
-          },
-          &amp;quot;dns&amp;quot;: {
-            &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
-            &amp;quot;title&amp;quot;: &amp;quot;DNS name list&amp;quot;,
-            &amp;quot;description&amp;quot;: &amp;quot; &amp;quot;,
-            &amp;quot;items&amp;quot;: {
-              &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
-              &amp;quot;title&amp;quot;: &amp;quot;DNS name&amp;quot;,
-              &amp;quot;description&amp;quot;: &amp;quot;DNS name that will be used to connect to.&amp;quot;
-            }
-          },
-          &amp;quot;protocols&amp;quot;: {
-            &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
-            &amp;quot;uniqueItems&amp;quot;: true,
-            &amp;quot;title&amp;quot;: &amp;quot;Transport Protocol List&amp;quot;,
-            &amp;quot;description&amp;quot;: &amp;quot;Protocols used.&amp;quot;,
-            &amp;quot;items&amp;quot;: {
-              &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
-              &amp;quot;title&amp;quot;: &amp;quot;protocol&amp;quot;,
-              &amp;quot;enum&amp;quot;: [
-                &amp;quot;udp&amp;quot;,
-                &amp;quot;tcp&amp;quot;,
-                &amp;quot;http&amp;quot;,
-                &amp;quot;tls&amp;quot;,
-                &amp;quot;https&amp;quot;,
-                &amp;quot;quic&amp;quot;
-              ]
-            }
+
+      &amp;quot;domain&amp;quot;: {
+          &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+          &amp;quot;title&amp;quot;: &amp;quot;TODO&amp;quot;
+      },
+
+      &amp;quot;services&amp;quot;: {
+          &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
+          
+          &amp;quot;items&amp;quot;: {
+              &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+              &amp;quot;properties&amp;quot;: {
+                  
+                  &amp;quot;name&amp;quot;: {
+                      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                      &amp;quot;title&amp;quot;: &amp;quot;name of service&amp;quot;
+                  },
+                  
+                  &amp;quot;validTill&amp;quot;: {
+                      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                      &amp;quot;title&amp;quot;: &amp;quot;Expiry time for this SPAD file&amp;quot;
+                  },
+                  
+                  &amp;quot;flows&amp;quot;: {
+                      &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
+                      &amp;quot;uniqueItems&amp;quot;: false,
+                      &amp;quot;title&amp;quot;: &amp;quot;Transport List&amp;quot;,
+                      &amp;quot;description&amp;quot;: &amp;quot;List of transports used by the application.&amp;quot;,
+                      &amp;quot;items&amp;quot;: {
+                          &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+                          &amp;quot;title&amp;quot;: &amp;quot;Flow&amp;quot;,
+                          &amp;quot;properties&amp;quot;: {
+                              &amp;quot;ips&amp;quot;: {
+                                  &amp;quot;type&amp;quot;: &amp;quot;array&amp;quot;,
+                                  &amp;quot;uniqueItems&amp;quot;: false,
+                                  &amp;quot;title&amp;quot;: &amp;quot;IP addresses list&amp;quot;,
+                                  &amp;quot;items&amp;quot;: {
+                                      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                      &amp;quot;title&amp;quot;: &amp;quot;IPv4 or v6 address&amp;quot;
+                                  }
+                              },
+                              &amp;quot;port&amp;quot;: {
+                                  
+                                  &amp;quot;type&amp;quot;: &amp;quot;integer&amp;quot;,
+                                  &amp;quot;maximum&amp;quot;: 65535,
+                                  &amp;quot;minimum&amp;quot;: 1,
+                                  &amp;quot;title&amp;quot;: &amp;quot;port&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;Destination ports used by the transport protocol.&amp;quot;
+                                  
+                              },
+                              &amp;quot;name&amp;quot;: {
+                                  &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                  &amp;quot;title&amp;quot;: &amp;quot;DNS name&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;DNS name that will be used to connect to.&amp;quot;
+                                  
+                              },
+                              &amp;quot;qos&amp;quot;:  {
+                                  &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                  &amp;quot;title&amp;quot;: &amp;quot;DSCP&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;Differentiated Services Code Point to use.&amp;quot;,
+                                  &amp;quot;enum&amp;quot;: [
+                                      &amp;quot;CS1&amp;quot;,
+                                      &amp;quot;DF&amp;quot;,
+                                      &amp;quot;EF&amp;quot;,
+                                      &amp;quot;AF11&amp;quot;,
+                                      &amp;quot;AF21&amp;quot;,
+                                      &amp;quot;AF41&amp;quot;,
+                                      &amp;quot;AF42&amp;quot;,
+                                      &amp;quot;AF43&amp;quot;,
+                                      &amp;quot;AF31&amp;quot;,
+                                      &amp;quot;AF32&amp;quot;,
+                                      &amp;quot;AF33&amp;quot;
+                                  ]
+                              },
+                              &amp;quot;protocols&amp;quot;: {
+                                  &amp;quot;title&amp;quot;: &amp;quot;Transport Protocol List&amp;quot;,
+                                  &amp;quot;description&amp;quot;: &amp;quot;Protocols used.&amp;quot;,
+                                  &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+                                  &amp;quot;title&amp;quot;: &amp;quot;protocol&amp;quot;,
+                                  &amp;quot;enum&amp;quot;: [
+                                      &amp;quot;udp&amp;quot;,
+                                      &amp;quot;tcp&amp;quot;,
+                                      &amp;quot;http&amp;quot;,
+                                      &amp;quot;tls&amp;quot;,
+                                      &amp;quot;https&amp;quot;,
+                                      &amp;quot;quic&amp;quot;
+                                  ]
+                              }
+                          }
+                      }
+                  }
+              }
           }
-        },
-        &amp;quot;required&amp;quot;: [
-          &amp;quot;ips&amp;quot;,
-          &amp;quot;ports&amp;quot;
-        ]
       }
-    }
   },
   &amp;quot;required&amp;quot;: [
-    &amp;quot;ver&amp;quot;,
-    &amp;quot;transports&amp;quot;
+    &amp;quot;domain&amp;quot;,
+    &amp;quot;services&amp;quot;
   ]
 }
 &lt;/code&gt;&lt;/pre&gt;
