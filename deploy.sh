@@ -1,5 +1,8 @@
 #!/bin/bash
-set -e 
+set -e
+set -x # debug 
+
+echo "Start Deploy"
 
 if [ "$TRAVIS_BRANCH" != "master" -o "$TRAVIS_PULL_REQUEST" != "false"  ]; then
     echo "skip deploy as not on master branch."
@@ -29,5 +32,6 @@ ssh-add deploy_key
 # Push the changes
 git push ${REPO/https:\/\/github.com\//git@github.com:}
 
+echo "Done Deploy"
 
 
