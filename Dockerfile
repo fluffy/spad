@@ -25,7 +25,7 @@ ENV GOPATH /go
 RUN apt-get install -y  nodejs npm
 RUN ln -s `which nodejs` /usr/bin/node
 
-
+RUN apt-get install -y libxml2-dev libxslt-dev 
 RUN pip install xml2rfc
 
 RUN gem install kramdown-rfc2629
