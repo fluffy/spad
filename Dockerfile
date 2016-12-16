@@ -5,7 +5,8 @@ MAINTAINER Cullen Jennings <fluffy@iii.ca>
 
 # set up basic build machine
 RUN apt-get -y update
-RUN apt-get -y install tcsh
+RUN apt-get -y upgrade
+
 RUN apt-get install -y build-essential 
 
 RUN apt-get install -y python-pip python-dev
@@ -25,7 +26,9 @@ ENV GOPATH /go
 RUN apt-get install -y  nodejs npm
 RUN ln -s `which nodejs` /usr/bin/node
 
+RUN apt-get -y install tcsh
 
+RUN apt-get install -y libxml2-dev libxslt-dev 
 RUN pip install xml2rfc
 
 RUN gem install kramdown-rfc2629
@@ -44,6 +47,8 @@ RUN npm install -g json
 RUN npm install -g ramllint
 
 RUN go get -v github.com/spf13/hugo
+
+RUN npm install -g aglio
 
 VOLUME /work
 WORKDIR /work
