@@ -31,9 +31,9 @@ server:
 	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs server
 
 
-site: gen/content/about.mmark gen/content/getting_started.mmark gen/content/overview.mmark \
+site: themes/blackburn/README.md gen/content/about.mmark gen/content/getting_started.mmark gen/content/overview.mmark \
 	gen/content/contributing.mmark gen/content/raml.mmark gen/content/schemas.mmark\
-	themes/blackburn/README.md gen/content/api.html  gen/content/blueprint.mmark \
+	gen/content/api.html  gen/content/blueprint.mmark \
 	gen/content/$(DRAFT)-$(VERSION).mmark gen/Contributors.md \
 	hugo-config.yaml gen/spad.apib.md
 	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs 
@@ -135,8 +135,6 @@ gen/%.json.md: spec/%.json
 
 
 themes/blackburn/README.md:
-	mkdir -p gen/content/
-	( cd site ; ln -F -s ../gen/ )
 	mkdir -p themes/
 	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 
