@@ -12,3 +12,8 @@ before_install:
 script:
   - docker run -it -v `pwd`:/work spad
 
+deploy:
+    provider: script
+    script: deploy.sh
+    on:
+        branch: master
