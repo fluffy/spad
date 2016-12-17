@@ -2,7 +2,9 @@
 set -e
 set -x # debug 
 
-if [ "$TRAVIS_BRANCH" != "master" -o "$TRAVIS_PULL_REQUEST" != "false"  ]; then
+USER=`git show --format="%aE" HEAD | head -1`
+
+if [ "$USER" == "travis@example.org" -o $TRAVIS_BRANCH" != "master" -o "$TRAVIS_PULL_REQUEST" != "false"  ]; then
     echo "skip deploy as not on master branch."
     exit 0
 fi
