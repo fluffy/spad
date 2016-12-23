@@ -4,8 +4,8 @@
 
 Network Working Group                                        C. Jennings
 Internet-Draft                                                     Cisco
-Intended status: Standards Track                       December 17, 2016
-Expires: June 20, 2017
+Intended status: Standards Track                       December 23, 2016
+Expires: June 26, 2017
 
 
                    Simple Port and Address Discovery
@@ -32,7 +32,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 20, 2017.
+   This Internet-Draft will expire on June 26, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Jennings                  Expires June 20, 2017                 [Page 1]
+Jennings                  Expires June 26, 2017                 [Page 1]
 
 Internet-Draft                    SPAD                     December 2016
 
@@ -71,9 +71,13 @@ Table of Contents
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
      9.2.  Informative References  . . . . . . . . . . . . . . . . .   7
-   Appendix A.  Contributing . . . . . . . . . . . . . . . . . . . .   7
-   Appendix B.  Published Versions . . . . . . . . . . . . . . . . .   8
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   8
+   Appendix A.  Development of this Specification  . . . . . . . . .   7
+     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   7
+     A.2.  Following Discussion  . . . . . . . . . . . . . . . . . .   8
+     A.3.  Resolving Issues  . . . . . . . . . . . . . . . . . . . .   8
+     A.4.  Pull Requests . . . . . . . . . . . . . . . . . . . . . .   8
+     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .   8
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
 
@@ -103,16 +107,16 @@ Table of Contents
    the first step is to form the query URL by constructing an endpoint
    at ".well-known/spad/v0/spad".
 
-   Then an HTTPS GET query is done that to that URL.
-
-             curl https://example.com/.well-known/spad/v0/spad
 
 
-
-Jennings                  Expires June 20, 2017                 [Page 2]
+Jennings                  Expires June 26, 2017                 [Page 2]
 
 Internet-Draft                    SPAD                     December 2016
 
+
+   Then an HTTPS GET query is done that to that URL.
+
+             curl https://example.com/.well-known/spad/v0/spad
 
    The responses would be a JSON result that could looks like
 
@@ -161,11 +165,7 @@ Internet-Draft                    SPAD                     December 2016
 
 
 
-
-
-
-
-Jennings                  Expires June 20, 2017                 [Page 3]
+Jennings                  Expires June 26, 2017                 [Page 3]
 
 Internet-Draft                    SPAD                     December 2016
 
@@ -221,7 +221,7 @@ Internet-Draft                    SPAD                     December 2016
 
 
 
-Jennings                  Expires June 20, 2017                 [Page 4]
+Jennings                  Expires June 26, 2017                 [Page 4]
 
 Internet-Draft                    SPAD                     December 2016
 
@@ -277,7 +277,7 @@ Internet-Draft                    SPAD                     December 2016
 
 
 
-Jennings                  Expires June 20, 2017                 [Page 5]
+Jennings                  Expires June 26, 2017                 [Page 5]
 
 Internet-Draft                    SPAD                     December 2016
 
@@ -333,7 +333,7 @@ Internet-Draft                    SPAD                     December 2016
 
 
 
-Jennings                  Expires June 20, 2017                 [Page 6]
+Jennings                  Expires June 26, 2017                 [Page 6]
 
 Internet-Draft                    SPAD                     December 2016
 
@@ -370,58 +370,103 @@ Internet-Draft                    SPAD                     December 2016
 
 9.3.  URIs
 
-   [1] https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-
+   [1] https://github.com/fluffy/spad/issues
+
+   [2] https://www.ietf.org/mailman/listinfo/spad-issues
+
+   [3] https://www.ietf.org/mailman/listinfo/spad
+
+   [4] https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-
        v0-00/
 
-Appendix A.  Contributing
+Appendix A.  Development of this Specification
 
-   We welcome all contributions.  Discussion happens in the
-   <https://spadwg.slack.com/messages/general/> room in slack and on
-   GitHub issue threads at (<https://github.com/fluffy/spad/issues>).
-   Changes are done via git pull requests.  For PsR merged into the
-   master branch, we strive for rough consensus and we measure that by
-   the reviews placed on the PR.
+A.1.  Specification Style
 
-   The Specification style is "less is more".  If a reasonable developer
+   The specification style is "less is more."  If a reasonable developer
    who is fully up on modern web development practices could figure out
    how write an interoperable implementation after looking at some
-   examples and code and asking a few questions, well that's good enough
 
 
 
-Jennings                  Expires June 20, 2017                 [Page 7]
+Jennings                  Expires June 26, 2017                 [Page 7]
 
 Internet-Draft                    SPAD                     December 2016
 
 
+   examples and code and asking a few questions, well that's good enough
    for us.  If you can find it on Wikipedia, we don't need to explain it
    here.
 
-   Markdown is used for text.  RAML and JSON Schema are used to describe
-   the API.  Examples are often used as normative specification.  The
-   build chain has the goal is to be simple and obvios with no black
-   magic.
+   The build chain allows for an internet draft to be produced from
+   separate parts: a basic draft skeleton that includes narrative text;
+   examples; an API specification; and a schema.  Markdown is used for
+   text.  RAML and JSON Schema are used to describe the API.  Examples
+   play a central role in the specification.  The build chain has the
+   goal of being simple and obvious with no black magic.
 
-Appendix B.  Published Versions
+A.2.  Following Discussion
 
-   The website at (<https://fluffy.github.io/spad/>) provides an
-   overview view of the specification that is focused on developers.
-   However all the key information to implement the specification that
-   is used to generate the website is also used to generate and internet
-   draft that can be found at draft-jennings-dispatch-spad-v0 [1] that
-   is slanted at specification developers.  Periodically the information
-   on the master is branched to versioned draft branch and published and
-   an internet draft.  A typical cadence for this is monthly so that it
-   can receiver broader review.  If the PRs that were merged to master
-   represent WG rough consensus, it is expected that it the will move
-   quickly through the standards process.  When the work is at a good
-   point to form a version of the API, it is progressed to an RFC and
-   the text of the approved RFC is used to form a released version of
-   the spec.  The first version would be v1.  The current working pre
-   standard version is always referred to as v0.  The API includes the
-   version in the URL so that developers can implement to a specific non
-   changing specification.  Future versions attempt, but do not
-   guarantee, to be backwards comptable with the previos version.
+   We welcome all contributions.  Discussion takes place in a few
+   places:
+
+   o  We discuss specific issues on the appropriate issues list in
+      Github [1].  If you don't want to use Github to follow these
+      discussions, you can subscribe to the issue announce list [2].
+
+   o  Our mailing list [3] is used for confirmation of consensus.
+
+A.3.  Resolving Issues
+
+   Consensus for the resolution of an issue can be established through
+   discussion on the issues list.  Once a resolution is found, the issue
+   will be labeled as "editor-ready".  The editor will then write a pull
+   request suggesting the specific changes to make to resolve the issue.
+   Consensus to adopt the change will be judged on the mailing list.
+   Once a pull request has consensus, the editor will merge it and close
+   the issue.
+
+A.4.  Pull Requests
+
+   We welcome pull requests, both for editorial suggestions and to
+   resolve open issues.  In the latter case, please identify the
+   relevant issue.
+
+   Please do not use a pull request to open a new design issue; it may
+   not be noticed.
+
+A.5.  Published Versions
+
+   The web site at (<https://coopdanger.github.io/spad/>) provides an
+   overview of the specification that is focused on a developer
+   audience.  However, all the key information to implement the
+   specification that is used to generate the web site is also used to
+
+
+
+
+Jennings                  Expires June 26, 2017                 [Page 8]
+
+Internet-Draft                    SPAD                     December 2016
+
+
+   generate and internet draft that can be found at draft-jennings-
+   dispatch-spad-v0 [4].
+
+   Periodically the information on the master is branched to a versioned
+   draft branch and the content of that branch is used to produce an
+   updated version of the internet draft.  A typical cadence for this is
+   monthly so that the draft can receive broader review.
+
+   When the work is at a good point to form a stable version of the API,
+   it is progressed through the IETF publication process with the goal
+   of publishing an RFC.  Once approved, the text of the RFC is used to
+   form a released version of the API.  The first version would be v1.
+   The current working pre-standard version is always referred to as v0.
+   The API includes the version in the URL so that developers can
+   implement to a specific non-changing specification.  Future versions
+   attempt, but do not guarantee, to be backwards-compatible with the
+   previous version.
 
 Author's Address
 
@@ -445,4 +490,15 @@ Author's Address
 
 
 
-Jennings                  Expires June 20, 2017                 [Page 8]
+
+
+
+
+
+
+
+
+
+
+
+Jennings                  Expires June 26, 2017                 [Page 9]
