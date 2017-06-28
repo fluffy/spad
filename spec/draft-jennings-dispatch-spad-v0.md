@@ -51,6 +51,25 @@ information is available in [@I-D.wright-json-schema].
 {{spec/gettingStarted.md}}
 
 
+# Protocols
+
+The protocol field is filled out with the most specific instance of a
+well defined protocol that is running. Any protocols that are implied
+as the normal default by this that it runs over are omitted. For
+example, HTTPS runs over TLS over TCP over IP. In this case the only
+thing listed is HTTPS. However if HTTPS was being used over SCTP which
+is not the normal thing, and the SCTP was over UDP which is also not
+the default, then it would be listed at HTTPS/SCTP/UDP but IP is not
+added as that is the normal thing for UDP to be over.
+
+URI scheme from
+https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml. is
+preferred thing to use if defined, followed by the service name from
+https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+followed by the protocol by the Transport Protocol from RFC 6335. All
+names are moved to all lower case for consistency.
+
+
 # Blueprint
 
 {{spec/blueprint.md}}
