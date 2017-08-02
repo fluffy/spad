@@ -36,7 +36,8 @@ site: themes/blackburn/README.md gen/content/about.mmark gen/content/getting_sta
 	gen/content/api.html  gen/content/blueprint.mmark \
 	gen/content/$(DRAFT)-$(VERSION).mmark gen/Contributors.md \
 	hugo-config.yaml gen/spad.apib.md
-	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs 
+	( cd gen ; ln -s -f ../themes/ )
+	hugo --config hugo-config.yaml --source gen --destination docs
 
 gen/content/contributing.mmark: spec/CONTRIBUTING.md
 	( echo "---" ; echo "title: Contributing " ; echo "---" ) >  $@

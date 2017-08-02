@@ -4,8 +4,8 @@ FROM ubuntu
 MAINTAINER Cullen Jennings <fluffy@iii.ca>
 
 # set up basic build machine
-RUN apt-get -y update
-RUN apt-get -y upgrade
+RUN apt-get -y update --fix-missing
+RUN apt-get -y upgrade 
 
 RUN apt-get install -y build-essential 
 
@@ -46,7 +46,8 @@ RUN npm install -g jayschema
 RUN npm install -g json
 RUN npm install -g ramllint
 
-RUN go get -v github.com/spf13/hugo
+#RUN go get -v github.com/spf13/hugo
+RUN apt-get install -y hugo
 
 RUN npm install -g aglio
 
