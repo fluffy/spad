@@ -12,7 +12,7 @@ ifeq (,$(VERSION))
 	VERSION = latest
 endif
 
-.PHONY: all clean diff  draft tidy check site
+.PHONY: all clean diff  draft tidy check site test
 .PRECIOUS: %.xml
 
 
@@ -139,7 +139,7 @@ themes/blackburn/README.md:
 	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 
 
-test-spad: spad.ok example.xml spad.xsl example.json rev-example.xml
+test: spad.ok example.xml spad.xsl example.json rev-example.xml
 
 spad.ok: spad.yang
 	pyang -V spad.yang
@@ -160,5 +160,5 @@ spad.jtox: spad.yang
 	pyang -f jtox  spad.yang -o spad.jtox
 
 rev-example.xml: spad.jtox example.json
-	json2xml -t config -o rev-example.xml spad.jtox example.json
+	json2xml -t config spad.jtox example.json  | xmllint --format - >  rev-example.xml 
 
