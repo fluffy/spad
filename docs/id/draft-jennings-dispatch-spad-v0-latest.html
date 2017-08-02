@@ -377,14 +377,15 @@
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
 <link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
 <link href="#rfc.section.3" rel="Chapter" title="3 Example"/>
-<link href="#rfc.section.4" rel="Chapter" title="4 Blueprint"/>
-<link href="#rfc.section.5" rel="Chapter" title="5 Schemas"/>
-<link href="#rfc.section.6" rel="Chapter" title="6 IANA Consideration"/>
-<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations"/>
-<link href="#rfc.section.8" rel="Chapter" title="8 Acknowledgements"/>
-<link href="#rfc.references" rel="Chapter" title="9 References"/>
-<link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References"/>
-<link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Protocols"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 Blueprint"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 Schemas"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 IANA Consideration"/>
+<link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations"/>
+<link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements"/>
+<link href="#rfc.references" rel="Chapter" title="10 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References"/>
 <link href="#rfc.appendix.A" rel="Chapter" title="A Development of this Specification"/>
 <link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Specification Style"/>
 <link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Following Discussion"/>
@@ -399,7 +400,7 @@
 
   <meta name="dct.creator" content="Jennings, C." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-jennings-dispatch-spad-v0-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2016-12-23" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-8-2" />
   <meta name="dct.abstract" content="This specification defines a simple JSON format and well known URL for firewalls and other devices to discover whats IP addresses, ports, and related transports a given cloud services uses.  " />
   <meta name="description" content="This specification defines a simple JSON format and well known URL for firewalls and other devices to discover whats IP addresses, ports, and related transports a given cloud services uses.  " />
 
@@ -420,10 +421,10 @@
 </tr>
 <tr>
   <td class="left">Intended status: Standards Track</td>
-  <td class="right">December 23, 2016</td>
+  <td class="right">August 2, 2017</td>
 </tr>
 <tr>
-  <td class="left">Expires: June 26, 2017</td>
+  <td class="left">Expires: February 3, 2018</td>
   <td class="right"></td>
 </tr>
 
@@ -444,11 +445,11 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on June 26, 2017.</p>
+<p>This Internet-Draft will expire on February 3, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
-<p>Copyright (c) 2016 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
@@ -459,14 +460,15 @@
   	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
 <li>2.   <a href="#rfc.section.2">Terminology</a></li>
 <li>3.   <a href="#rfc.section.3">Example</a></li>
-<li>4.   <a href="#rfc.section.4">Blueprint</a></li>
-<li>5.   <a href="#rfc.section.5">Schemas</a></li>
-<li>6.   <a href="#rfc.section.6">IANA Consideration</a></li>
-<li>7.   <a href="#rfc.section.7">Security Considerations</a></li>
-<li>8.   <a href="#rfc.section.8">Acknowledgements</a></li>
-<li>9.   <a href="#rfc.references">References</a></li>
-<ul><li>9.1.   <a href="#rfc.references.1">Normative References</a></li>
-<li>9.2.   <a href="#rfc.references.2">Informative References</a></li>
+<li>4.   <a href="#rfc.section.4">Protocols</a></li>
+<li>5.   <a href="#rfc.section.5">Blueprint</a></li>
+<li>6.   <a href="#rfc.section.6">Schemas</a></li>
+<li>7.   <a href="#rfc.section.7">IANA Consideration</a></li>
+<li>8.   <a href="#rfc.section.8">Security Considerations</a></li>
+<li>9.   <a href="#rfc.section.9">Acknowledgements</a></li>
+<li>10.   <a href="#rfc.references">References</a></li>
+<ul><li>10.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>10.2.   <a href="#rfc.references.2">Informative References</a></li>
 </ul><li>Appendix A.   <a href="#rfc.appendix.A">Development of this Specification</a></li>
 <ul><li>A.1.   <a href="#rfc.appendix.A.1">Specification Style</a></li>
 <li>A.2.   <a href="#rfc.appendix.A.2">Following Discussion</a></li>
@@ -544,10 +546,52 @@ curl https://example.com/.well-known/spad/v0/spad
   ]
 }
 </pre>
-<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#blueprint" id="blueprint">Blueprint</a></h1>
-<p id="rfc.section.4.p.1">The Bluprint specification for the API is: </p>
-<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#schemas" id="schemas">Schemas</a></h1>
-<p id="rfc.section.5.p.1">The JSON returned from MUST corespond to the following JSON schema.  </p>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#protocols" id="protocols">Protocols</a></h1>
+<p id="rfc.section.4.p.1">The protocol field is filled out with the most specific instance of a well defined protocol that is running. Any protocols that are implied as the normal default by this that it runs over are omitted. For example, HTTPS runs over TLS over TCP over IP. In this case the only thing listed is HTTPS. However if HTTPS was being used over SCTP which is not the normal thing, and the SCTP was over UDP which is also not the default, then it would be listed at HTTPS/SCTP/UDP but IP is not added as that is the normal thing for UDP to be over.  </p>
+<p id="rfc.section.4.p.2">URI scheme from <span>&lt;</span><a href="https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml</a><span>&gt;</span>. is preferred thing to use if defined, followed by the service name from <span>&lt;</span><a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml</a><span>&gt;</span> followed by the protocol by the Transport Protocol from RFC 6335. All names are moved to all lower case for consistency.  </p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#blueprint" id="blueprint">Blueprint</a></h1>
+<p id="rfc.section.5.p.1">The Bluprint specification for the API is: </p>
+<pre>
+FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+  
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string) 
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number 
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+</pre>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#schemas" id="schemas">Schemas</a></h1>
+<p id="rfc.section.6.p.1">The JSON returned from MUST corespond to the following JSON schema.  </p>
 <pre>
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
@@ -655,15 +699,15 @@ curl https://example.com/.well-known/spad/v0/spad
   ]
 }
 </pre>
-<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#iana-consideration" id="iana-consideration">IANA Consideration</a></h1>
-<p id="rfc.section.6.p.1">TODO - register well known URL usage </p>
-<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<p id="rfc.section.7.p.1">TODO - explain importance of HTTPS </p>
-<p id="rfc.section.7.p.2">Discuss merging with existing ACL </p>
-<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a></h1>
-<p id="rfc.section.8.p.1">Thank you for the contributions from: Cullen Jennings </p>
-<h1 id="rfc.references"><a href="#rfc.references">9.</a> References</h1>
-<h1 id="rfc.references.1"><a href="#rfc.references.1">9.1.</a> Normative References</h1>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#iana-consideration" id="iana-consideration">IANA Consideration</a></h1>
+<p id="rfc.section.7.p.1">TODO - register well known URL usage </p>
+<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
+<p id="rfc.section.8.p.1">TODO - explain importance of HTTPS </p>
+<p id="rfc.section.8.p.2">Discuss merging with existing ACL </p>
+<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a></h1>
+<p id="rfc.section.9.p.1">Thank you for the contributions from: Cullen Jennings </p>
+<h1 id="rfc.references"><a href="#rfc.references">10.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">10.1.</a> Normative References</h1>
 <table>
   <tbody>
     <tr>
@@ -674,14 +718,14 @@ curl https://example.com/.well-known/spad/v0/spad
     </tr>
   </tbody>
 </table>
-<h1 id="rfc.references.2"><a href="#rfc.references.2">9.2.</a> Informative References</h1>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">10.2.</a> Informative References</h1>
 <table>
   <tbody>
     <tr>
       <td class="reference">
         <b id="I-D.wright-json-schema">[I-D.wright-json-schema]</b>
       </td>
-      <td class="top"><a>Wright, A.</a>, "<a href="http://tools.ietf.org/html/draft-wright-json-schema-00">JSON Schema: A Media Type for Describing JSON Documents</a>", Internet-Draft draft-wright-json-schema-00, October 2016.</td>
+      <td class="top"><a>Wright, A.</a> and <a>H. Andrews</a>, "<a href="http://tools.ietf.org/html/draft-wright-json-schema-01">JSON Schema: A Media Type for Describing JSON Documents</a>", Internet-Draft draft-wright-json-schema-01, April 2017.</td>
     </tr>
   </tbody>
 </table>

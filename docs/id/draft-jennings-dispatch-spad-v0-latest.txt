@@ -4,8 +4,8 @@
 
 Network Working Group                                        C. Jennings
 Internet-Draft                                                     Cisco
-Intended status: Standards Track                       December 23, 2016
-Expires: June 26, 2017
+Intended status: Standards Track                          August 2, 2017
+Expires: February 3, 2018
 
 
                    Simple Port and Address Discovery
@@ -32,11 +32,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 26, 2017.
+   This Internet-Draft will expire on February 3, 2018.
 
 Copyright Notice
 
-   Copyright (c) 2016 IETF Trust and the persons identified as the
+   Copyright (c) 2017 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,31 +53,32 @@ Copyright Notice
 
 
 
-Jennings                  Expires June 26, 2017                 [Page 1]
+Jennings                Expires February 3, 2018                [Page 1]
 
-Internet-Draft                    SPAD                     December 2016
+Internet-Draft                    SPAD                       August 2017
 
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   3.  Example . . . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   4.  Blueprint . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   5.  Schemas . . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   6.  IANA Consideration  . . . . . . . . . . . . . . . . . . . . .   7
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .   7
-   Appendix A.  Development of this Specification  . . . . . . . . .   7
-     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   7
-     A.2.  Following Discussion  . . . . . . . . . . . . . . . . . .   8
-     A.3.  Resolving Issues  . . . . . . . . . . . . . . . . . . . .   8
-     A.4.  Pull Requests . . . . . . . . . . . . . . . . . . . . . .   8
-     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .   8
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   9
+   3.  Example . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   4.  Protocols . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   5.  Blueprint . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   6.  Schemas . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   7.  IANA Consideration  . . . . . . . . . . . . . . . . . . . . .   8
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   8
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .   8
+     10.2.  Informative References . . . . . . . . . . . . . . . . .   8
+   Appendix A.  Development of this Specification  . . . . . . . . .   9
+     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   9
+     A.2.  Following Discussion  . . . . . . . . . . . . . . . . . .   9
+     A.3.  Resolving Issues  . . . . . . . . . . . . . . . . . . . .   9
+     A.4.  Pull Requests . . . . . . . . . . . . . . . . . . . . . .   9
+     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .  10
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
 
@@ -101,18 +102,23 @@ Table of Contents
    JSON Schema is defined at <http://json-schema.org/>.  Further
    information is available in [I-D.wright-json-schema].
 
+
+
+
+
+
+
+
+Jennings                Expires February 3, 2018                [Page 2]
+
+Internet-Draft                    SPAD                       August 2017
+
+
 3.  Example
 
    To figure out what IP addresses are used by the service example.com,
    the first step is to form the query URL by constructing an endpoint
    at ".well-known/spad/v0/spad".
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 2]
-
-Internet-Draft                    SPAD                     December 2016
-
 
    Then an HTTPS GET query is done that to that URL.
 
@@ -159,15 +165,9 @@ Internet-Draft                    SPAD                     December 2016
 
 
 
-
-
-
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 3]
+Jennings                Expires February 3, 2018                [Page 3]
 
-Internet-Draft                    SPAD                     December 2016
+Internet-Draft                    SPAD                       August 2017
 
 
             {
@@ -200,16 +200,88 @@ Internet-Draft                    SPAD                     December 2016
               ]
             }
 
-4.  Blueprint
+4.  Protocols
+
+   The protocol field is filled out with the most specific instance of a
+   well defined protocol that is running.  Any protocols that are
+   implied as the normal default by this that it runs over are omitted.
+   For example, HTTPS runs over TLS over TCP over IP.  In this case the
+   only thing listed is HTTPS.  However if HTTPS was being used over
+   SCTP which is not the normal thing, and the SCTP was over UDP which
+   is also not the default, then it would be listed at HTTPS/SCTP/UDP
+   but IP is not added as that is the normal thing for UDP to be over.
+
+   URI scheme from <https://www.iana.org/assignments/uri-schemes/uri-
+   schemes.xhtml>. is preferred thing to use if defined, followed by the
+   service name from <https://www.iana.org/assignments/service-names-
+   port-numbers/service-names-port-numbers.xhtml> followed by the
+   protocol by the Transport Protocol from RFC 6335.  All names are
+   moved to all lower case for consistency.
+
+
+
+
+Jennings                Expires February 3, 2018                [Page 4]
+
+Internet-Draft                    SPAD                       August 2017
+
+
+5.  Blueprint
 
    The Bluprint specification for the API is:
 
-5.  Schemas
+FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string)
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+
+6.  Schemas
 
    The JSON returned from MUST corespond to the following JSON schema.
 
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+
+
+
+Jennings                Expires February 3, 2018                [Page 5]
+
+Internet-Draft                    SPAD                       August 2017
+
+
   "type": "object",
   "title": "SPAD schema.",
   "properties": {
@@ -218,13 +290,6 @@ Internet-Draft                    SPAD                     December 2016
           "type": "string",
           "title": "TODO"
       },
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 4]
-
-Internet-Draft                    SPAD                     December 2016
-
 
       "services": {
           "type": "array",
@@ -265,6 +330,14 @@ Internet-Draft                    SPAD                     December 2016
 
                                   "type": "integer",
                                   "maximum": 65535,
+
+
+
+Jennings                Expires February 3, 2018                [Page 6]
+
+Internet-Draft                    SPAD                       August 2017
+
+
                                   "minimum": 1,
                                   "title": "port",
                                   "description": "Destination ports used by the transport protocol."
@@ -274,13 +347,6 @@ Internet-Draft                    SPAD                     December 2016
                                   "type": "string",
                                   "title": "DNS name",
                                   "description": "DNS name that will be used to connect to."
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 5]
-
-Internet-Draft                    SPAD                     December 2016
-
 
                               },
                               "qos":  {
@@ -320,6 +386,14 @@ Internet-Draft                    SPAD                     December 2016
                   }
               }
           }
+
+
+
+Jennings                Expires February 3, 2018                [Page 7]
+
+Internet-Draft                    SPAD                       August 2017
+
+
       }
   },
   "required": [
@@ -328,47 +402,37 @@ Internet-Draft                    SPAD                     December 2016
   ]
 }
 
-
-
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 6]
-
-Internet-Draft                    SPAD                     December 2016
-
-
-6.  IANA Consideration
+7.  IANA Consideration
 
    TODO - register well known URL usage
 
-7.  Security Considerations
+8.  Security Considerations
 
    TODO - explain importance of HTTPS
 
    Discuss merging with existing ACL
 
-8.  Acknowledgements
+9.  Acknowledgements
 
    Thank you for the contributions from: Cullen Jennings
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [I-D.wright-json-schema]
-              Wright, A., "JSON Schema: A Media Type for Describing JSON
-              Documents", draft-wright-json-schema-00 (work in
-              progress), October 2016.
+              Wright, A. and H. Andrews, "JSON Schema: A Media Type for
+              Describing JSON Documents", draft-wright-json-schema-01
+              (work in progress), April 2017.
 
-9.3.  URIs
+10.3.  URIs
 
    [1] https://github.com/fluffy/spad/issues
 
@@ -379,6 +443,13 @@ Internet-Draft                    SPAD                     December 2016
    [4] https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-
        v0-00/
 
+
+
+Jennings                Expires February 3, 2018                [Page 8]
+
+Internet-Draft                    SPAD                       August 2017
+
+
 Appendix A.  Development of this Specification
 
 A.1.  Specification Style
@@ -386,14 +457,6 @@ A.1.  Specification Style
    The specification style is "less is more."  If a reasonable developer
    who is fully up on modern web development practices could figure out
    how write an interoperable implementation after looking at some
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 7]
-
-Internet-Draft                    SPAD                     December 2016
-
-
    examples and code and asking a few questions, well that's good enough
    for us.  If you can find it on Wikipedia, we don't need to explain it
    here.
@@ -435,21 +498,20 @@ A.4.  Pull Requests
    Please do not use a pull request to open a new design issue; it may
    not be noticed.
 
+
+
+
+Jennings                Expires February 3, 2018                [Page 9]
+
+Internet-Draft                    SPAD                       August 2017
+
+
 A.5.  Published Versions
 
    The web site at (<https://coopdanger.github.io/spad/>) provides an
    overview of the specification that is focused on a developer
    audience.  However, all the key information to implement the
    specification that is used to generate the web site is also used to
-
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 8]
-
-Internet-Draft                    SPAD                     December 2016
-
-
    generate and internet draft that can be found at draft-jennings-
    dispatch-spad-v0 [4].
 
@@ -495,10 +557,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-Jennings                  Expires June 26, 2017                 [Page 9]
+Jennings                Expires February 3, 2018               [Page 10]
