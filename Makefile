@@ -28,7 +28,7 @@ dirs:
 draft: docs/id/$(DRAFT)-$(VERSION).txt docs/id/$(DRAFT)-$(VERSION).html 
 
 server:
-	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs server
+	hugo  --config hugo-config.yaml --source gen/content --destination docs server
 
 
 site: themes/blackburn/README.md gen/content/about.mmark gen/content/getting_started.mmark gen/content/overview.mmark \
@@ -96,7 +96,9 @@ tidy:
 	json -I --output json -f spec/spad-schema.json
 	json -I --output json -f spec/example1.json
 	json -I --output json -f spec/example2.json
-	ramllint spec/spad.raml
+
+
+#ramllint spec/spad.raml
 
 %.txt: %.xml 
 	$(xml2rfc) -N $< -o $@ --text

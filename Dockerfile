@@ -1,6 +1,8 @@
 # Set up a docker machine that has all the tools to build the speck
 
 FROM ubuntu
+#FROM ubuntu:14.04
+
 MAINTAINER Cullen Jennings <fluffy@iii.ca>
 
 # set up basic build machine
@@ -14,8 +16,6 @@ RUN pip install --upgrade pip
 
 RUN apt-get install -y default-jre  default-jdk
 
-RUN apt-get install -y rubygems ruby-full ruby-json 
-RUN gem install bundle
 
 # setup go 
 RUN apt-get install -y golang git
@@ -31,9 +31,6 @@ RUN apt-get -y install tcsh
 RUN apt-get install -y libxml2-dev libxslt-dev 
 RUN pip install xml2rfc
 
-RUN gem install kramdown-rfc2629
-RUN gem update
-
 # install tidy to relow XML 
 RUN apt-get install -y tidy
 
@@ -41,13 +38,22 @@ RUN apt-get install -y tidy
 RUN go get github.com/miekg/mmark
 RUN ( cd /go/src/github.com/miekg/mmark/mmark ; make ; go install )
 
-RUN npm install -g raml2html
+#RUN npm install -g raml2html
 RUN npm install -g jayschema
 RUN npm install -g json
-RUN npm install -g ramllint
+#RUN npm install -g ramllint
 
 #RUN go get -v github.com/spf13/hugo
 RUN apt-get install -y hugo
+
+RUN apt-get install -y ruby ruby-dev ruby-bundler 
+#RUN apt-get install -y rubygems
+#RUN apt-get install -y ruby-json 
+#RUN apt-get install -y ruby-full
+#RUN gem install bundle
+
+#RUN gem install kramdown-rfc2629
+#RUN gem update
 
 RUN npm install -g aglio
 

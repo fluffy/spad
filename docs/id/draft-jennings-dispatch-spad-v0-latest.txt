@@ -72,12 +72,12 @@ Table of Contents
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      10.1.  Normative References . . . . . . . . . . . . . . . . . .   8
      10.2.  Informative References . . . . . . . . . . . . . . . . .   8
-   Appendix A.  Development of this Specification  . . . . . . . . .   9
-     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   9
+   Appendix A.  Development of this Specification  . . . . . . . . .   8
+     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   8
      A.2.  Following Discussion  . . . . . . . . . . . . . . . . . .   9
      A.3.  Resolving Issues  . . . . . . . . . . . . . . . . . . . .   9
      A.4.  Pull Requests . . . . . . . . . . . . . . . . . . . . . .   9
-     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .  10
+     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .   9
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
@@ -285,51 +285,51 @@ Internet-Draft                    SPAD                       August 2017
   "type": "object",
   "title": "SPAD schema.",
   "properties": {
-
-      "domain": {
-          "type": "string",
-          "title": "TODO"
-      },
-
-      "services": {
-          "type": "array",
-
-          "items": {
+    "domain": {
+      "type": "string",
+      "title": "TODO"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "name of service"
+          },
+          "validTill": {
+            "type": "string",
+            "title": "Expiry time for this SPAD file"
+          },
+          "flows": {
+            "type": "array",
+            "uniqueItems": false,
+            "title": "Transport List",
+            "description": "List of transports used by the application.",
+            "items": {
               "type": "object",
+              "title": "Flow",
               "properties": {
-
-                  "name": {
-                      "type": "string",
-                      "title": "name of service"
-                  },
-
-                  "validTill": {
-                      "type": "string",
-                      "title": "Expiry time for this SPAD file"
-                  },
-
-                  "flows": {
-                      "type": "array",
-                      "uniqueItems": false,
-                      "title": "Transport List",
-                      "description": "List of transports used by the application.",
-                      "items": {
-                          "type": "object",
-                          "title": "Flow",
-                          "properties": {
-                              "ips": {
-                                  "type": "array",
-                                  "uniqueItems": false,
-                                  "title": "IP addresses list",
-                                  "items": {
-                                      "type": "string",
-                                      "title": "IPv4 or v6 address"
-                                  }
-                              },
-                              "port": {
-
-                                  "type": "integer",
-                                  "maximum": 65535,
+                "ips": {
+                  "type": "array",
+                  "uniqueItems": false,
+                  "title": "IP addresses list",
+                  "items": {
+                    "type": "string",
+                    "title": "IPv4 or v6 address"
+                  }
+                },
+                "port": {
+                  "type": "integer",
+                  "maximum": 65535,
+                  "minimum": 1,
+                  "title": "port",
+                  "description": "Destination ports used by the transport protocol."
+                },
+                "name": {
+                  "type": "string",
+                  "title": "DNS name",
 
 
 
@@ -338,54 +338,54 @@ Jennings                Expires February 3, 2018                [Page 6]
 Internet-Draft                    SPAD                       August 2017
 
 
-                                  "minimum": 1,
-                                  "title": "port",
-                                  "description": "Destination ports used by the transport protocol."
-
-                              },
-                              "name": {
-                                  "type": "string",
-                                  "title": "DNS name",
-                                  "description": "DNS name that will be used to connect to."
-
-                              },
-                              "qos":  {
-                                  "type": "string",
-                                  "title": "DSCP",
-                                  "description": "Differentiated Services Code Point to use.",
-                                  "enum": [
-                                      "CS1",
-                                      "DF",
-                                      "EF",
-                                      "AF11",
-                                      "AF21",
-                                      "AF41",
-                                      "AF42",
-                                      "AF43",
-                                      "AF31",
-                                      "AF32",
-                                      "AF33"
-                                  ]
-                              },
-                              "protocols": {
-                                  "title": "Transport Protocol List",
-                                  "description": "Protocols used.",
-                                  "type": "string",
-                                  "title": "protocol",
-                                  "enum": [
-                                      "udp",
-                                      "tcp",
-                                      "http",
-                                      "tls",
-                                      "https",
-                                      "quic"
-                                  ]
-                              }
-                          }
-                      }
-                  }
+                  "description": "DNS name that will be used to connect to."
+                },
+                "qos": {
+                  "type": "string",
+                  "title": "DSCP",
+                  "description": "Differentiated Services Code Point to use.",
+                  "enum": [
+                    "CS1",
+                    "DF",
+                    "EF",
+                    "AF11",
+                    "AF21",
+                    "AF41",
+                    "AF42",
+                    "AF43",
+                    "AF31",
+                    "AF32",
+                    "AF33"
+                  ]
+                },
+                "protocols": {
+                  "title": "protocol",
+                  "description": "Protocols used.",
+                  "type": "string",
+                  "enum": [
+                    "udp",
+                    "tcp",
+                    "http",
+                    "tls",
+                    "https",
+                    "quic"
+                  ]
+                }
               }
+            }
           }
+        }
+      }
+    }
+  },
+  "required": [
+    "domain",
+    "services"
+  ]
+}
+
+
+
 
 
 
@@ -393,14 +393,6 @@ Jennings                Expires February 3, 2018                [Page 7]
 
 Internet-Draft                    SPAD                       August 2017
 
-
-      }
-  },
-  "required": [
-    "domain",
-    "services"
-  ]
-}
 
 7.  IANA Consideration
 
@@ -421,8 +413,8 @@ Internet-Draft                    SPAD                       August 2017
 10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/
-              RFC2119, March 1997,
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
 
 10.2.  Informative References
@@ -443,13 +435,6 @@ Internet-Draft                    SPAD                       August 2017
    [4] https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-
        v0-00/
 
-
-
-Jennings                Expires February 3, 2018                [Page 8]
-
-Internet-Draft                    SPAD                       August 2017
-
-
 Appendix A.  Development of this Specification
 
 A.1.  Specification Style
@@ -457,6 +442,14 @@ A.1.  Specification Style
    The specification style is "less is more."  If a reasonable developer
    who is fully up on modern web development practices could figure out
    how write an interoperable implementation after looking at some
+
+
+
+Jennings                Expires February 3, 2018                [Page 8]
+
+Internet-Draft                    SPAD                       August 2017
+
+
    examples and code and asking a few questions, well that's good enough
    for us.  If you can find it on Wikipedia, we don't need to explain it
    here.
@@ -498,6 +491,13 @@ A.4.  Pull Requests
    Please do not use a pull request to open a new design issue; it may
    not be noticed.
 
+A.5.  Published Versions
+
+   The web site at (<https://coopdanger.github.io/spad/>) provides an
+   overview of the specification that is focused on a developer
+   audience.  However, all the key information to implement the
+   specification that is used to generate the web site is also used to
+
 
 
 
@@ -506,12 +506,6 @@ Jennings                Expires February 3, 2018                [Page 9]
 Internet-Draft                    SPAD                       August 2017
 
 
-A.5.  Published Versions
-
-   The web site at (<https://coopdanger.github.io/spad/>) provides an
-   overview of the specification that is focused on a developer
-   audience.  However, all the key information to implement the
-   specification that is used to generate the web site is also used to
    generate and internet draft that can be found at draft-jennings-
    dispatch-spad-v0 [4].
 
@@ -536,6 +530,12 @@ Author's Address
    Cisco
 
    Email: fluffy@iii.ca
+
+
+
+
+
+
 
 
 
