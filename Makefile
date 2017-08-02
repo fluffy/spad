@@ -138,3 +138,22 @@ themes/blackburn/README.md:
 	mkdir -p themes/
 	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 
+
+test-spad: spad.ok example.xml spad.xsl example.json
+
+spad.ok: spad.yang
+	pyang -V spad.yang
+	touch spad.ok
+
+
+example.xml: spad.yang 
+	pyang -f sample-xml-skeleton spad.yang | xmllint --format - > example.xml
+
+
+spad.xsl: spad.yang 
+	pyang -f jsonxsl spad.yang | xmllint --format - > spad.xsl
+
+example.json: example.xml spad.xsl 
+	xsltproc spad.xsl example.xml > example.json 
+
+

@@ -5,3 +5,7 @@ themes
 docs/id/draft-jennings-dispatch-spad-v0-latest.xml
 deploy_key
 deploy_key.pub
+example.json
+example.xml
+spad.ok
+spad.xsl

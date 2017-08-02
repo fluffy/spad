@@ -24,7 +24,9 @@ module spad {
       leaf name {
         type string;
       }
-      container flows {
+      
+      list flows {
+        key protocol;
         leaf port {
           type uint16;
         }
