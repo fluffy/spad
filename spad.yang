@@ -1,0 +1,40 @@
+module spad {
+  namespace "http://spad.fluffy.im/module";
+  prefix spad;
+
+  organization
+    "IETF";
+  contact
+    "fluffy@iii.ca";
+  description
+    "The module for entities 
+     implementing the SPAD";
+
+  revision 2017-10-02 {
+    description
+      "Initial revision.";
+  }
+
+  container spad {
+    leaf domain {
+      type string;
+    }
+    list services {
+      key "name";
+      leaf name {
+        type string;
+      }
+      container flows {
+        leaf port {
+          type uint16;
+        }
+        leaf protocol {
+          type string;
+        }
+        leaf-list ips {
+          type string;
+        }
+      }
+    }
+  }
+}
