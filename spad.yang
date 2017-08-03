@@ -1,7 +1,14 @@
-module spad {
-  namespace "http://spad.fluffy.im/module";
-  prefix spad;
 
+
+module spad {
+  yang-version 1.1;
+  namespace "http://spad.fluffy.im/module";
+  prefix "spad";
+
+  import ietf-inet-types {
+         prefix "yang";
+  }
+       
   organization
     "IETF";
   contact
@@ -17,6 +24,10 @@ module spad {
 
   container spad {
     leaf domain {
+      type yang:domain-name;
+      mandatory true;
+    }
+    leaf validTill {
       type string;
     }
     list services {
@@ -28,13 +39,20 @@ module spad {
       list flows {
         key protocol;
         leaf port {
-          type uint16;
+          type yang:port-number;
         }
         leaf protocol {
+          type yang:domain-name;
+        }
+        leaf name {
           type string;
         }
+        leaf qos {
+          type yang:dscp;
+        }
         leaf-list ips {
-          type string;
+          //type yang:ip-prefix;
+          type yang:ip-address;
         }
       }
     }
