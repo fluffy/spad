@@ -9,7 +9,7 @@ Then an HTTPS GET query is done that to that URL.
 curl https://example.com/.well-known/spad/v0/spad
 ~~~
 
-The responses would be a JSON result that could looks like
+The responses would be a JSON result that might look like
 
 {{gen/example1.json.md}}
 
