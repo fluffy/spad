@@ -124,7 +124,7 @@ Internet-Draft                    SPAD                       August 2017
 
              curl https://example.com/.well-known/spad/v0/spad
 
-   The responses would be a JSON result that could looks like
+   The responses would be a JSON result that might look like
 
        {
            "ietf-spad:spad": {

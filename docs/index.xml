@@ -439,7 +439,7 @@ the first step is to form the query URL by constructing an endpoint at
 &lt;pre&gt;&lt;code&gt;curl https://example.com/.well-known/spad/v0/spad
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
+&lt;p&gt;The responses would be a JSON result that might look like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
     &amp;quot;ietf-spad:spad&amp;quot;: {
@@ -556,7 +556,7 @@ the first step is to form the query URL by constructing an endpoint at
 &lt;pre&gt;&lt;code&gt;curl https://example.com/.well-known/spad/v0/spad
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
+&lt;p&gt;The responses would be a JSON result that might look like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
     &amp;quot;ietf-spad:spad&amp;quot;: {
