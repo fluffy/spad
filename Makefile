@@ -139,7 +139,7 @@ themes/blackburn/README.md:
 	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 
 
-test: ietf-spad.ok example.xml ietf-spad.xsl example.json rev-example.xml
+test: ietf-spad.ok example-tmpl.xml ietf-spad.xsl example.json rev-example.xml
 
 ietf-spad.ok: ietf-spad.yang
 	pyang -V ietf-spad.yang
