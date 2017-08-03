@@ -1,15 +1,19 @@
 
 
-module spad {
+module ietf-spad {
   yang-version 1.1;
-  namespace "http://spad.fluffy.im/module";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-spad";
   prefix "spad";
 
   import ietf-inet-types {
+         prefix "inet";
+  }
+       
+  import ietf-yang-types {
          prefix "yang";
   }
        
-  organization
+organization
     "IETF";
   contact
     "fluffy@iii.ca";
@@ -24,11 +28,12 @@ module spad {
 
   container spad {
     leaf domain {
-      type yang:domain-name;
+      type inet:domain-name;
       mandatory true;
+      description "Domain that produced this SPAD file";
     }
     leaf validTill {
-      type string;
+      type yang:date-and-time;
     }
     list services {
       key "name";
@@ -39,20 +44,20 @@ module spad {
       list flows {
         key protocol;
         leaf port {
-          type yang:port-number;
+          type inet:port-number;
         }
         leaf protocol {
-          type yang:domain-name;
-        }
-        leaf name {
           type string;
         }
+        leaf name {
+          type inet:domain-name;
+        }
         leaf qos {
-          type yang:dscp;
+          type inet:dscp;
         }
         leaf-list ips {
-          //type yang:ip-prefix;
-          type yang:ip-address;
+          //type inet:ip-prefix;
+          type inet:ip-address;
         }
       }
     }

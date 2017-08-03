@@ -7,7 +7,7 @@ deploy_key
 deploy_key.pub
 example.json
 example.xml
-spad.ok
-spad.xsl
+ietf-spad.ok
+ietf-spad.xsl
 rev-example.xml
-spad.jtox
+ietf-spad.jtox

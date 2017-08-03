@@ -139,26 +139,26 @@ themes/blackburn/README.md:
 	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
 
 
-test: spad.ok example.xml spad.xsl example.json rev-example.xml
+test: ietf-spad.ok example.xml ietf-spad.xsl example.json rev-example.xml
 
-spad.ok: spad.yang
-	pyang -V spad.yang
-	touch spad.ok
-
-
-example.xml: spad.yang 
-	pyang -f sample-xml-skeleton spad.yang | xmllint --format - > example.xml
+ietf-spad.ok: ietf-spad.yang
+	pyang -V ietf-spad.yang
+	touch ietf-spad.ok
 
 
-spad.xsl: spad.yang 
-	pyang -f jsonxsl spad.yang | xmllint --format - > spad.xsl
+example-tmpl.xml: ietf-spad.yang 
+	pyang -f sample-xml-skeleton ietf-spad.yang | xmllint --format - > example-tmpl.xml
 
-example.json: example.xml spad.xsl 
-	xsltproc spad.xsl example.xml > example.json 
 
-spad.jtox: spad.yang 
-	pyang -f jtox  spad.yang -o spad.jtox
+ietf-spad.xsl: ietf-spad.yang 
+	pyang -f jsonxsl ietf-spad.yang | xmllint --format - > ietf-spad.xsl
 
-rev-example.xml: spad.jtox example.json
-	json2xml -t config spad.jtox example.json  | xmllint --format - >  rev-example.xml 
+example.json: example.xml ietf-spad.xsl 
+	xsltproc ietf-spad.xsl example.xml > example.json 
+
+ietf-spad.jtox: ietf-spad.yang 
+	pyang -f jtox  ietf-spad.yang -o ietf-spad.jtox
+
+rev-example.xml: ietf-spad.jtox example.json
+	json2xml -t config ietf-spad.jtox example.json  | xmllint --format - >  rev-example.xml 
 
