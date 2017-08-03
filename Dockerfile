@@ -2,6 +2,7 @@
 
 FROM ubuntu
 #FROM ubuntu:14.04
+#FROM ubuntu:16.04
 
 MAINTAINER Cullen Jennings <fluffy@iii.ca>
 
@@ -45,6 +46,10 @@ RUN npm install -g json
 
 #RUN go get -v github.com/spf13/hugo
 RUN apt-get install -y hugo
+
+#RUN go get github.com/kardianos/govendor
+#RUN govendor get github.com/gohugoio/hugo
+#RUN go install github.com/gohugoio/hugo
 
 RUN apt-get install -y ruby ruby-dev ruby-bundler 
 #RUN apt-get install -y rubygems
