@@ -70,9 +70,9 @@ followed by the protocol by the Transport Protocol from RFC 6335. All
 names are moved to all lower case for consistency.
 
 
-# Blueprint
 
-{{spec/blueprint.md}}
+
+
 
 
 # Schemas
@@ -80,21 +80,33 @@ names are moved to all lower case for consistency.
 {{spec/schemas.md}}
 
 
-# IANA Consideration
+
+{backmatter}
+
+{{spec/CONTRIBUTING.md}}
+
+# IANA Consideration 
 
 {{spec/iana.md}}
 
-# Security Considerations
+# Security Considerations 
 
 {{spec/security.md}}
 
 # Acknowledgements 
 
-Thank you for the contributions from:
+Thank you for the contributions from: 
 {{gen/Contributors.md}}
 
+# Blueprint
 
-{backmatter}
+{{spec/blueprint.md}}
 
-{{spec/CONTRIBUTING.md}}
+# RAML
+
+{{spec/raml.md}}
+
+# YANG
+
+{{spec/yang.md}}
 

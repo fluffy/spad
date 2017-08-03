@@ -4,6 +4,10 @@
   "title": "SPAD schema.",
   "properties": {
 
+      "ietf-spad:spad": {
+           "type": "object",
+          "properties": {
+              
       "domain": {
           "type": "string",
           "title": "TODO"
@@ -97,9 +101,11 @@
               }
           }
       }
+      }
   },
   "required": [
     "domain",
     "services"
   ]
+  }
 }

@@ -32,7 +32,7 @@ server:
 
 
 site: themes/blackburn/README.md gen/content/about.mmark gen/content/getting_started.mmark gen/content/overview.mmark \
-	gen/content/contributing.mmark gen/content/raml.mmark gen/content/schemas.mmark\
+	gen/content/contributing.mmark gen/content/raml.mmark gen/content/yang.mmark gen/content/schemas.mmark\
 	gen/content/api.html  gen/content/blueprint.mmark \
 	gen/content/$(DRAFT)-$(VERSION).mmark gen/Contributors.md \
 	hugo-config.yaml gen/spad.apib.md
@@ -64,6 +64,10 @@ gen/content/overview.mmark:  spec/overview.md
 
 gen/content/blueprint.mmark:  spec/blueprint.md
 	( echo "---" ; echo "title: Blueprint Spec for API" ; echo "---" ) >  $@
+	cat $< >>  $@
+
+gen/content/yang.mmark:  spec/yang.md
+	( echo "---" ; echo "title: YAML Spec for API" ; echo "---" ) >  $@
 	cat $< >>  $@
 
 gen/content/raml.mmark:  spec/raml.md
@@ -103,7 +107,7 @@ tidy:
 %.html: %.xml 
 	$(xml2rfc) -N $< -o $@ --html
 
-docs/id/$(DRAFT)-$(VERSION).xml: spec/$(DRAFT).md  spec/*.md gen/example1.json.md gen/example2.json.md gen/spad.raml.md gen/spad-schema.json.md gen/Contributors.md
+docs/id/$(DRAFT)-$(VERSION).xml: spec/$(DRAFT).md  spec/*.md gen/example1.json.md gen/example2.json.md gen/spad.raml.md gen/spad-schema.json.md gen/Contributors.md gen/ietf-spad.yang.md
 	mkdir -p docs/id
 	$(mmark) -xml2 -page spec/$(DRAFT).md $@
 
@@ -124,6 +128,10 @@ gen/content/api.html: spec/spad.apib
 gen/%.raml.md: spec/%.raml
 	mkdir -p gen 
 	( echo "~~~ yaml" ; cat $< ; echo "~~~" ) > $@
+
+gen/%.yang.md: spec/%.yang
+	mkdir -p gen 
+	( echo "~~~ yang" ; cat $< ; echo "~~~" ) > $@
 
 gen/%.apib.md: spec/%.apib
 	mkdir -p gen 

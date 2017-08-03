@@ -442,22 +442,24 @@ the first step is to form the query URL by constructing an endpoint at
 &lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
-  &amp;quot;services&amp;quot;: [
-    {
-      &amp;quot;name&amp;quot;: &amp;quot;example-service&amp;quot;,
-      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
-      &amp;quot;flows&amp;quot;: [
-        {
-          &amp;quot;ips&amp;quot;: [
+    &amp;quot;ietf-spad:spad&amp;quot;: {
+        &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+        &amp;quot;services&amp;quot;: [
+            {
+                &amp;quot;name&amp;quot;: &amp;quot;example-service&amp;quot;,
+                &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+                &amp;quot;flows&amp;quot;: [
+                    {
+                        &amp;quot;ips&amp;quot;: [
             &amp;quot;203.0.113.2&amp;quot;
-          ],
-          &amp;quot;port&amp;quot;: 443,
-          &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;
-        }
-      ]
+                        ],
+                        &amp;quot;port&amp;quot;: 443,
+                        &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -475,33 +477,35 @@ different ip addresses. If devices in the network are capable of
 remarking DSCP, the desired marking is &amp;quot;AF41&amp;quot;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
-  &amp;quot;services&amp;quot;: [
-    {
-      &amp;quot;name&amp;quot;: &amp;quot;voice-example&amp;quot;,
-      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
-      &amp;quot;flows&amp;quot;: [
-        {
-          &amp;quot;ips&amp;quot;: [
-            &amp;quot;203.0.113.2&amp;quot;,
-            &amp;quot;2001:db8::1&amp;quot;
-          ],
-          &amp;quot;port&amp;quot;: 5061,
-          &amp;quot;name&amp;quot;: &amp;quot;example.com&amp;quot;,
-          &amp;quot;protocol&amp;quot;: &amp;quot;tls&amp;quot;
-        },
-        {
-          &amp;quot;ips&amp;quot;: [
-            &amp;quot;192.0.2.1&amp;quot;,
-            &amp;quot;2001:db8::2&amp;quot;
-          ],
-          &amp;quot;port&amp;quot;: 5004,
-          &amp;quot;protocol&amp;quot;: &amp;quot;udp&amp;quot;,
-          &amp;quot;qos&amp;quot;: &amp;quot;AF41&amp;quot;
-        }
-      ]
+    &amp;quot;ietf-spad:spad&amp;quot;: {
+        &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+        &amp;quot;services&amp;quot;: [
+            {
+                &amp;quot;name&amp;quot;: &amp;quot;voice-example&amp;quot;,
+                &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+                &amp;quot;flows&amp;quot;: [
+                    {
+                        &amp;quot;ips&amp;quot;: [
+                            &amp;quot;203.0.113.2&amp;quot;,
+                            &amp;quot;2001:db8::1&amp;quot;
+                        ],
+                        &amp;quot;port&amp;quot;: 5061,
+                        &amp;quot;name&amp;quot;: &amp;quot;example.com&amp;quot;,
+                        &amp;quot;protocol&amp;quot;: &amp;quot;tls&amp;quot;
+                    },
+                    {
+                        &amp;quot;ips&amp;quot;: [
+                            &amp;quot;192.0.2.1&amp;quot;,
+                            &amp;quot;2001:db8::2&amp;quot;
+                        ],
+                        &amp;quot;port&amp;quot;: 5004,
+                        &amp;quot;protocol&amp;quot;: &amp;quot;udp&amp;quot;,
+                        &amp;quot;qos&amp;quot;: &amp;quot;AF41&amp;quot;
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }
 &lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -555,22 +559,24 @@ the first step is to form the query URL by constructing an endpoint at
 &lt;p&gt;The responses would be a JSON result that could looks like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
-  &amp;quot;services&amp;quot;: [
-    {
-      &amp;quot;name&amp;quot;: &amp;quot;example-service&amp;quot;,
-      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
-      &amp;quot;flows&amp;quot;: [
-        {
-          &amp;quot;ips&amp;quot;: [
+    &amp;quot;ietf-spad:spad&amp;quot;: {
+        &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+        &amp;quot;services&amp;quot;: [
+            {
+                &amp;quot;name&amp;quot;: &amp;quot;example-service&amp;quot;,
+                &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+                &amp;quot;flows&amp;quot;: [
+                    {
+                        &amp;quot;ips&amp;quot;: [
             &amp;quot;203.0.113.2&amp;quot;
-          ],
-          &amp;quot;port&amp;quot;: 443,
-          &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;
-        }
-      ]
+                        ],
+                        &amp;quot;port&amp;quot;: 443,
+                        &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -588,33 +594,35 @@ different ip addresses. If devices in the network are capable of
 remarking DSCP, the desired marking is &amp;quot;AF41&amp;quot;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;{
-  &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
-  &amp;quot;services&amp;quot;: [
-    {
-      &amp;quot;name&amp;quot;: &amp;quot;voice-example&amp;quot;,
-      &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
-      &amp;quot;flows&amp;quot;: [
-        {
-          &amp;quot;ips&amp;quot;: [
-            &amp;quot;203.0.113.2&amp;quot;,
-            &amp;quot;2001:db8::1&amp;quot;
-          ],
-          &amp;quot;port&amp;quot;: 5061,
-          &amp;quot;name&amp;quot;: &amp;quot;example.com&amp;quot;,
-          &amp;quot;protocol&amp;quot;: &amp;quot;tls&amp;quot;
-        },
-        {
-          &amp;quot;ips&amp;quot;: [
-            &amp;quot;192.0.2.1&amp;quot;,
-            &amp;quot;2001:db8::2&amp;quot;
-          ],
-          &amp;quot;port&amp;quot;: 5004,
-          &amp;quot;protocol&amp;quot;: &amp;quot;udp&amp;quot;,
-          &amp;quot;qos&amp;quot;: &amp;quot;AF41&amp;quot;
-        }
-      ]
+    &amp;quot;ietf-spad:spad&amp;quot;: {
+        &amp;quot;domain&amp;quot;: &amp;quot;example.com&amp;quot;,
+        &amp;quot;services&amp;quot;: [
+            {
+                &amp;quot;name&amp;quot;: &amp;quot;voice-example&amp;quot;,
+                &amp;quot;validTill&amp;quot;: &amp;quot;Fri 11 Nov 2016 22:20:08 UTC&amp;quot;,
+                &amp;quot;flows&amp;quot;: [
+                    {
+                        &amp;quot;ips&amp;quot;: [
+                            &amp;quot;203.0.113.2&amp;quot;,
+                            &amp;quot;2001:db8::1&amp;quot;
+                        ],
+                        &amp;quot;port&amp;quot;: 5061,
+                        &amp;quot;name&amp;quot;: &amp;quot;example.com&amp;quot;,
+                        &amp;quot;protocol&amp;quot;: &amp;quot;tls&amp;quot;
+                    },
+                    {
+                        &amp;quot;ips&amp;quot;: [
+                            &amp;quot;192.0.2.1&amp;quot;,
+                            &amp;quot;2001:db8::2&amp;quot;
+                        ],
+                        &amp;quot;port&amp;quot;: 5004,
+                        &amp;quot;protocol&amp;quot;: &amp;quot;udp&amp;quot;,
+                        &amp;quot;qos&amp;quot;: &amp;quot;AF41&amp;quot;
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -636,49 +644,6 @@ preferred thing to use if defined, followed by the service name from
 followed by the protocol by the Transport Protocol from RFC 6335. All
 names are moved to all lower case for consistency.&lt;/p&gt;
 
-&lt;h1 id=&#34;blueprint&#34;&gt;Blueprint&lt;/h1&gt;
-
-&lt;p&gt;The Bluprint specification for the API is:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-md&#34;&gt;FORMAT: 1A
-
-# SPAD
-
-# Group Flows
-
-## Service Collection [/.well-known/spad/v0/spad]
-### Get SPAD information for this application [GET]
-+ Response 200 (application/json)
-  + Attributes ( Application )
-
-## Service Collection [/.well-known/spad/v0/{service}]
-### Get SPAD information for this service [GET]
-+ Parameters
-    + service (string) -- service name to lookup
-+ Response 200 (application/json)
-  + Attributes ( Service )
-  
-
-# Data Structures
-
-## Application
-+ domain: example.com (string)
-+ services (array[Service])
-
-## Service (object)
-+ name: message (string) 
-+ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
-+ flows (array[Flow])
-
-## Flow (object)
-+ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
-+ port: 443 (number, required) - destination port number 
-+ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
-+ protocol: udp, tcp, http, tls, https, quic (enum, optional)
-+ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
-
-&lt;/code&gt;&lt;/pre&gt;
-
 &lt;h1 id=&#34;schemas&#34;&gt;Schemas&lt;/h1&gt;
 
 &lt;p&gt;The JSON returned from MUST corespond to the following JSON schema.&lt;/p&gt;
@@ -689,6 +654,10 @@ names are moved to all lower case for consistency.&lt;/p&gt;
   &amp;quot;title&amp;quot;: &amp;quot;SPAD schema.&amp;quot;,
   &amp;quot;properties&amp;quot;: {
 
+      &amp;quot;ietf-spad:spad&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+          &amp;quot;properties&amp;quot;: {
+              
       &amp;quot;domain&amp;quot;: {
           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
           &amp;quot;title&amp;quot;: &amp;quot;TODO&amp;quot;
@@ -782,28 +751,15 @@ names are moved to all lower case for consistency.&lt;/p&gt;
               }
           }
       }
+      }
   },
   &amp;quot;required&amp;quot;: [
     &amp;quot;domain&amp;quot;,
     &amp;quot;services&amp;quot;
   ]
+  }
 }
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;iana-consideration&#34;&gt;IANA Consideration&lt;/h1&gt;
-
-&lt;p&gt;TODO - register well known URL usage&lt;/p&gt;
-
-&lt;h1 id=&#34;security-considerations&#34;&gt;Security Considerations&lt;/h1&gt;
-
-&lt;p&gt;TODO - explain importance of HTTPS&lt;/p&gt;
-
-&lt;p&gt;Discuss merging with existing ACL&lt;/p&gt;
-
-&lt;h1 id=&#34;acknowledgements&#34;&gt;Acknowledgements&lt;/h1&gt;
-
-&lt;p&gt;Thank you for the contributions from:
-Cullen Jennings&lt;/p&gt;
 
 &lt;h1 id=&#34;development-of-this-specification&#34; class=&#34;appendix&#34;&gt;Development of this Specification&lt;/h1&gt;
 
@@ -857,6 +813,167 @@ version is always referred to as v0.  The API includes the version in
 the URL so that developers can implement to a specific non-changing
 specification. Future versions attempt, but do not guarantee, to be
 backwards-compatible with the previous version.&lt;/p&gt;
+
+&lt;h1 id=&#34;iana-consideration&#34; class=&#34;appendix&#34;&gt;IANA Consideration&lt;/h1&gt;
+
+&lt;p&gt;TODO - register well known URL usage&lt;/p&gt;
+
+&lt;h1 id=&#34;security-considerations&#34; class=&#34;appendix&#34;&gt;Security Considerations&lt;/h1&gt;
+
+&lt;p&gt;TODO - explain importance of HTTPS&lt;/p&gt;
+
+&lt;p&gt;Discuss merging with existing ACL&lt;/p&gt;
+
+&lt;h1 id=&#34;acknowledgements&#34; class=&#34;appendix&#34;&gt;Acknowledgements&lt;/h1&gt;
+
+&lt;p&gt;Thank you for the contributions from:
+Cullen Jennings&lt;/p&gt;
+
+&lt;h1 id=&#34;blueprint&#34; class=&#34;appendix&#34;&gt;Blueprint&lt;/h1&gt;
+
+&lt;p&gt;The Bluprint specification for the API is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-md&#34;&gt;FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+  
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string) 
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number 
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;raml&#34; class=&#34;appendix&#34;&gt;RAML&lt;/h1&gt;
+
+&lt;p&gt;The RAML specification for the API is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;#%RAML 0.8
+title: SPAD
+version: v0
+protocols: [ HTTPS ]
+baseUri: https://example.com/.well-known/spad/{version}
+mediaType: application/json
+
+schemas:
+ - spad.json: !include spad-schema.json
+
+documentation:
+ - title: Overview
+   content: !include overview.md
+   
+/transports:
+  description: Transports used by this service 
+  get:
+    description: Retrieve the spad 
+    responses:
+       200:
+         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/ 
+         body:
+          application/json:
+            schema: spad.json
+            example: !include example1.json
+            
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;yang&#34; class=&#34;appendix&#34;&gt;YANG&lt;/h1&gt;
+
+&lt;p&gt;The YANG data model for the JSON is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yang&#34;&gt;
+
+module ietf-spad {
+  yang-version 1.1;
+  namespace &amp;quot;urn:ietf:params:xml:ns:yang:ietf-spad&amp;quot;;
+  prefix &amp;quot;spad&amp;quot;;
+
+  import ietf-inet-types {
+         prefix &amp;quot;inet&amp;quot;;
+  }
+       
+  import ietf-yang-types {
+         prefix &amp;quot;yang&amp;quot;;
+  }
+       
+organization
+    &amp;quot;IETF&amp;quot;;
+  contact
+    &amp;quot;fluffy@iii.ca&amp;quot;;
+  description
+    &amp;quot;The module for entities 
+     implementing the SPAD&amp;quot;;
+
+  revision 2017-10-02 {
+    description
+      &amp;quot;Initial revision.&amp;quot;;
+  }
+
+  container spad {
+    leaf domain {
+      type inet:domain-name;
+      mandatory true;
+      description &amp;quot;Domain that produced this SPAD file&amp;quot;;
+    }
+    leaf validTill {
+      type yang:date-and-time;
+    }
+    list services {
+      key &amp;quot;name&amp;quot;;
+      leaf name {
+        type string;
+      }
+      
+      list flows {
+        key protocol;
+        leaf port {
+          type inet:port-number;
+        }
+        leaf protocol {
+          type string;
+        }
+        leaf name {
+          type inet:domain-name;
+        }
+        leaf qos {
+          type inet:dscp;
+        }
+        leaf-list ips {
+          //type inet:ip-prefix;
+          type inet:ip-address;
+        }
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -874,6 +991,10 @@ backwards-compatible with the previous version.&lt;/p&gt;
   &amp;quot;title&amp;quot;: &amp;quot;SPAD schema.&amp;quot;,
   &amp;quot;properties&amp;quot;: {
 
+      &amp;quot;ietf-spad:spad&amp;quot;: {
+           &amp;quot;type&amp;quot;: &amp;quot;object&amp;quot;,
+          &amp;quot;properties&amp;quot;: {
+              
       &amp;quot;domain&amp;quot;: {
           &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
           &amp;quot;title&amp;quot;: &amp;quot;TODO&amp;quot;
@@ -967,11 +1088,13 @@ backwards-compatible with the previous version.&lt;/p&gt;
               }
           }
       }
+      }
   },
   &amp;quot;required&amp;quot;: [
     &amp;quot;domain&amp;quot;,
     &amp;quot;services&amp;quot;
   ]
+  }
 }
 &lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -1028,6 +1151,83 @@ addresses change. Applications are identified by a domain name which
 is used to form a URL in a well known location where a client can do a
 HTTP REST call to get a JSON file that describes information about
 what addresses and transport the service uses.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>YAML Spec for API</title>
+      <link>https://fluffy.github.io/spad/yang/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fluffy.github.io/spad/yang/</guid>
+      <description>&lt;p&gt;The YANG data model for the JSON is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yang&#34;&gt;
+
+module ietf-spad {
+  yang-version 1.1;
+  namespace &amp;quot;urn:ietf:params:xml:ns:yang:ietf-spad&amp;quot;;
+  prefix &amp;quot;spad&amp;quot;;
+
+  import ietf-inet-types {
+         prefix &amp;quot;inet&amp;quot;;
+  }
+       
+  import ietf-yang-types {
+         prefix &amp;quot;yang&amp;quot;;
+  }
+       
+organization
+    &amp;quot;IETF&amp;quot;;
+  contact
+    &amp;quot;fluffy@iii.ca&amp;quot;;
+  description
+    &amp;quot;The module for entities 
+     implementing the SPAD&amp;quot;;
+
+  revision 2017-10-02 {
+    description
+      &amp;quot;Initial revision.&amp;quot;;
+  }
+
+  container spad {
+    leaf domain {
+      type inet:domain-name;
+      mandatory true;
+      description &amp;quot;Domain that produced this SPAD file&amp;quot;;
+    }
+    leaf validTill {
+      type yang:date-and-time;
+    }
+    list services {
+      key &amp;quot;name&amp;quot;;
+      leaf name {
+        type string;
+      }
+      
+      list flows {
+        key protocol;
+        leaf port {
+          type inet:port-number;
+        }
+        leaf protocol {
+          type string;
+        }
+        leaf name {
+          type inet:domain-name;
+        }
+        leaf qos {
+          type inet:dscp;
+        }
+        leaf-list ips {
+          //type inet:ip-prefix;
+          type inet:ip-address;
+        }
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

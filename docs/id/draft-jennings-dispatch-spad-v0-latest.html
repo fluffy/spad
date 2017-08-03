@@ -378,20 +378,22 @@
 <link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
 <link href="#rfc.section.3" rel="Chapter" title="3 Example"/>
 <link href="#rfc.section.4" rel="Chapter" title="4 Protocols"/>
-<link href="#rfc.section.5" rel="Chapter" title="5 Blueprint"/>
-<link href="#rfc.section.6" rel="Chapter" title="6 Schemas"/>
-<link href="#rfc.section.7" rel="Chapter" title="7 IANA Consideration"/>
-<link href="#rfc.section.8" rel="Chapter" title="8 Security Considerations"/>
-<link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements"/>
-<link href="#rfc.references" rel="Chapter" title="10 References"/>
-<link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References"/>
-<link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 Schemas"/>
+<link href="#rfc.references" rel="Chapter" title="6 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="6.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="6.2 Informative References"/>
 <link href="#rfc.appendix.A" rel="Chapter" title="A Development of this Specification"/>
 <link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Specification Style"/>
 <link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Following Discussion"/>
 <link href="#rfc.appendix.A.3" rel="Chapter" title="A.3 Resolving Issues"/>
 <link href="#rfc.appendix.A.4" rel="Chapter" title="A.4 Pull Requests"/>
 <link href="#rfc.appendix.A.5" rel="Chapter" title="A.5 Published Versions"/>
+<link href="#rfc.appendix.B" rel="Chapter" title="B IANA Consideration"/>
+<link href="#rfc.appendix.C" rel="Chapter" title="C Security Considerations"/>
+<link href="#rfc.appendix.D" rel="Chapter" title="D Acknowledgements"/>
+<link href="#rfc.appendix.E" rel="Chapter" title="E Blueprint"/>
+<link href="#rfc.appendix.F" rel="Chapter" title="F RAML"/>
+<link href="#rfc.appendix.G" rel="Chapter" title="G YANG"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -461,21 +463,23 @@
 <li>2.   <a href="#rfc.section.2">Terminology</a></li>
 <li>3.   <a href="#rfc.section.3">Example</a></li>
 <li>4.   <a href="#rfc.section.4">Protocols</a></li>
-<li>5.   <a href="#rfc.section.5">Blueprint</a></li>
-<li>6.   <a href="#rfc.section.6">Schemas</a></li>
-<li>7.   <a href="#rfc.section.7">IANA Consideration</a></li>
-<li>8.   <a href="#rfc.section.8">Security Considerations</a></li>
-<li>9.   <a href="#rfc.section.9">Acknowledgements</a></li>
-<li>10.   <a href="#rfc.references">References</a></li>
-<ul><li>10.1.   <a href="#rfc.references.1">Normative References</a></li>
-<li>10.2.   <a href="#rfc.references.2">Informative References</a></li>
+<li>5.   <a href="#rfc.section.5">Schemas</a></li>
+<li>6.   <a href="#rfc.references">References</a></li>
+<ul><li>6.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>6.2.   <a href="#rfc.references.2">Informative References</a></li>
 </ul><li>Appendix A.   <a href="#rfc.appendix.A">Development of this Specification</a></li>
 <ul><li>A.1.   <a href="#rfc.appendix.A.1">Specification Style</a></li>
 <li>A.2.   <a href="#rfc.appendix.A.2">Following Discussion</a></li>
 <li>A.3.   <a href="#rfc.appendix.A.3">Resolving Issues</a></li>
 <li>A.4.   <a href="#rfc.appendix.A.4">Pull Requests</a></li>
 <li>A.5.   <a href="#rfc.appendix.A.5">Published Versions</a></li>
-</ul><li><a href="#rfc.authors">Author's Address</a></li>
+</ul><li>Appendix B.   <a href="#rfc.appendix.B">IANA Consideration</a></li>
+<li>Appendix C.   <a href="#rfc.appendix.C">Security Considerations</a></li>
+<li>Appendix D.   <a href="#rfc.appendix.D">Acknowledgements</a></li>
+<li>Appendix E.   <a href="#rfc.appendix.E">Blueprint</a></li>
+<li>Appendix F.   <a href="#rfc.appendix.F">RAML</a></li>
+<li>Appendix G.   <a href="#rfc.appendix.G">YANG</a></li>
+<li><a href="#rfc.authors">Author's Address</a></li>
 
 
   </ul>
@@ -495,103 +499,66 @@ curl https://example.com/.well-known/spad/v0/spad
 <p id="rfc.section.3.p.3">The responses would be a JSON result that could looks like </p>
 <pre>
 {
-  "domain": "example.com",
-  "services": [
-    {
-      "name": "example-service",
-      "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
-      "flows": [
-        {
-          "ips": [
+    "ietf-spad:spad": {
+        "domain": "example.com",
+        "services": [
+            {
+                "name": "example-service",
+                "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
+                "flows": [
+                    {
+                        "ips": [
             "203.0.113.2"
-          ],
-          "port": 443,
-          "protocol": "https"
-        }
-      ]
+                        ],
+                        "port": 443,
+                        "protocol": "https"
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }
 </pre>
 <p id="rfc.section.3.p.4">The example above  indicates that the "example.com" application has a single service with a single flow that uses only the HTTPS to connect to port 443 on the IP address "203.0.113.2".  This SPAD information is not valid after "Fri 11 Nov 2016 22:20:08 UTC" and a new SPAD file should be retrieved before that point in time.  </p>
 <p id="rfc.section.3.p.5">The following shows a more complex example result for an application that uses two flows. One is TLS to the SIP port of a server with an v4 and v6 address. The TLS connection will have a name of example.com in the SNI.  The other flow is media sent over UDP to port 5004 on a few different ip addresses. If devices in the network are capable of remarking DSCP, the desired marking is "AF41".  </p>
 <pre>
 {
-  "domain": "example.com",
-  "services": [
-    {
-      "name": "voice-example",
-      "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
-      "flows": [
-        {
-          "ips": [
-            "203.0.113.2",
-            "2001:db8::1"
-          ],
-          "port": 5061,
-          "name": "example.com",
-          "protocol": "tls"
-        },
-        {
-          "ips": [
-            "192.0.2.1",
-            "2001:db8::2"
-          ],
-          "port": 5004,
-          "protocol": "udp",
-          "qos": "AF41"
-        }
-      ]
+    "ietf-spad:spad": {
+        "domain": "example.com",
+        "services": [
+            {
+                "name": "voice-example",
+                "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
+                "flows": [
+                    {
+                        "ips": [
+                            "203.0.113.2",
+                            "2001:db8::1"
+                        ],
+                        "port": 5061,
+                        "name": "example.com",
+                        "protocol": "tls"
+                    },
+                    {
+                        "ips": [
+                            "192.0.2.1",
+                            "2001:db8::2"
+                        ],
+                        "port": 5004,
+                        "protocol": "udp",
+                        "qos": "AF41"
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }
 </pre>
 <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#protocols" id="protocols">Protocols</a></h1>
 <p id="rfc.section.4.p.1">The protocol field is filled out with the most specific instance of a well defined protocol that is running. Any protocols that are implied as the normal default by this that it runs over are omitted. For example, HTTPS runs over TLS over TCP over IP. In this case the only thing listed is HTTPS. However if HTTPS was being used over SCTP which is not the normal thing, and the SCTP was over UDP which is also not the default, then it would be listed at HTTPS/SCTP/UDP but IP is not added as that is the normal thing for UDP to be over.  </p>
 <p id="rfc.section.4.p.2">URI scheme from <span>&lt;</span><a href="https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml</a><span>&gt;</span>. is preferred thing to use if defined, followed by the service name from <span>&lt;</span><a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml</a><span>&gt;</span> followed by the protocol by the Transport Protocol from RFC 6335. All names are moved to all lower case for consistency.  </p>
-<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#blueprint" id="blueprint">Blueprint</a></h1>
-<p id="rfc.section.5.p.1">The Bluprint specification for the API is: </p>
-<pre>
-FORMAT: 1A
-
-# SPAD
-
-# Group Flows
-
-## Service Collection [/.well-known/spad/v0/spad]
-### Get SPAD information for this application [GET]
-+ Response 200 (application/json)
-  + Attributes ( Application )
-
-## Service Collection [/.well-known/spad/v0/{service}]
-### Get SPAD information for this service [GET]
-+ Parameters
-    + service (string) -- service name to lookup
-+ Response 200 (application/json)
-  + Attributes ( Service )
-  
-
-# Data Structures
-
-## Application
-+ domain: example.com (string)
-+ services (array[Service])
-
-## Service (object)
-+ name: message (string) 
-+ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
-+ flows (array[Flow])
-
-## Flow (object)
-+ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
-+ port: 443 (number, required) - destination port number 
-+ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
-+ protocol: udp, tcp, http, tls, https, quic (enum, optional)
-+ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
-
-</pre>
-<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#schemas" id="schemas">Schemas</a></h1>
-<p id="rfc.section.6.p.1">The JSON returned from MUST corespond to the following JSON schema.  </p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#schemas" id="schemas">Schemas</a></h1>
+<p id="rfc.section.5.p.1">The JSON returned from MUST corespond to the following JSON schema.  </p>
 <pre>
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
@@ -599,6 +566,10 @@ FORMAT: 1A
   "title": "SPAD schema.",
   "properties": {
 
+      "ietf-spad:spad": {
+           "type": "object",
+          "properties": {
+              
       "domain": {
           "type": "string",
           "title": "TODO"
@@ -692,22 +663,17 @@ FORMAT: 1A
               }
           }
       }
+      }
   },
   "required": [
     "domain",
     "services"
   ]
+  }
 }
 </pre>
-<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#iana-consideration" id="iana-consideration">IANA Consideration</a></h1>
-<p id="rfc.section.7.p.1">TODO - register well known URL usage </p>
-<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<p id="rfc.section.8.p.1">TODO - explain importance of HTTPS </p>
-<p id="rfc.section.8.p.2">Discuss merging with existing ACL </p>
-<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a></h1>
-<p id="rfc.section.9.p.1">Thank you for the contributions from: Cullen Jennings </p>
-<h1 id="rfc.references"><a href="#rfc.references">10.</a> References</h1>
-<h1 id="rfc.references.1"><a href="#rfc.references.1">10.1.</a> Normative References</h1>
+<h1 id="rfc.references"><a href="#rfc.references">6.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">6.1.</a> Normative References</h1>
 <table>
   <tbody>
     <tr>
@@ -718,7 +684,7 @@ FORMAT: 1A
     </tr>
   </tbody>
 </table>
-<h1 id="rfc.references.2"><a href="#rfc.references.2">10.2.</a> Informative References</h1>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">6.2.</a> Informative References</h1>
 <table>
   <tbody>
     <tr>
@@ -752,6 +718,153 @@ FORMAT: 1A
 <p id="rfc.section.A.5.p.1">The web site at (<span>&lt;</span><a href="https://coopdanger.github.io/spad/">https://coopdanger.github.io/spad/</a><span>&gt;</span>) provides an overview of the specification that is focused on a developer audience. However, all the key information to implement the specification that is used to generate the web site is also used to generate and internet draft that can be found at <a href="https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0-00/">draft-jennings-dispatch-spad-v0</a>.  </p>
 <p id="rfc.section.A.5.p.2">Periodically the information on the master is branched to a versioned draft branch and the content of that branch is used to produce an updated version of the internet draft. A typical cadence for this is monthly so that the draft can receive broader review.  </p>
 <p id="rfc.section.A.5.p.3">When the work is at a good point to form a stable version of the API, it is progressed through the IETF publication process with the goal of publishing an RFC. Once approved, the text of the RFC is used to form a released version of the API. The first version would be v1. The current working pre-standard version is always referred to as v0.  The API includes the version in the URL so that developers can implement to a specific non-changing specification. Future versions attempt, but do not guarantee, to be backwards-compatible with the previous version.  </p>
+<h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> <a href="#iana-consideration" id="iana-consideration">IANA Consideration</a></h1>
+<p id="rfc.section.B.p.1">TODO - register well known URL usage </p>
+<h1 id="rfc.appendix.C"><a href="#rfc.appendix.C">Appendix C.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
+<p id="rfc.section.C.p.1">TODO - explain importance of HTTPS </p>
+<p id="rfc.section.C.p.2">Discuss merging with existing ACL </p>
+<h1 id="rfc.appendix.D"><a href="#rfc.appendix.D">Appendix D.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a></h1>
+<p id="rfc.section.D.p.1">Thank you for the contributions from: Cullen Jennings </p>
+<h1 id="rfc.appendix.E"><a href="#rfc.appendix.E">Appendix E.</a> <a href="#blueprint" id="blueprint">Blueprint</a></h1>
+<p id="rfc.section.E.p.1">The Bluprint specification for the API is: </p>
+<pre>
+FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+  
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string) 
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number 
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+</pre>
+<h1 id="rfc.appendix.F"><a href="#rfc.appendix.F">Appendix F.</a> <a href="#raml" id="raml">RAML</a></h1>
+<p id="rfc.section.F.p.1">The RAML specification for the API is: </p>
+<pre>
+#%RAML 0.8
+title: SPAD
+version: v0
+protocols: [ HTTPS ]
+baseUri: https://example.com/.well-known/spad/{version}
+mediaType: application/json
+
+schemas:
+ - spad.json: !include spad-schema.json
+
+documentation:
+ - title: Overview
+   content: !include overview.md
+   
+/transports:
+  description: Transports used by this service 
+  get:
+    description: Retrieve the spad 
+    responses:
+       200:
+         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/ 
+         body:
+          application/json:
+            schema: spad.json
+            example: !include example1.json
+            
+</pre>
+<h1 id="rfc.appendix.G"><a href="#rfc.appendix.G">Appendix G.</a> <a href="#yang" id="yang">YANG</a></h1>
+<p id="rfc.section.G.p.1">The YANG data model for the JSON is: </p>
+<pre>
+
+
+module ietf-spad {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-spad";
+  prefix "spad";
+
+  import ietf-inet-types {
+         prefix "inet";
+  }
+       
+  import ietf-yang-types {
+         prefix "yang";
+  }
+       
+organization
+    "IETF";
+  contact
+    "fluffy@iii.ca";
+  description
+    "The module for entities 
+     implementing the SPAD";
+
+  revision 2017-10-02 {
+    description
+      "Initial revision.";
+  }
+
+  container spad {
+    leaf domain {
+      type inet:domain-name;
+      mandatory true;
+      description "Domain that produced this SPAD file";
+    }
+    leaf validTill {
+      type yang:date-and-time;
+    }
+    list services {
+      key "name";
+      leaf name {
+        type string;
+      }
+      
+      list flows {
+        key protocol;
+        leaf port {
+          type inet:port-number;
+        }
+        leaf protocol {
+          type string;
+        }
+        leaf name {
+          type inet:domain-name;
+        }
+        leaf qos {
+          type inet:dscp;
+        }
+        leaf-list ips {
+          //type inet:ip-prefix;
+          type inet:ip-address;
+        }
+      }
+    }
+  }
+}
+</pre>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Author's Address</a>
 </h1>

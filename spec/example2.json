@@ -1,29 +1,31 @@
 {
-  "domain": "example.com",
-  "services": [
-    {
-      "name": "voice-example",
-      "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
-      "flows": [
-        {
-          "ips": [
-            "203.0.113.2",
-            "2001:db8::1"
-          ],
-          "port": 5061,
-          "name": "example.com",
-          "protocol": "tls"
-        },
-        {
-          "ips": [
-            "192.0.2.1",
-            "2001:db8::2"
-          ],
-          "port": 5004,
-          "protocol": "udp",
-          "qos": "AF41"
-        }
-      ]
+    "ietf-spad:spad": {
+        "domain": "example.com",
+        "services": [
+            {
+                "name": "voice-example",
+                "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
+                "flows": [
+                    {
+                        "ips": [
+                            "203.0.113.2",
+                            "2001:db8::1"
+                        ],
+                        "port": 5061,
+                        "name": "example.com",
+                        "protocol": "tls"
+                    },
+                    {
+                        "ips": [
+                            "192.0.2.1",
+                            "2001:db8::2"
+                        ],
+                        "port": 5004,
+                        "protocol": "udp",
+                        "qos": "AF41"
+                    }
+                ]
+            }
+        ]
     }
-  ]
 }

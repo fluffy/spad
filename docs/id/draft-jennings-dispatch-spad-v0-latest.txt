@@ -64,21 +64,23 @@ Table of Contents
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Example . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  Protocols . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   5.  Blueprint . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   6.  Schemas . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   7.  IANA Consideration  . . . . . . . . . . . . . . . . . . . . .   8
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
-   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   8
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .   8
-     10.2.  Informative References . . . . . . . . . . . . . . . . .   8
-   Appendix A.  Development of this Specification  . . . . . . . . .   9
-     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   9
-     A.2.  Following Discussion  . . . . . . . . . . . . . . . . . .   9
-     A.3.  Resolving Issues  . . . . . . . . . . . . . . . . . . . .   9
-     A.4.  Pull Requests . . . . . . . . . . . . . . . . . . . . . .   9
-     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .  10
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  10
+   5.  Schemas . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     6.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
+     6.2.  Informative References  . . . . . . . . . . . . . . . . .   7
+   Appendix A.  Development of this Specification  . . . . . . . . .   8
+     A.1.  Specification Style . . . . . . . . . . . . . . . . . . .   8
+     A.2.  Following Discussion  . . . . . . . . . . . . . . . . . .   8
+     A.3.  Resolving Issues  . . . . . . . . . . . . . . . . . . . .   8
+     A.4.  Pull Requests . . . . . . . . . . . . . . . . . . . . . .   8
+     A.5.  Published Versions  . . . . . . . . . . . . . . . . . . .   9
+   Appendix B.  IANA Consideration . . . . . . . . . . . . . . . . .   9
+   Appendix C.  Security Considerations  . . . . . . . . . . . . . .   9
+   Appendix D.  Acknowledgements . . . . . . . . . . . . . . . . . .   9
+   Appendix E.  Blueprint  . . . . . . . . . . . . . . . . . . . . .   9
+   Appendix F.  RAML . . . . . . . . . . . . . . . . . . . . . . . .  10
+   Appendix G.  YANG . . . . . . . . . . . . . . . . . . . . . . . .  11
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  13
 
 1.  Introduction
 
@@ -107,8 +109,6 @@ Table of Contents
 
 
 
-
-
 Jennings                Expires February 3, 2018                [Page 2]
 
 Internet-Draft                    SPAD                       August 2017
@@ -126,24 +126,26 @@ Internet-Draft                    SPAD                       August 2017
 
    The responses would be a JSON result that could looks like
 
-            {
-              "domain": "example.com",
-              "services": [
-                {
-                  "name": "example-service",
-                  "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
-                  "flows": [
-                    {
-                      "ips": [
-                        "203.0.113.2"
-                      ],
-                      "port": 443,
-                      "protocol": "https"
-                    }
-                  ]
-                }
-              ]
-            }
+       {
+           "ietf-spad:spad": {
+               "domain": "example.com",
+               "services": [
+                   {
+                       "name": "example-service",
+                       "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
+                       "flows": [
+                           {
+                               "ips": [
+                   "203.0.113.2"
+                               ],
+                               "port": 443,
+                               "protocol": "https"
+                           }
+                       ]
+                   }
+               ]
+           }
+       }
 
    The example above indicates that the "example.com" application has a
    single service with a single flow that uses only the HTTPS to connect
@@ -163,42 +165,42 @@ Internet-Draft                    SPAD                       August 2017
 
 
 
-
-
 Jennings                Expires February 3, 2018                [Page 3]
 
 Internet-Draft                    SPAD                       August 2017
 
 
-            {
-              "domain": "example.com",
-              "services": [
-                {
-                  "name": "voice-example",
-                  "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
-                  "flows": [
-                    {
-                      "ips": [
-                        "203.0.113.2",
-                        "2001:db8::1"
-                      ],
-                      "port": 5061,
-                      "name": "example.com",
-                      "protocol": "tls"
-                    },
-                    {
-                      "ips": [
-                        "192.0.2.1",
-                        "2001:db8::2"
-                      ],
-                      "port": 5004,
-                      "protocol": "udp",
-                      "qos": "AF41"
-                    }
-                  ]
-                }
-              ]
-            }
+       {
+           "ietf-spad:spad": {
+               "domain": "example.com",
+               "services": [
+                   {
+                       "name": "voice-example",
+                       "validTill": "Fri 11 Nov 2016 22:20:08 UTC",
+                       "flows": [
+                           {
+                               "ips": [
+                                   "203.0.113.2",
+                                   "2001:db8::1"
+                               ],
+                               "port": 5061,
+                               "name": "example.com",
+                               "protocol": "tls"
+                           },
+                           {
+                               "ips": [
+                                   "192.0.2.1",
+                                   "2001:db8::2"
+                               ],
+                               "port": 5004,
+                               "protocol": "udp",
+                               "qos": "AF41"
+                           }
+                       ]
+                   }
+               ]
+           }
+       }
 
 4.  Protocols
 
@@ -215,8 +217,6 @@ Internet-Draft                    SPAD                       August 2017
    schemes.xhtml>. is preferred thing to use if defined, followed by the
    service name from <https://www.iana.org/assignments/service-names-
    port-numbers/service-names-port-numbers.xhtml> followed by the
-   protocol by the Transport Protocol from RFC 6335.  All names are
-   moved to all lower case for consistency.
 
 
 
@@ -226,65 +226,22 @@ Jennings                Expires February 3, 2018                [Page 4]
 Internet-Draft                    SPAD                       August 2017
 
 
-5.  Blueprint
+   protocol by the Transport Protocol from RFC 6335.  All names are
+   moved to all lower case for consistency.
 
-   The Bluprint specification for the API is:
-
-FORMAT: 1A
-
-# SPAD
-
-# Group Flows
-
-## Service Collection [/.well-known/spad/v0/spad]
-### Get SPAD information for this application [GET]
-+ Response 200 (application/json)
-  + Attributes ( Application )
-
-## Service Collection [/.well-known/spad/v0/{service}]
-### Get SPAD information for this service [GET]
-+ Parameters
-    + service (string) -- service name to lookup
-+ Response 200 (application/json)
-  + Attributes ( Service )
-
-
-# Data Structures
-
-## Application
-+ domain: example.com (string)
-+ services (array[Service])
-
-## Service (object)
-+ name: message (string)
-+ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
-+ flows (array[Flow])
-
-## Flow (object)
-+ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
-+ port: 443 (number, required) - destination port number
-+ name: example.com (string, optional) - names used in TLS SNI or Proxy connect
-+ protocol: udp, tcp, http, tls, https, quic (enum, optional)
-+ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
-
-
-6.  Schemas
+5.  Schemas
 
    The JSON returned from MUST corespond to the following JSON schema.
 
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-
-
-
-Jennings                Expires February 3, 2018                [Page 5]
-
-Internet-Draft                    SPAD                       August 2017
-
-
   "type": "object",
   "title": "SPAD schema.",
   "properties": {
+
+      "ietf-spad:spad": {
+           "type": "object",
+          "properties": {
 
       "domain": {
           "type": "string",
@@ -317,6 +274,14 @@ Internet-Draft                    SPAD                       August 2017
                           "type": "object",
                           "title": "Flow",
                           "properties": {
+
+
+
+Jennings                Expires February 3, 2018                [Page 5]
+
+Internet-Draft                    SPAD                       August 2017
+
+
                               "ips": {
                                   "type": "array",
                                   "uniqueItems": false,
@@ -330,14 +295,6 @@ Internet-Draft                    SPAD                       August 2017
 
                                   "type": "integer",
                                   "maximum": 65535,
-
-
-
-Jennings                Expires February 3, 2018                [Page 6]
-
-Internet-Draft                    SPAD                       August 2017
-
-
                                   "minimum": 1,
                                   "title": "port",
                                   "description": "Destination ports used by the transport protocol."
@@ -373,6 +330,14 @@ Internet-Draft                    SPAD                       August 2017
                                   "type": "string",
                                   "title": "protocol",
                                   "enum": [
+
+
+
+Jennings                Expires February 3, 2018                [Page 6]
+
+Internet-Draft                    SPAD                       August 2017
+
+
                                       "udp",
                                       "tcp",
                                       "http",
@@ -386,6 +351,41 @@ Internet-Draft                    SPAD                       August 2017
                   }
               }
           }
+      }
+      }
+  },
+  "required": [
+    "domain",
+    "services"
+  ]
+  }
+}
+
+6.  References
+
+6.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/
+              RFC2119, March 1997,
+              <http://www.rfc-editor.org/info/rfc2119>.
+
+6.2.  Informative References
+
+   [I-D.wright-json-schema]
+              Wright, A. and H. Andrews, "JSON Schema: A Media Type for
+              Describing JSON Documents", draft-wright-json-schema-01
+              (work in progress), April 2017.
+
+6.3.  URIs
+
+   [1] https://github.com/fluffy/spad/issues
+
+   [2] https://www.ietf.org/mailman/listinfo/spad-issues
+
+   [3] https://www.ietf.org/mailman/listinfo/spad
+
+
 
 
 
@@ -394,61 +394,8 @@ Jennings                Expires February 3, 2018                [Page 7]
 Internet-Draft                    SPAD                       August 2017
 
 
-      }
-  },
-  "required": [
-    "domain",
-    "services"
-  ]
-}
-
-7.  IANA Consideration
-
-   TODO - register well known URL usage
-
-8.  Security Considerations
-
-   TODO - explain importance of HTTPS
-
-   Discuss merging with existing ACL
-
-9.  Acknowledgements
-
-   Thank you for the contributions from: Cullen Jennings
-
-10.  References
-
-10.1.  Normative References
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/
-              RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
-
-10.2.  Informative References
-
-   [I-D.wright-json-schema]
-              Wright, A. and H. Andrews, "JSON Schema: A Media Type for
-              Describing JSON Documents", draft-wright-json-schema-01
-              (work in progress), April 2017.
-
-10.3.  URIs
-
-   [1] https://github.com/fluffy/spad/issues
-
-   [2] https://www.ietf.org/mailman/listinfo/spad-issues
-
-   [3] https://www.ietf.org/mailman/listinfo/spad
-
    [4] https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-
        v0-00/
-
-
-
-Jennings                Expires February 3, 2018                [Page 8]
-
-Internet-Draft                    SPAD                       August 2017
-
 
 Appendix A.  Development of this Specification
 
@@ -495,16 +442,16 @@ A.4.  Pull Requests
    resolve open issues.  In the latter case, please identify the
    relevant issue.
 
-   Please do not use a pull request to open a new design issue; it may
-   not be noticed.
 
 
 
-
-Jennings                Expires February 3, 2018                [Page 9]
+Jennings                Expires February 3, 2018                [Page 8]
 
 Internet-Draft                    SPAD                       August 2017
 
+
+   Please do not use a pull request to open a new design issue; it may
+   not be noticed.
 
 A.5.  Published Versions
 
@@ -529,6 +476,203 @@ A.5.  Published Versions
    implement to a specific non-changing specification.  Future versions
    attempt, but do not guarantee, to be backwards-compatible with the
    previous version.
+
+Appendix B.  IANA Consideration
+
+   TODO - register well known URL usage
+
+Appendix C.  Security Considerations
+
+   TODO - explain importance of HTTPS
+
+   Discuss merging with existing ACL
+
+Appendix D.  Acknowledgements
+
+   Thank you for the contributions from: Cullen Jennings
+
+Appendix E.  Blueprint
+
+   The Bluprint specification for the API is:
+
+
+
+
+
+
+
+Jennings                Expires February 3, 2018                [Page 9]
+
+Internet-Draft                    SPAD                       August 2017
+
+
+FORMAT: 1A
+
+# SPAD
+
+# Group Flows
+
+## Service Collection [/.well-known/spad/v0/spad]
+### Get SPAD information for this application [GET]
++ Response 200 (application/json)
+  + Attributes ( Application )
+
+## Service Collection [/.well-known/spad/v0/{service}]
+### Get SPAD information for this service [GET]
++ Parameters
+    + service (string) -- service name to lookup
++ Response 200 (application/json)
+  + Attributes ( Service )
+
+
+# Data Structures
+
+## Application
++ domain: example.com (string)
++ services (array[Service])
+
+## Service (object)
++ name: message (string)
++ validTill: Fri 11 Nov 2016 22:20:08 UTC (string)
++ flows (array[Flow])
+
+## Flow (object)
++ ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
++ port: 443 (number, required) - destination port number
++ name: example.com (string, optional) - names used in TLS SNI or Proxy connect
++ protocol: udp, tcp, http, tls, https, quic (enum, optional)
++ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
+
+
+Appendix F.  RAML
+
+   The RAML specification for the API is:
+
+
+
+
+
+
+
+
+
+
+Jennings                Expires February 3, 2018               [Page 10]
+
+Internet-Draft                    SPAD                       August 2017
+
+
+#%RAML 0.8
+title: SPAD
+version: v0
+protocols: [ HTTPS ]
+baseUri: https://example.com/.well-known/spad/{version}
+mediaType: application/json
+
+schemas:
+ - spad.json: !include spad-schema.json
+
+documentation:
+ - title: Overview
+   content: !include overview.md
+
+/transports:
+  description: Transports used by this service
+  get:
+    description: Retrieve the spad
+    responses:
+       200:
+         description: Return SPAD file - see https://fluffy.github.io/spad/schemas/
+         body:
+          application/json:
+            schema: spad.json
+            example: !include example1.json
+
+
+Appendix G.  YANG
+
+   The YANG data model for the JSON is:
+
+
+
+         module ietf-spad {
+           yang-version 1.1;
+           namespace "urn:ietf:params:xml:ns:yang:ietf-spad";
+           prefix "spad";
+
+           import ietf-inet-types {
+                  prefix "inet";
+           }
+
+           import ietf-yang-types {
+                  prefix "yang";
+           }
+
+         organization
+             "IETF";
+
+
+
+Jennings                Expires February 3, 2018               [Page 11]
+
+Internet-Draft                    SPAD                       August 2017
+
+
+           contact
+             "fluffy@iii.ca";
+           description
+             "The module for entities
+              implementing the SPAD";
+
+           revision 2017-10-02 {
+             description
+               "Initial revision.";
+           }
+
+           container spad {
+             leaf domain {
+               type inet:domain-name;
+               mandatory true;
+               description "Domain that produced this SPAD file";
+             }
+             leaf validTill {
+               type yang:date-and-time;
+             }
+             list services {
+               key "name";
+               leaf name {
+                 type string;
+               }
+
+               list flows {
+                 key protocol;
+                 leaf port {
+                   type inet:port-number;
+                 }
+                 leaf protocol {
+                   type string;
+                 }
+                 leaf name {
+                   type inet:domain-name;
+                 }
+                 leaf qos {
+                   type inet:dscp;
+                 }
+                 leaf-list ips {
+                   //type inet:ip-prefix;
+                   type inet:ip-address;
+                 }
+               }
+             }
+           }
+         }
+
+
+
+Jennings                Expires February 3, 2018               [Page 12]
+
+Internet-Draft                    SPAD                       August 2017
+
 
 Author's Address
 
@@ -557,4 +701,28 @@ Author's Address
 
 
 
-Jennings                Expires February 3, 2018               [Page 10]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jennings                Expires February 3, 2018               [Page 13]
