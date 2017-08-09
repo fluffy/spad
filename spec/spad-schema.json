@@ -38,7 +38,7 @@
                       "title": "IP addresses list",
                       "items": {
                         "type": "string",
-                        "title": "IPv4 or v6 address"
+                        "title": "IPv4 or v6 address and prefix"
                       }
                     },
                     "port": {
@@ -54,35 +54,16 @@
                       "description": "DNS name that will be used to connect to."
                     },
                     "qos": {
-                      "type": "string",
+                      "type": "integer",
                       "title": "DSCP",
-                      "description": "Differentiated Services Code Point to use.",
-                      "enum": [
-                        "CS1",
-                        "DF",
-                        "EF",
-                        "AF11",
-                        "AF21",
-                        "AF41",
-                        "AF42",
-                        "AF43",
-                        "AF31",
-                        "AF32",
-                        "AF33"
-                      ]
+                        "description": "Differentiated Services Code Point to use.",
+                        "maximum": 56,
+                        "minimum": 0
                     },
                     "protocols": {
                       "title": "protocol",
                       "description": "Protocols used.",
-                      "type": "string",
-                      "enum": [
-                        "udp",
-                        "tcp",
-                        "http",
-                        "tls",
-                        "https",
-                        "quic"
-                      ]
+                      "type": "string"
                     }
                   }
                 }

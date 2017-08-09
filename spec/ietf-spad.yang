@@ -56,8 +56,7 @@ organization
           type inet:dscp;
         }
         leaf-list ips {
-          //type inet:ip-prefix;
-          type inet:ip-address;
+          type inet:ip-prefix;
         }
       }
     }

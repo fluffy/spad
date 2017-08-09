@@ -78,8 +78,9 @@ The following shows a more complex example result for an application
 that uses two flows. One is TLS to the SIP port of a server with a v4
 and v6 address. The TLS connection will have a name of example.com in
 the SNI.  The other flow is media sent over UDP to port 5004 on a few
-different ip addresses. If devices in the network are capable of
-re-marking DSCP, the desired marking is "AF41".
+different ip addresses including a /25 range of IPs. If devices in the
+network are capable of re-marking DSCP, the desired marking is 46 wich
+corresponds to "EF".
 
 {{gen/example2.json.md}}
 
