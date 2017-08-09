@@ -90,11 +90,11 @@
             }
           }
         }
-      }
-    },
-    "required": [
-      "domain",
-      "services"
-    ]
+      },
+      "required": [
+        "domain",
+        "services"
+      ]
+    }
   }
 }
