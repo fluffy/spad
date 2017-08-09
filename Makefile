@@ -79,28 +79,27 @@ gen/%.json.md: spec/%.json
 test: gen/ietf-spad.ok gen/example-tmpl.xml gen/ietf-spad.xsl gen/example.json gen/rev-example.xml gen/ietf-spad.dsdl gen/ietf-spad.yang
 
 gen/ietf-spad.ok: spec/ietf-spad.yang
-	pyang -V spec/ietf-spad.yang
+	pyang -V -p contrib  spec/ietf-spad.yang
 	touch gen/ietf-spad.ok
 
-
 gen/example-tmpl.xml: spec/ietf-spad.yang 
-	pyang -f sample-xml-skeleton spec/ietf-spad.yang | xmllint --format - > gen/example-tmpl.xml
+	pyang -f sample-xml-skeleton spec/ietf-spad.yang  -p contrib  -o gen/example-tmpl.xml
 
 gen/ietf-spad.yang: spec/ietf-spad.yang 
-	pyang -f ynag spec/ietf-spad.yang > gen/ietf-spad.yang
+	pyang -f yang -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.yang
 
 gen/ietf-spad.xsl: spec/ietf-spad.yang 
-	pyang -f jsonxsl spec/ietf-spad.yang | xmllint --format - > gen/ietf-spad.xsl
+	pyang -f jsonxsl -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.xsl
 
 gen/ietf-spad.dsdl: spec/ietf-spad.yang 
-	pyang -f dsdl spec/ietf-spad.yang | xmllint --format - > gen/ietf-spad.dsdl
+	pyang -f dsdl -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.dsdl
 
 gen/example.json: spec/example.xml gen/ietf-spad.xsl 
-	xsltproc gen/ietf-spad.xsl spec/example.xml > gen/example.json 
+	xsltproc -o gen/example.json gen/ietf-spad.xsl spec/example.xml 
 
 gen/ietf-spad.jtox: spec/ietf-spad.yang 
-	pyang -f jtox  spec/ietf-spad.yang -o gen/ietf-spad.jtox
+	pyang -f jtox  -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.jtox
 
 gen/rev-example.xml: gen/ietf-spad.jtox gen/example.json
-	json2xml -t config gen/ietf-spad.jtox gen/example.json  | xmllint --format - >  gen/rev-example.xml 
+	json2xml -t config gen/ietf-spad.jtox gen/example.json  -o  gen/rev-example.xml 
 
