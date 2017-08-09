@@ -21,39 +21,49 @@ module ietf-spad {
   revision 2017-10-02 {
     description
       "Initial revision.";
+      reference "draft-jennings-dispatch-spad-v0-00";
   }
 
   container spad {
+  description "TODO 1";
     leaf domain {
       type inet:domain-name;
-      mandatory true;
       description
         "Domain that produced this SPAD file";
     }
     list services {
       key "name";
+    description "TODO 2";
       leaf name {
         type string;
+         description "TODO 3";
       }
       leaf validTill {
         type string;
+         description "TODO 4";
       }
       list flows {
         key "protocol";
+       description "TODO 10";
         leaf port {
           type inet:port-number;
+           description "TODO 5";
         }
         leaf protocol {
           type string;
+           description "TODO 9";
         }
         leaf name {
           type inet:domain-name;
+           description "TODO 6";
         }
         leaf qos {
           type inet:dscp;
+           description "TODO 7";
         }
         leaf-list ips {
           type inet:ip-prefix;
+           description "TODO 8";
         }
       }
     }

@@ -79,7 +79,7 @@ gen/%.json.md: spec/%.json
 test: gen/ietf-spad.ok gen/example-tmpl.xml gen/ietf-spad.xsl gen/example.json gen/rev-example.xml gen/ietf-spad.dsdl gen/ietf-spad.yang gen/example1.xml gen/example2.xml
 
 gen/ietf-spad.ok: spec/ietf-spad.yang
-	pyang -V -p contrib  spec/ietf-spad.yang
+	pyang -V -p contrib  --ietf spec/ietf-spad.yang
 	touch gen/ietf-spad.ok
 
 gen/example-tmpl.xml: spec/ietf-spad.yang 

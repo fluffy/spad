@@ -227,6 +227,10 @@ point.
 
 The YANG data model for the JSON is:
 
+~~~
+<CODE BEGINS> file "ietf-spad@2017-10-02.yang"
+~~~
 {{gen/ietf-spad.yang.md}}
-
-
+~~~
+<CODE ENDS>
+~~~
