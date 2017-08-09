@@ -1,19 +1,16 @@
-
-
 module ietf-spad {
   yang-version 1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-spad";
-  prefix "spad";
+  prefix spad;
 
   import ietf-inet-types {
-         prefix "inet";
+    prefix inet;
   }
-       
   import ietf-yang-types {
-         prefix "yang";
+    prefix yang;
   }
-       
-organization
+
+  organization
     "IETF";
   contact
     "fluffy@iii.ca";
@@ -30,22 +27,19 @@ organization
     leaf domain {
       type inet:domain-name;
       mandatory true;
-      description "Domain that produced this SPAD file";
+      description
+        "Domain that produced this SPAD file";
     }
-
     list services {
       key "name";
       leaf name {
         type string;
       }
-
-    leaf validTill {
-      //type yang:date-and-time;
-      type string;
-    }
-
+      leaf validTill {
+        type string;
+      }
       list flows {
-        key protocol;
+        key "protocol";
         leaf port {
           type inet:port-number;
         }

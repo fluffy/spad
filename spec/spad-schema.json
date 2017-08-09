@@ -56,9 +56,9 @@
                     "qos": {
                       "type": "integer",
                       "title": "DSCP",
-                        "description": "Differentiated Services Code Point to use.",
-                        "maximum": 56,
-                        "minimum": 0
+                      "description": "Differentiated Services Code Point to use.",
+                      "maximum": 56,
+                      "minimum": 0
                     },
                     "protocols": {
                       "title": "protocol",
