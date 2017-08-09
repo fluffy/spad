@@ -32,15 +32,18 @@ organization
       mandatory true;
       description "Domain that produced this SPAD file";
     }
-    leaf validTill {
-      type yang:date-and-time;
-    }
+
     list services {
       key "name";
       leaf name {
         type string;
       }
-      
+
+    leaf validTill {
+      //type yang:date-and-time;
+      type string;
+    }
+
       list flows {
         key protocol;
         leaf port {

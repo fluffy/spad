@@ -2,9 +2,9 @@
 <data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <spad xmlns="urn:ietf:params:xml:ns:yang:ietf-spad">
     <domain>spark.com</domain>
-    <validTill> todo  </validTill>
     <services>
       <name>spark</name>
+    <validTill> todo  </validTill>
       <flows>
         <port>123</port>
         <protocol>https</protocol>

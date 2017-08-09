@@ -76,7 +76,7 @@ gen/%.json.md: spec/%.json
 	mkdir -p gen 
 	( echo "~~~ " ; cat $< ; echo "~~~" ) > $@
 
-test: gen/ietf-spad.ok gen/example-tmpl.xml gen/ietf-spad.xsl gen/example.json gen/rev-example.xml gen/ietf-spad.dsdl gen/ietf-spad.yang
+test: gen/ietf-spad.ok gen/example-tmpl.xml gen/ietf-spad.xsl gen/example.json gen/rev-example.xml gen/ietf-spad.dsdl gen/ietf-spad.yang gen/example1.xml gen/example2.xml
 
 gen/ietf-spad.ok: spec/ietf-spad.yang
 	pyang -V -p contrib  spec/ietf-spad.yang
@@ -102,4 +102,13 @@ gen/ietf-spad.jtox: spec/ietf-spad.yang
 
 gen/rev-example.xml: gen/ietf-spad.jtox gen/example.json
 	json2xml -t config gen/ietf-spad.jtox gen/example.json  -o  gen/rev-example.xml 
+
+
+gen/example1.xml: gen/ietf-spad.jtox spec/example1.json
+	json2xml -t config gen/ietf-spad.jtox spec/example1.json  -o  gen/example1.xml
+	xmllint --format gen/example1.xml -o gen/example1.xml
+
+gen/example2.xml: gen/ietf-spad.jtox spec/example2.json
+	json2xml -t config gen/ietf-spad.jtox spec/example2.json  -o  gen/example2.xml
+	xmllint --format gen/example2.xml -o gen/example2.xml
 
