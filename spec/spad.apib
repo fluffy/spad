@@ -32,6 +32,6 @@ FORMAT: 1A
 + ips: 203.0.113.2, 2001:db8::1 (array[string], required) - All IP addresses used by this flow
 + port: 443 (number, required) - destination port number 
 + name: example.com (string, optional) - names used in TLS SNI or Proxy connect  
-+ protocol: udp, tcp, http, tls, https, quic (enum, optional)
-+ qos: CS1, DF, EF, AF11, AF21, AF41, AF42, AF43, AF31, AF32, AF33 (enum, optional)
++ protocol: http (string, optional)
++ qos: 46 (number, optional) - DSCP 
 
