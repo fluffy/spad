@@ -26,7 +26,6 @@ the SNI.  The other flow is media sent over UDP to port 5004 on a few
 different ip addresses. If devices in the network are capable of
 remarking DSCP, the desired marking is "AF41".
 
-
 {{gen/example2.json.md}}
 
 
