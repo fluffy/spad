@@ -124,38 +124,53 @@ examples and code and asking a few questions, well that's good enough
 for us. If you can find it on Wikipedia, we don't need to explain it
 here.
 
-The build chain allows for an internet draft to be produced from separate parts: a basic draft skeleton that includes narrative text; examples; an API specification; and a schema. Markdown is used for text. RAML and JSON Schema are used to describe
-the API. Examples play a central role in the specification. The build
-chain has the goal of being simple and obvious with no black magic.
+The build chain allows for an internet draft to be produced from
+separate parts: a basic draft skeleton that includes narrative text;
+examples; an API specification; and a schema. Markdown is used for
+text. RAML and JSON Schema are used to describe the API. Examples play
+a central role in the specification. The build chain has the goal of
+being simple and obvious with no black magic.
 
 ## Following Discussion
 
 We welcome all contributions. Discussion takes place in a few places:
 
-* We discuss specific issues on the appropriate issues list in [Github](https://github.com/fluffy/spad/issues). If you don't want to use Github to follow these discussions, you can subscribe to the [issue announce list](https://www.ietf.org/mailman/listinfo/spad-issues).
+* We discuss specific issues on the appropriate issues list in
+  [Github](https://github.com/fluffy/spad/issues). If you don't want
+  to use Github to follow these discussions, you can subscribe to the
+  [issue announce list](https://www.ietf.org/mailman/listinfo/spad-issues).
 
-* Our [mailing list](https://www.ietf.org/mailman/listinfo/spad) is used for confirmation of consensus.
+* Our [mailing list](https://www.ietf.org/mailman/listinfo/spad) is
+  used for confirmation of consensus.
 
 ## Resolving Issues
 
-Consensus for the resolution of an issue can be established through discussion on the issues list. Once a resolution is found, the issue will be labeled as `editor-ready`. The editor will then write a pull request suggesting the specific changes to make to resolve the issue. Consensus to adopt the change will be judged on the mailing list. Once a pull request has consensus, the editor will merge it and close the issue.
+Consensus for the resolution of an issue can be established through
+discussion on the issues list. Once a resolution is found, the issue
+will be labeled as `editor-ready`. The editor will then write a pull
+request suggesting the specific changes to make to resolve the
+issue. Consensus to adopt the change will be judged on the mailing
+list. Once a pull request has consensus, the editor will merge it and
+close the issue.
 
 
 ## Pull Requests
 
-We welcome pull requests, both for editorial suggestions and to resolve open issues. In the latter case, please identify the relevant issue.
+We welcome pull requests, both for editorial suggestions and to
+resolve open issues. In the latter case, please identify the relevant
+issue.
 
-Please do not use a pull request to open a new design issue; it may not be noticed.
+Please do not use a pull request to open a new design issue; it may
+not be noticed.
 
 
 ## Published Versions
 
-The web site at (https://fluffy.github.io/spad/) provides an
-overview of the specification that is focused on a developer
-audience. However, all the key information to implement the
-specification that is used to generate the web site is also used to
-generate and internet draft that can be found at
-[draft-jennings-dispatch-spad-v0]
+The web site at (https://fluffy.github.io/spad/) provides an overview
+of the specification that is focused on a developer audience. However,
+all the key information to implement the specification that is used to
+generate the web site is also used to generate and internet draft that
+can be found at [draft-jennings-dispatch-spad-v0]
 (https://datatracker.ietf.org/doc/draft-jennings-dispatch-spad-v0/).
 
 Periodically the information on the master is branched to a versioned
@@ -190,19 +205,24 @@ TODO - Discuss merging with existing ACL
 Thank you for the contributions from: 
 Cullen Jennings, Alissa Cooper 
 
-# Blueprint
+# RAML 
 
-The Bluprint specification for the API is:
-
-{{gen/spad.apib.md}}
-
-# RAML
-
-The RAML specification for the API is:
+The RAML specification for the API is: 
 
 {{gen/spad.raml.md}}
 
+# Blueprint
+
+This will likely be dropped from future version.
+
+The Blueprint specification for the API is:
+
+{{gen/spad.apib.md}}
+
 # YANG
+
+This is very preliminary and should not be taken very seriously at this
+point.
 
 The YANG data model for the JSON is:
 
