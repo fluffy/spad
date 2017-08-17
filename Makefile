@@ -12,11 +12,11 @@ ifeq (,$(VERSION))
 	VERSION = latest
 endif
 
-.PHONY: all clean diff  draft tidy check site
+.PHONY: all clean diff draft tidy check test
 .PRECIOUS: %.xml
 
 
-all:  dirs draft site 
+all:  dirs draft
 
 dirs:
 	mkdir -p gen/content
@@ -27,59 +27,6 @@ dirs:
 
 draft: docs/id/$(DRAFT)-$(VERSION).txt docs/id/$(DRAFT)-$(VERSION).html 
 
-server:
-	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs server
-
-
-site: themes/blackburn/README.md gen/content/about.mmark gen/content/getting_started.mmark gen/content/overview.mmark \
-	gen/content/contributing.mmark gen/content/raml.mmark gen/content/schemas.mmark\
-	gen/content/api.html  gen/content/blueprint.mmark \
-	gen/content/$(DRAFT)-$(VERSION).mmark gen/Contributors.md \
-	hugo-config.yaml gen/spad.apib.md
-	hugo  --config hugo-config.yaml --contentDir gen/content --destination docs 
-
-gen/content/contributing.mmark: spec/CONTRIBUTING.md
-	( echo "---" ; echo "title: Contributing " ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/Contributors.md: Contributors.md
-	cat $< > $@
-
-
-gen/content/$(DRAFT)-$(VERSION).mmark:  spec/$(DRAFT).md
-	( echo "---" ; echo "title: Internet Draft" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/about.mmark:  spec/about.md
-	( echo "---" ; echo "title: About SPAD" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/getting_started.mmark:  spec/gettingStarted.md
-	( echo "---" ; echo "title: Getting Started" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/overview.mmark:  spec/overview.md
-	( echo "---" ; echo "title: Simple Port and Address Discovery (SPAD)" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/blueprint.mmark:  spec/blueprint.md
-	( echo "---" ; echo "title: Blueprint Spec for API" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/raml.mmark:  spec/raml.md
-	( echo "---" ; echo "title: RAML Spec for API" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/schemas.mmark:  spec/schemas.md
-	( echo "---" ; echo "title: JSON Schema for Results" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/draft.mmark:  
-	( echo "---" ; echo "title: Internet Draft" ; echo "---" ) >  $@
-	cat $< >>  $@
-
-gen/content/$(DRAFT)-$(VERSION).html: docs/$(DRAFT)-$(VERSION).html
-	cp $< $@
 
 diff: $(DRAFT).diff.html
 
@@ -103,7 +50,9 @@ tidy:
 %.html: %.xml 
 	$(xml2rfc) -N $< -o $@ --html
 
-docs/id/$(DRAFT)-$(VERSION).xml: spec/$(DRAFT).md  spec/*.md gen/example1.json.md gen/example2.json.md gen/spad.raml.md gen/spad-schema.json.md gen/Contributors.md
+docs/id/$(DRAFT)-$(VERSION).xml: spec/$(DRAFT).md  \
+	gen/example1.json.md gen/example2.json.md \
+	gen/spad.raml.md gen/spad-schema.json.md gen/ietf-spad.yang.md gen/spad.apib.md
 	mkdir -p docs/id
 	$(mmark) -xml2 -page spec/$(DRAFT).md $@
 
@@ -111,19 +60,13 @@ $(DRAFT).diff.html: $(DRAFT)-$(VERSION).txt $(DRAFT)-old.txt
 	touch $(DRAFT)-old.txt
 	htmlwdiff   $(DRAFT)-old.txt   $(DRAFT)-$(VERSION).txt >   $(DRAFT).diff.html
 
-
-#docs/api.html: spad.raml example1.json example2.json spad-schema.json
-#	mkdir -p page
-#	raml2html spad.raml -o docs/api.html
-
-gen/content/api.html: spec/spad.apib
-	mkdir -p docs
-	aglio --no-theme-condense --theme-full-width -i $<  -o $@
-
-
 gen/%.raml.md: spec/%.raml
 	mkdir -p gen 
 	( echo "~~~ yaml" ; cat $< ; echo "~~~" ) > $@
+
+gen/%.yang.md: spec/%.yang
+	mkdir -p gen 
+	( echo "~~~ yang" ; cat $< ; echo "~~~" ) > $@
 
 gen/%.apib.md: spec/%.apib
 	mkdir -p gen 
@@ -133,8 +76,39 @@ gen/%.json.md: spec/%.json
 	mkdir -p gen 
 	( echo "~~~ " ; cat $< ; echo "~~~" ) > $@
 
+test: gen/ietf-spad.ok gen/example-tmpl.xml gen/ietf-spad.xsl gen/example.json gen/rev-example.xml gen/ietf-spad.dsdl gen/ietf-spad.yang gen/example1.xml gen/example2.xml
 
-themes/blackburn/README.md:
-	mkdir -p themes/
-	(cd themes/ ; git clone https://github.com/yoshiharuyamashita/blackburn.git )
+gen/ietf-spad.ok: spec/ietf-spad.yang
+	pyang -V -p contrib  --ietf spec/ietf-spad.yang
+	touch gen/ietf-spad.ok
+
+gen/example-tmpl.xml: spec/ietf-spad.yang 
+	pyang -f sample-xml-skeleton spec/ietf-spad.yang  -p contrib  -o gen/example-tmpl.xml
+
+gen/ietf-spad.yang: spec/ietf-spad.yang 
+	pyang -f yang -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.yang
+
+gen/ietf-spad.xsl: spec/ietf-spad.yang 
+	pyang -f jsonxsl -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.xsl
+
+gen/ietf-spad.dsdl: spec/ietf-spad.yang 
+	pyang -f dsdl -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.dsdl
+
+gen/example.json: spec/example.xml gen/ietf-spad.xsl 
+	xsltproc -o gen/example.json gen/ietf-spad.xsl spec/example.xml 
+
+gen/ietf-spad.jtox: spec/ietf-spad.yang 
+	pyang -f jtox  -p contrib  spec/ietf-spad.yang -o gen/ietf-spad.jtox
+
+gen/rev-example.xml: gen/ietf-spad.jtox gen/example.json
+	json2xml -t config gen/ietf-spad.jtox gen/example.json  -o  gen/rev-example.xml 
+
+
+gen/example1.xml: gen/ietf-spad.jtox spec/example1.json
+	json2xml -t config gen/ietf-spad.jtox spec/example1.json  -o  gen/example1.xml
+	xmllint --format gen/example1.xml -o gen/example1.xml
+
+gen/example2.xml: gen/ietf-spad.jtox spec/example2.json
+	json2xml -t config gen/ietf-spad.jtox spec/example2.json  -o  gen/example2.xml
+	xmllint --format gen/example2.xml -o gen/example2.xml
 
